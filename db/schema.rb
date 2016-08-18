@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818004821) do
+ActiveRecord::Schema.define(version: 20160818174456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alerts", force: :cascade do |t|
+    t.integer  "cohort_id"
+    t.integer  "location_id"
+    t.integer  "stack_id"
+    t.text     "message"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "alerts", ["cohort_id"], name: "index_alerts_on_cohort_id", using: :btree
+  add_index "alerts", ["location_id"], name: "index_alerts_on_location_id", using: :btree
+  add_index "alerts", ["stack_id"], name: "index_alerts_on_stack_id", using: :btree
 
   create_table "cohorts", force: :cascade do |t|
     t.integer  "location_id"
@@ -37,8 +50,12 @@ ActiveRecord::Schema.define(version: 20160818004821) do
     t.text     "about"
     t.boolean  "admin"
     t.boolean  "actie"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "instructors", ["location_id"], name: "index_instructors_on_location_id", using: :btree
@@ -81,12 +98,19 @@ ActiveRecord::Schema.define(version: 20160818004821) do
     t.boolean  "happy"
     t.boolean  "help"
     t.integer  "cohort_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree
 
+  add_foreign_key "alerts", "cohorts"
+  add_foreign_key "alerts", "locations"
+  add_foreign_key "alerts", "stacks"
   add_foreign_key "cohorts", "locations"
   add_foreign_key "instructors", "locations"
   add_foreign_key "stacks", "instructors"

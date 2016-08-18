@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'students/new'
 
-  get 'students/show'
+  get 'students/:id/edit' => 'students#edit'
 
   get 'students/edit'
 
