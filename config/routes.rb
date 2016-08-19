@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'sessions#index'             # reroutes to login page
+  get '/login' => 'sessions#new'    # the login page
+
+
+
   get 'instructors/edit'
 
   get 'instructors/new'
@@ -7,11 +12,11 @@ Rails.application.routes.draw do
 
   get 'students/new'
 
-  get 'students/show'
+  get 'students/:id/edit' => 'students#edit'
 
   get 'students/edit'
 
-  get 'sessions/new'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

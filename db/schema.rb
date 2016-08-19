@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160819004115) do
+=======
+ActiveRecord::Schema.define(version: 20160818174456) do
+>>>>>>> 80cb3a7bb8b336593f77820076e35dfd8db151a9
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +32,18 @@ ActiveRecord::Schema.define(version: 20160819004115) do
   add_index "alerts", ["cohort_id"], name: "index_alerts_on_cohort_id", using: :btree
   add_index "alerts", ["location_id"], name: "index_alerts_on_location_id", using: :btree
   add_index "alerts", ["stack_id"], name: "index_alerts_on_stack_id", using: :btree
+
+  create_table "borrowers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "purpose"
+    t.text     "description"
+    t.integer  "amount_needed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "cohorts", force: :cascade do |t|
     t.integer  "location_id"
@@ -52,6 +68,10 @@ ActiveRecord::Schema.define(version: 20160819004115) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "active"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "instructors", ["location_id"], name: "index_instructors_on_location_id", using: :btree
@@ -61,6 +81,27 @@ ActiveRecord::Schema.define(version: 20160819004115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "lenders", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "money"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "lender_id"
+    t.integer  "borrower_id"
+    t.integer  "amount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "loans", ["borrower_id"], name: "index_loans_on_borrower_id", using: :btree
+  add_index "loans", ["lender_id"], name: "index_loans_on_lender_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -106,8 +147,12 @@ ActiveRecord::Schema.define(version: 20160819004115) do
     t.boolean  "happy"
     t.boolean  "help"
     t.integer  "cohort_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree
@@ -117,8 +162,13 @@ ActiveRecord::Schema.define(version: 20160819004115) do
   add_foreign_key "alerts", "stacks"
   add_foreign_key "cohorts", "locations"
   add_foreign_key "instructors", "locations"
+<<<<<<< HEAD
   add_foreign_key "stack_students", "stacks"
   add_foreign_key "stack_students", "students"
+=======
+  add_foreign_key "loans", "borrowers"
+  add_foreign_key "loans", "lenders"
+>>>>>>> 80cb3a7bb8b336593f77820076e35dfd8db151a9
   add_foreign_key "stacks", "instructors"
   add_foreign_key "stacks", "languages"
   add_foreign_key "students", "cohorts"
