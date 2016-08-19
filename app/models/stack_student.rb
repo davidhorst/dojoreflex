@@ -1,4 +1,4 @@
-class StudentStack < ActiveRecord::Base
+class StackStudent < ActiveRecord::Base
   belongs_to :student
   belongs_to :stack
 end

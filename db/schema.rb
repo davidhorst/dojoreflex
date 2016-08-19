@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818004821) do
+ActiveRecord::Schema.define(version: 20160819004115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alerts", force: :cascade do |t|
+    t.integer  "cohort_id"
+    t.integer  "location_id"
+    t.integer  "stack_id"
+    t.text     "message"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "alerts", ["cohort_id"], name: "index_alerts_on_cohort_id", using: :btree
+  add_index "alerts", ["location_id"], name: "index_alerts_on_location_id", using: :btree
+  add_index "alerts", ["stack_id"], name: "index_alerts_on_stack_id", using: :btree
 
   create_table "cohorts", force: :cascade do |t|
     t.integer  "location_id"
@@ -36,9 +49,9 @@ ActiveRecord::Schema.define(version: 20160818004821) do
     t.string   "password_digest"
     t.text     "about"
     t.boolean  "admin"
-    t.boolean  "actie"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "active"
   end
 
   add_index "instructors", ["location_id"], name: "index_instructors_on_location_id", using: :btree
@@ -56,6 +69,18 @@ ActiveRecord::Schema.define(version: 20160818004821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "stack_students", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "stack_id"
+    t.boolean  "blackbelt"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stack_students", ["stack_id"], name: "index_stack_students_on_stack_id", using: :btree
+  add_index "stack_students", ["student_id"], name: "index_stack_students_on_student_id", using: :btree
 
   create_table "stacks", force: :cascade do |t|
     t.integer  "instructor_id"
@@ -87,8 +112,13 @@ ActiveRecord::Schema.define(version: 20160818004821) do
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree
 
+  add_foreign_key "alerts", "cohorts"
+  add_foreign_key "alerts", "locations"
+  add_foreign_key "alerts", "stacks"
   add_foreign_key "cohorts", "locations"
   add_foreign_key "instructors", "locations"
+  add_foreign_key "stack_students", "stacks"
+  add_foreign_key "stack_students", "students"
   add_foreign_key "stacks", "instructors"
   add_foreign_key "stacks", "languages"
   add_foreign_key "students", "cohorts"

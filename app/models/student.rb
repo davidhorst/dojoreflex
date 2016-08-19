@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
   belongs_to :cohort
-  has_many :student_stacks
-  has_many :stacks, through: :student_stacks
+  has_many :stack_students
+  has_many :stacks, through: :stack_student
   has_secure_password
 end
