@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20160818174456) do
   add_index "alerts", ["location_id"], name: "index_alerts_on_location_id", using: :btree
   add_index "alerts", ["stack_id"], name: "index_alerts_on_stack_id", using: :btree
 
+  create_table "borrowers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "purpose"
+    t.text     "description"
+    t.integer  "amount_needed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "cohorts", force: :cascade do |t|
     t.integer  "location_id"
     t.date     "start"
@@ -65,6 +77,27 @@ ActiveRecord::Schema.define(version: 20160818174456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "lenders", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "money"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "lender_id"
+    t.integer  "borrower_id"
+    t.integer  "amount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "loans", ["borrower_id"], name: "index_loans_on_borrower_id", using: :btree
+  add_index "loans", ["lender_id"], name: "index_loans_on_lender_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -113,6 +146,8 @@ ActiveRecord::Schema.define(version: 20160818174456) do
   add_foreign_key "alerts", "stacks"
   add_foreign_key "cohorts", "locations"
   add_foreign_key "instructors", "locations"
+  add_foreign_key "loans", "borrowers"
+  add_foreign_key "loans", "lenders"
   add_foreign_key "stacks", "instructors"
   add_foreign_key "stacks", "languages"
   add_foreign_key "students", "cohorts"

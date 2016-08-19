@@ -2,6 +2,17 @@
 <html>
 <head>
   <title>DojoReflex</title>
+  <!-- jquery -->
+  <%= javascript_include_tag 'jquery-3.1.0.min.js' %>
+  <%= javascript_include_tag 'jquery-ui.min.js' %>
+  <%= stylesheet_link_tag    'jquery-ui.min.css' %>
+
+  <!-- bootstrap -->
+  <%= stylesheet_link_tag    'bootstrap.min.css' %>
+  <%= stylesheet_link_tag    'bootstrap-theme.min.css' %>
+  <%= javascript_include_tag 'bootstrap.min.js' %>
+
+  <!-- application -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
