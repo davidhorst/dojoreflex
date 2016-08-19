@@ -5,11 +5,13 @@ Rails.application.routes.draw do
 
   get 'instructors/new'
   get 'instructors/:id' => 'instructors#show'
-  get 'instructors/:id/edit' => 'instructors#edit'
+  put 'instructors/:id' => 'instructors#edit'
 
   get 'students/new'
+
+  put 'students/:id' => 'students#edit'
+
   get 'students/:id' => 'students#show'
-  get 'students/:id/edit' => 'students#edit'
 
 
 

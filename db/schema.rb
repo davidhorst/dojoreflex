@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20160819231413) do
     t.boolean  "admin"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.boolean  "active"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "active"
   end
 
   add_index "instructors", ["location_id"], name: "index_instructors_on_location_id", using: :btree

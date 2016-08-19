@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 		if session[:student_id] == nil
 			clear_session
 			flash[:errors] = ["please log in as a student"]
-			redirect_to '/login' 
+			redirect_to '/login'
 		end
 	end
 
@@ -25,14 +25,14 @@ class ApplicationController < ActionController::Base
 		if session[:instructor_id] == nil
 			clear_session
 			flash[:errors] = ["please log in as a instructor"]
-			redirect_to '/login' 
+			redirect_to '/login'
 		end
 	end
 
 	# authorization helper methods: recommened to be used with "before_action" in controllers
 	def require_correct_student
 		user = Student.find_by(id: params[:id])
-		redirect_to "/student/#{session[:student_id]}" if user.nil? or session[:student_id] != user.id
+		redirect_to "/students/#{session[:student_id]}" if user.nil? or session[:student_id] != user.id
 	end
 
 	def require_correct_instructor
