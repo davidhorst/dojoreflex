@@ -1,2 +1,67 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% content_for :head do %>
+  <!-- <script type="text/javascript">
+    $( function() {
+    $( "#sessions-login-tabs" ).tabs();
+  } );
+
+  </script> -->
+<% end %>
+
+
+
+<section id="sessions-login-main">
+	<div id="sessions-login-container">
+		<%= image_tag 'coding_dojo_highres_white', id: 'sessions-login-logo' %>
+		<div id='sessions-login-title'>
+			<h1>Ninja Reflex</h1>
+		</div>
+		
+    <div id="sessions-login-tabs">
+      <ul id="sessions-login-tabs-ul">
+        <li><a href="#sessions-login-tabs-1">Students</a></li><!--  
+        --><li><a href="#sessions-login-tabs-2">Instructors</a></li>
+      </ul>
+      <div id="sessions-login-tabs-1">
+        <h5>Welcome back! Let's get coding</h5>
+        <form action="/sessions" method="POST">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="type" value="student">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> <small id="emailHelp" class="form-text text-muted">Remember Me</small>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <small id="emailHelp" class="form-text text-muted">Forgot Password?</small>
+          </div>  
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <div id="sessions-login-tabs-2">
+        <h5>Are you an instructor? Login here</h5>
+        <form action="/sessions" method="POST">
+          <div class="form-group">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="type" value="instructor">
+            <input type="email" class="form-control" placeholder="Email" name="email">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> <small id="emailHelp" class="form-text text-muted">Remember Me</small>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <small id="emailHelp" class="form-text text-muted">Forgot Password?</small>
+          </div>  
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+	</div>
+</section>

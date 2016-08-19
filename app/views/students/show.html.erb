@@ -1,116 +1,108 @@
 <form id='edit_form' action='/students/<%=@user.id%>' method='post' ENCTYPE="multipart/form-data">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  <label>Name:
-    <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input name="_method" value="PUT" type="hidden">
+    <% if session[:instructor_id] != nil%>
+    <label>Name:
+        <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
+        <br>
+    </label>
+
+    <label>Email:
+        <input type="text" value='<%=@user.email%>' name="user[email]" />
+    </label>
+    <% else %>
+    <label>Name:
+        <label><%=@user.name%></label>
+        <br>
+    </label>
     <br>
-  </label>
-  <label>Email:
-    <input type="text" value='<%=@user.email%>' name="user[email]" />
-  </label>
-  <br>
-  <label>Age:
-    <input type="text" value='<%=@user.age%>' name="user[age]" />
-  </label>
-  <br>
-  <label>Website:
-    <input type="text" value='<%=@user.website%>' name="user[website]" />
-  </label>
-  <br>
-  <label>LinkedIn:
-    <input type="text" value='<%=@user.linkedin%>' name="user[linkedin]" />
-  </label>
-  <br>
-  <label>About:
-    <textarea name="user[about]"><%=@user.about%></textarea>
-  </label>
-  <br>
-  <% if @user.avatar_file_name != nil %>
-   <%= image_tag @user.avatar.url %>
-   <% end %>
-     <br>
- <label>File:
-  <input name="user[avatar]" type="file" id="myFile">
-</label>
+    <label>Email:
+        <label><%=@user.email%></label>
+    </label>
+    <% end %>
+    <br>
+    <label>Age:
+        <input type="text" value='<%=@user.age%>' name="user[age]" />
+    </label>
+    <br>
+    <label>Website:
+        <input type="text" value='<%=@user.website%>' name="user[website]" />
+    </label>
+    <br>
+    <label>LinkedIn:
+        <input type="text" value='<%=@user.linkedin%>' name="user[linkedin]" />
+    </label>
+    <br>
+    <label>About:
+        <textarea name="user[about]"><%=@user.about%></textarea>
+    </label>
+    <br>
+    <% if @user.avatar_file_name != nil %>
+    <%= image_tag @user.avatar.url %>
+    <% end %>
+    <br>
+
+    <!-- <label>File:
+    <input name="user[avatar]" type="file" id="myFile">
+</label> -->
 <br>
 <br>
 <input type='submit' value='update'>
 <br>
 </form>
-<!--
+<div id='message'></div>
+
 <script>
 
 $(document).ready(function(){
 
-    $( "#searchForm" ).submit(function( event ) {
-
-      // Stop form from submitting normally
-      event.preventDefault();
-
-      // Get some values from elements on the page:
-      var $form = $( this ),
-        term = $form.find( "input[name='s']" ).val(),
-        url = $form.attr( "action" );
-
-      // Send the data using post
-      var posting = $.post( url, { s: term } );
-
-      // Put the results in a div
-      posting.done(function( data ) {
-        var content = $( data ).find( "#content" );
-        $( "#result" ).empty().append( content );
-      });
+    $('#edit_form').submit(function(){
+        $.post(
+            $(this).attr('action'),
+            $(this).serialize(),
+            function(data){
+                console.log('Data Received from the Ajax call', data);
+            },
+            "json"
+        );
+        return false;
     });
+});
+//
+// $('#edit_form').on("submit",function(event) {
+//        event.preventDefault();
+//        alert('here')
+//       $.ajax({
+//         method: $(this).attr('method'),
+//         url: $(this).attr('action'),
+//         data: $(this).serialize()
+//         dataType: 'json',
+//         success: function(json) {
+//                alert('got here')
+//            },
+//        error: function(err) {
+//               alert('i am error')
+//             }
+//
+//       });
+//   });
 
-    $("#myFile").change(function() {
+});
 
 
-        $("#edit_form").ajaxForm({
-
-              url: "/students/<%=@user.id%>",
-              method: "post",
-              dataType: "json",
-              data: $("#edit_form").serialize(),
-              success: function(serverResponse) {
-                alert(serverResponse)
-              },
-              error: function(serverResponse) {
-                alert('server returned fail');
-              }
+$('#nameBox').change(function() {
+    var c = $(this);
+    $.when(
+        c.focusout()).then(function() {
+            alert('ajax text to server')
         });
 
     });
-});
-
-$('#nameBox').change(function() {
-     var c = $(this);
-     $.when(
-     c.focusout()).then(function() {
-         alert('ajax text to server')
-     });
-
-});
-
-$( '#edit_form' ).submit(function ( e ) {
-    var data;
-
-    data = new FormData();
-    data.append( 'file', $( '#myFile' )[0].files[0] );
-
-    $.ajax({
-        url: '/students/',
-        data: data,
-        processData: false,
-        type: 'POST',
-        success: function ( data ) {
-            alert( data );
-        }
-    });
-
-    e.preventDefault();
-});
+    
 
 
 
 
 
-</script> -->
+
+    </script>

@@ -1,4 +1,4 @@
 class Cohort < ActiveRecord::Base
-  belongs_to :school
+  belongs_to :location
   has_many :students
 end

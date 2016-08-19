@@ -1,17 +1,24 @@
 Rails.application.routes.draw do
-  get 'instructors/edit'
+  root 'sessions#index'             # reroutes to login page
+  get '/login' => 'sessions#new'    # the login page
+  post '/sessions' => 'sessions#create'
 
   get 'instructors/new'
+  get 'instructors/:id' => 'instructors#show'
+  put 'instructors/:id' => 'instructors#edit'
 
-  get 'instructors/show'
 
   get 'students/new'
 
-  post 'students/:id' => 'students#edit'
+  put 'students/:id' => 'students#edit'
 
   get 'students/:id' => 'students#show'
 
-  get 'sessions/new'
+
+
+  get 'directory' => 'directory#index'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
