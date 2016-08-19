@@ -7,14 +7,16 @@ Rails.application.routes.draw do
   get 'instructors/:id' => 'instructors#show'
   get 'instructors/:id/edit' => 'instructors#edit'
 
-
   get 'students/new'
   get 'students/:id' => 'students#show'
   get 'students/:id/edit' => 'students#edit'
 
 
 
-  get 'directory' => 'directory#index'
+  get 'directory' => 'directories#index'
+  get 'directory/graduates' => 'directories#graduates'
+  get 'directory/blackbelts' => 'directories#blackbelts'
+  get 'directory/:id' => 'directories#show'
 
 
 
