@@ -4,6 +4,7 @@ gem 'rails-footnotes', '>= 4.0.0', '<5'
 gem 'hirb'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
+gem 'json', '~> 1.8.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets

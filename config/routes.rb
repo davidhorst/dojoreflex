@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   get 'students/new'
 
-  get 'students/:id/edit' => 'students#edit'
+  post 'students/:id' => 'students#edit'
 
-  get 'students/edit'
+  get 'students/:id' => 'students#show'
 
   get 'sessions/new'
 
