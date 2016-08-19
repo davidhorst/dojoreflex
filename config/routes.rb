@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
   root 'sessions#index'             # reroutes to login page
   get '/login' => 'sessions#new'    # the login page
-
-
-
-  get 'instructors/edit'
+  post '/sessions' => 'sessions#create'
 
   get 'instructors/new'
+  get 'instructors/:id' => 'instructors#show'
+  get 'instructors/:id/edit' => 'instructors#edit'
 
-  get 'instructors/show'
 
   get 'students/new'
-
+  get 'students/:id' => 'students#show'
   get 'students/:id/edit' => 'students#edit'
 
-  get 'students/edit'
+
 
   
 
