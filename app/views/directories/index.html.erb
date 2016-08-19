@@ -1,0 +1,16 @@
+<div class="container">
+
+<h3> <a href="#">All Students</a> > <a href="#">Graduates</a> > <a href="#">Blackbelts</a></h3>
+<% @students.each do |student| %>
+<div class="col-sm-2 ">
+  <div class="user-photo">
+    <img class="center-block" src="" alt="" />
+  </div>
+  <h4> <%= student.student.name %></h4>
+  <h4> <%= student.student.created_at %></h4>
+  <h4> <a href = ""<%= student.student.name %>">linkedin</a></h4>
+  <h4> <a href = ""<%= student.student.name %>">Website</a></h4>
+</div>
+<% end %>
+
+</div>
