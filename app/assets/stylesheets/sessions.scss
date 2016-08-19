@@ -5,7 +5,7 @@
 #sessions-login-main {
 	background-color: #3C4C5B;
 	color: #fff;
-	font-family: Gotham-Rounded-Book;
+	font-family: Gotham-Rounded-Bold;
 	height: 100%;
     left: 0;
     position: fixed;
@@ -37,4 +37,25 @@
 	font-family: Gotham-Rounded-Bold;
 	margin-top: 10px;
 	margin-bottom: 5px;
+}
+
+#sessions-login-tabs, #sessions-login-tabs-ul  {
+	border: none;
+	padding: 0px;
+	background-color: transparent;
+}
+
+#sessions-login-tabs-ul li {
+	margin-right: 0px;
+	border: none;
+}
+
+#sessions-login-tabs-ul li a{
+	font-weight: 500;
+	color: black;
+}
+
+#sessions-login-tabs-1, #sessions-login-tabs-2 {
+	border: none;
+	background-color: white;
 }
