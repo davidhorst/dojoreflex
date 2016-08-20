@@ -42,9 +42,9 @@
     <% end %>
     <br>
 
-    <!-- <label>File:
+    <label>File:
     <input name="user[avatar]" type="file" id="myFile">
-</label> -->
+</label>
 <br>
 <br>
 <input type='submit' value='update'>
@@ -56,7 +56,7 @@
 
 $(document).ready(function(){
 
-    $('#edit_form').submit(function(){
+    $('#edit').submit(function(){
         $.post(
             $(this).attr('action'),
             $(this).serialize(),
@@ -98,7 +98,7 @@ $('#nameBox').change(function() {
         });
 
     });
-    
+
 
 
 

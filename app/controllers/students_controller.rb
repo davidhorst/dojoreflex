@@ -25,10 +25,12 @@ class StudentsController < ApplicationController
 
     def edit
         user = Student.find(params[:id])
-        Student.update(user.id, user_update_params)
-
-        json_message = {:status => 'success', :message => 'Thank you! We have created a new user!'}
-        render json: json_message
+        puts params[:user]
+        user = Student.update(user.id, user_params)
+        #
+        # json_message = {:status => 'success', :message => 'Thank you! We have updated a new user!', :user => user}
+        # render json: json_message
+         redirect_to "/students/#{user.id}"
     end
     #   respond_to do |format|
     #
@@ -48,10 +50,8 @@ class StudentsController < ApplicationController
 
 
     private
-    def user_update_params
-        params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age)
-    end
+
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :email, :avatar)
+        params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age, :avatar)
     end
 end
