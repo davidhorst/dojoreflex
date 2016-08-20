@@ -25,20 +25,22 @@ class StudentsController < ApplicationController
 
     def edit
         user = Student.find(params[:id])
-        puts params[:user]
         user = Student.update(user.id, user_params)
-        #
-        # json_message = {:status => 'success', :message => 'Thank you! We have updated a new user!', :user => user}
-        # render json: json_message
-         redirect_to "/students/#{user.id}"
-    end
-    #   respond_to do |format|
-    #
-    #
-    #         msg = { :status => "ok", :message => "Success!" }
-    #        format.json  { render :json => msg  }
-    #        format.html { }
-    #    end
+
+      respond_to do |format|
+           format.json  {
+               if user.valid?
+                #    json_message = {:status => 'success', :message => 'Thank you! We have updated a new user!', :user => user}
+                #    render json: json_message
+               else
+                   render :json => @error_object.to_json, :status => :unprocessable_entity
+               end
+            }
+           format.html {
+               redirect_to  "/students/#{user.id}"
+            }
+       end
+   end
 
     #   if user.valid?
     #      redirect_to "/students/#{user.id.to_s}"

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'instructors/:id' => 'instructors#show'
   put 'instructors/:id' => 'instructors#edit'
 
-
   get 'students/new'
 
   put 'students/:id' => 'students#edit'
@@ -16,7 +15,10 @@ Rails.application.routes.draw do
 
 
 
-  get 'directory' => 'directory#index'
+  get 'directory' => 'directories#index'
+  get 'directory/graduates' => 'directories#graduates'
+  get 'directory/blackbelts' => 'directories#blackbelts'
+  get 'directory/:id' => 'directories#show'
 
 
 

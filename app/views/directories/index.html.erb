@@ -1,16 +1,26 @@
-<div class="container">
-
-<h3> <a href="#">All Students</a> > <a href="#">Graduates</a> > <a href="#">Blackbelts</a></h3>
-<% @students.each do |student| %>
-<div class="col-sm-2 ">
-  <div class="user-photo">
-    <img class="center-block" src="" alt="" />
+<div class="navbar navbar-default">
+  <div class="col-sm-3 col-sm-offset-1">
+    <span class="navbar-text"><a href="/directory">All Students</a> > <a href="/directory/graduates">Graduates</a></span>
   </div>
-  <h4> <%= student.student.name %></h4>
-  <h4> <%= student.student.created_at %></h4>
-  <h4> <a href = ""<%= student.student.name %>">linkedin</a></h4>
-  <h4> <a href = ""<%= student.student.name %>">Website</a></h4>
+  <div class="col-sm-2 navbar-right">
+    <form class="form-inline">
+      <input class="form-control" type="text" placeholder="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
 </div>
-<% end %>
 
+<div class="container">
+  <h1><!-- spacer --> </h1>
+<% @students.each do |student| %>
+  <div class="col-sm-2 ">
+    <div class="user-photo">
+      <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle' %>
+    </div>
+    <h4> <a href="/directory/<%=student.id %>"><%= student.name %></a></h4>
+    <h4> <%= student.created_at.to_date %></h4>
+    <h4> <a href = ""<%= student.name %>">linkedin</a></h4>
+    <h4> <a href = ""<%= student.name %>">Website</a></h4>
+  </div>
+<% end %>
 </div>
