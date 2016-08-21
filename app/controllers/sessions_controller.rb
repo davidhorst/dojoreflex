@@ -6,6 +6,13 @@ class SessionsController < ApplicationController
 
 	# GET: login page
 	def new
+
+	end
+
+	#DELETE: removes credentials
+	def logout
+		clear_session
+		redirect_to "/login"
 	end
 
 	# POST: logging in from login page
@@ -77,8 +84,8 @@ class SessionsController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(	
-			:email, 
+		params.require(:user).permit(
+			:email,
 			:password)
 	end
 

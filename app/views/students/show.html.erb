@@ -1,6 +1,6 @@
 <form id='edit_form'>
 
-
+      <% if @admin == true%>
     <label>Name:
         <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
         <br>
@@ -9,15 +9,18 @@
     <label>Email:
         <input type="text" value='<%=@user.email%>' name="user[email]" />
     </label>
+         <% else %>
     <label>Name:
         <label><%=@user.name%></label>
         <br>
     </label>
     <br>
+
     <label>Email:
         <label><%=@user.email%></label>
     </label>
     <br>
+      <% end %>
     <label>Age:
         <input type="text" value='<%=@user.age%>' name="user[age]" />
     </label>

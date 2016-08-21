@@ -18,9 +18,10 @@
   <%= yield :head %>
   <%= csrf_meta_tags %>
 
-  
+
 </head>
 <body>
+        <a href='/logout' data-method='delete'> logout</a>
 
   <%= yield %>
 </body>

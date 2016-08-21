@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'sessions#index'             # reroutes to login page
   get '/login' => 'sessions#new'    # the login page
   post '/sessions' => 'sessions#create'
+  delete '/logout' => 'sessions#logout'
 
   get 'instructors/new'
   get 'instructors/:id' => 'instructors#show'

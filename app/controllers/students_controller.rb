@@ -1,23 +1,31 @@
 require 'json'
 class StudentsController < ApplicationController
 
-    if :admin_check?
-        before_action :current_instructor, only: [:show]
-    else
+    if :not_admin_check?
         before_action :require_correct_student
     end
 
-    def admin_check?
-        if session[:instructor_id]
-            true
+    def not_admin_check?
+        if current_instructor.admin
             false
         end
+        true
+
     end
 
     def new
     end
 
     def show
+        puts 'show method'
+        if current_instructor
+            puts current_instructor.admin
+            if current_instructor.admin
+                @admin = true
+            else
+                @admin = false
+            end
+        end
         @user = Student.find(params[:id])
 
     end

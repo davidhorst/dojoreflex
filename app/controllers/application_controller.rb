@@ -49,6 +49,6 @@ class ApplicationController < ActionController::Base
 	# clears any and all user sessions
 	def clear_session
 		session[:student_id] = nil
-		session[:instrcutor_id] = nil
+		session[:instructor_id] = nil
 	end
 end
