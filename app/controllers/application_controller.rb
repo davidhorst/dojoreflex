@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
 	def require_correct_instructor
 		user = Instructor.find_by(id: params[:id])
-		redirect_to "/instructor/#{session[:instructor_id]}" if user.nil? or session[:instructor_id] != user.id
+		redirect_to "/instructors/#{session[:instructor_id]}" if user.nil? or session[:instructor_id] != user.id
 	end
 
 	# List of helper methods available in "views"
