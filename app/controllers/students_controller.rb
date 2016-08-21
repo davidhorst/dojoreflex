@@ -22,33 +22,19 @@ class StudentsController < ApplicationController
 
     end
 
+    def update_picture
+        user = Student.find(params[:id])
+        user = Student.update(user.id, user_params)
+        redirect_to  "/students/#{user.id}"
+    end
 
     def edit
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
-
-      respond_to do |format|
-           format.json  {
-               if user.valid?
-                #    json_message = {:status => 'success', :message => 'Thank you! We have updated a new user!', :user => user}
-                #    render json: json_message
-               else
-                   render :json => @error_object.to_json, :status => :unprocessable_entity
-               end
-            }
-           format.html {
-               redirect_to  "/students/#{user.id}"
-            }
-       end
-   end
-
-    #   if user.valid?
-    #      redirect_to "/students/#{user.id.to_s}"
-    #   else
-    #       flash[:errors] = user.errors.full_messages
-    #       redirect_to "/students/#{user.id.to_s}"
-    #   end
-
+        if user.valid?
+            render json: {:status => 'success'  }
+        end
+    end
 
 
     private

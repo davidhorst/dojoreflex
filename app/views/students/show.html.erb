@@ -40,7 +40,6 @@
 
 <form id='pic_form' method='post' action='/students/<%=@user.id%>'  enctype="multipart/form-data">
 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-<input name="_method" value="put" type="hidden">
 <label>File:
 <input name="user[avatar]" type="file" id="myFile">
 </label>
@@ -53,6 +52,7 @@
 $('#myFile').change(function() {
     $('#pic_form').submit()
 });
+
 
 $('#edit_form input, #edit_form textarea').change(function() {
     var c = $(this);
@@ -70,9 +70,9 @@ function update_input(element) {
           data: element,
           dataType: 'json',
           success: function(json) {
+              alart('ajax finished')
              },
          error: function(err) {
-
              window.location.replace('/students/<%=@user.id%>');
 
               }
