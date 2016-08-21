@@ -38,7 +38,7 @@
 <%= image_tag @user.avatar.url %>
 <% end %>
 
-<form id='pic_form' method='post' action='/students/<%=@user.id%>'  enctype="multipart/form-data">
+<form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 <label>File:
 <input name="user[avatar]" type="file" id="myFile">
@@ -66,14 +66,14 @@ $('#edit_form input, #edit_form textarea').change(function() {
 function update_input(element) {
     $.ajax({
           method: 'put',
-          url: '/students/<%=@user.id%>',
+          url: '/instructors/<%=@user.id%>',
           data: element,
           dataType: 'json',
           success: function(json) {
               alart('ajax finished')
              },
          error: function(err) {
-             window.location.replace('/students/<%=@user.id%>');
+             window.location.replace('/instructors/<%=@user.id%>');
 
               }
         });

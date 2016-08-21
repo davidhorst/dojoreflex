@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'instructors/new'
   get 'instructors/:id' => 'instructors#show'
   put 'instructors/:id' => 'instructors#edit'
+  post 'instructors/:id' => 'instructors#update_picture'
 
   get 'students/new'
 

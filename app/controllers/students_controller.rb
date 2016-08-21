@@ -17,7 +17,6 @@ class StudentsController < ApplicationController
     end
 
     def show
-        puts 'show method'
         if current_instructor
             puts current_instructor.admin
             if current_instructor.admin
