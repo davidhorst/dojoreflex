@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'cohorts/new'
+
 
   root 'sessions#index'                                   # reroutes to login page on root
   get '/login' => 'sessions#new'                          # the login page
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/sendemail' => 'sessions#email'   #test route
 
   get 'instructors/new'                                   # "add instructor" page (admin only)
+  post 'instructors' => 'instructors#create'              # adding a instructors (admin only)
   get 'instructors/:id' => 'instructors#show'             # dashboard page (instructor only)
   get 'instructors/:id/edit' => 'instructors#edit'        # edit user page (admin/self only)
   put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   
 
   get 'students/new'                                      # "add student" page(admin only)
+  post 'students' => 'students#create'                    # adding a student (admin only)
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
   get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
   put 'students/:id' => 'students#update'                 # update user (admin/self only)
@@ -25,7 +27,8 @@ Rails.application.routes.draw do
   get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb
   get 'directory/:id' => 'directories#show'               # show student details
 
-
+  get 'cohorts/new'
+  post 'cohorts' => 'cohorts#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

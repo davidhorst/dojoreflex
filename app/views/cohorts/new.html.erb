@@ -1,2 +1,19 @@
-<h1>Cohorts#new</h1>
-<p>Find me in app/views/cohorts/new.html.erb</p>
+<h1>Add a new cohort</h1>
+<form action="/cohorts" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label>Location</label>
+	<select name="cohort[location_id]">
+		<% @locations.each do |location| %>
+			<option value="<%= location.id %>"><%= location.name %> (<%= location.city %>, <%= location.state %>)</option>
+		<% end %>
+	</select>
+	<label>Start:</label>
+	<input type="month" name="cohort[start]" min="<%= @min_date%>">
+	<input type="submit" value="Add Cohort">
+</form>
+
+<% if flash[:errors] %>
+	<% flash[:errors].each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
