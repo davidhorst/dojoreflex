@@ -11,6 +11,19 @@ class SessionsController < ApplicationController
 		puts session[:instrcutor_id]
 	end
 
+	def email
+		password = 'asdfasdf'
+		user = Student.find(21)
+		if user.valid?
+			email = NewUser.NewStudent(user, password).deliver_now
+
+			redirect_to '/students/show'
+		else
+			puts('didnt send mail')
+			redirect_to '/students/2/edit'
+		end
+	end
+
 	#DELETE: removes credentials
 	def logout
 		clear_session

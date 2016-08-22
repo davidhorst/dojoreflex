@@ -172,6 +172,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json (~> 1.8.1)
+  mail
   paperclip (~> 4.2)
   pg (~> 0.15)
   rails (= 4.2.5.1)

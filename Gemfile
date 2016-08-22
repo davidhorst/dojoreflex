@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem "chartkick"
-
+gem "mail"
 gem 'rails-footnotes', '>= 4.0.0', '<5'
 gem 'hirb'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
