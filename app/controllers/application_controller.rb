@@ -15,26 +15,43 @@ class ApplicationController < ActionController::Base
 	# authentication helper methods: recommened to be used with "before_action" in controllers
 	def require_student_login
 		if session[:student_id] == nil
-			clear_session
 			redirect_to '/login' 
 		end
 	end
 
 	def require_instructor_login
 		if session[:instructor_id] == nil
-			clear_session
 			redirect_to '/login' 
 		end
 	end
 
-	def require_admin
-		instructor = current_instructor
-		if instructor.nil? || !instructor.admin
-			redirect_to "/instructors/#{instructor.id}"
+	def require_student_or_admin_login
+		stu_id = session[:student_id]
+		ins_id = session[:instructor_id]
+		if stu_id == nil && ins_id == nil
+			redirect_to '/login'
+		elsif stu_id == nil && current_instructor.admin != true
+			redirect_to "/instructors/#{session[:instructor_id]}"
 		end
 	end
 
-	# authorization helper methods: recommened to be used with "before_action" in controllers
+	def require_instructor_or_admin_login
+		ins_id = session[:instructor_id]
+		if ins_id == nil
+			redirect_to '/login'
+		elsif current_instructor.admin != true
+			redirect_to "/instructors/#{session[:instructor_id]}"
+		end
+	end
+
+	def require_admin_only_login
+		user=current_instructor
+		if user.nil? || user.admin != true
+			redirect_to "/login"
+		end
+	end
+
+	# authorization helper methods: recommened to be used with "before_action" in controller
 	def require_correct_student
 		user = Student.find_by(id: params[:id])
 		redirect_to "/students/#{session[:student_id]}" if user.nil? or session[:student_id] != user.id
@@ -45,8 +62,26 @@ class ApplicationController < ActionController::Base
 		redirect_to "/instructors/#{session[:instructor_id]}" if user.nil? or session[:instructor_id] != user.id
 	end
 
+	def require_correct_student_or_admin
+		user = Student.find_by(id: params[:id])
+		if !session[:student_id].nil?
+			redirect_to "/students/#{session[:student_id]}" if session[:student_id] != user.id
+		elsif !session[:instructor_id].nil?
+			redirect_to "/instructors/#{session[:instructor_id]}" if current_instructor.admin != true
+		end
+	end
+
+	def require_correct_instructor_or_admin
+		user = Instructor.find_by(id: params[:id])
+		redirect_to "/instructors/#{session[:instructor_id]}" if current_instructor.admin != true || session[:instructor_id] != user.id
+	end
+
+	
+
 	# List of helper methods available in "views"
-	helper_method :current_student, :current_instructor, :get_states
+	helper_method :current_student, :current_instructor
+	helper_method :require_student_login, :require_instructor_login, :require_student_or_admin_login, :require_instructor_or_admin_login
+	helper_method :require_correct_student, :require_correct_instructor, :require_correct_student_or_admin, :require_correct_instructor_or_admin
 
 
 	private

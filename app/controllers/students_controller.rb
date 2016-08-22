@@ -1,19 +1,10 @@
 require 'json'
 class StudentsController < ApplicationController
-
-    # if :not_admin_check?
-    #     before_action :require_correct_student
-    # end
-    #
-    # def not_admin_check?
-    #     if current_instructor.admin
-    #         false
-    #     end
-    #     true
-    #
-    # end
-
-
+    before_action :require_student_login, only: [ :show ]
+    before_action :require_student_or_admin_login, only: [ :update, :update_picture, :edit ]
+    before_action :require_correct_student, only: [ :show ]
+    before_action :require_correct_student_or_admin, only: [ :update, :update_picture, :edit ]
+    before_action :require_admin_only_login, only: [ :new ]
 
     def show
         @alerts = Alert.all
