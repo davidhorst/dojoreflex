@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'sessions#index'             # reroutes to login page
-  get '/login' => 'sessions#new'    # the login page
-  post '/sessions' => 'sessions#create'
+  root 'sessions#index'                   # reroutes to login page on root
+  get '/login' => 'sessions#new'          # the login page
+  post '/sessions' => 'sessions#create'   # logging in (post)
 
-  get 'instructors/new'
+  get 'instructors/new'                   # "add instructor" page(admin only)
   get 'instructors/:id' => 'instructors#show'
   get 'instructors/:id/edit' => 'instructors#edit'
 

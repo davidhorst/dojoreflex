@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
 	def require_student_login
 		if session[:student_id] == nil
 			clear_session
-			flash[:errors] = ["please log in as a student"]
 			redirect_to '/login' 
 		end
 	end
@@ -24,8 +23,14 @@ class ApplicationController < ActionController::Base
 	def require_instructor_login
 		if session[:instructor_id] == nil
 			clear_session
-			flash[:errors] = ["please log in as a instructor"]
 			redirect_to '/login' 
+		end
+	end
+
+	def require_admin
+		instructor = current_instructor
+		if instructor.nil? || !instructor.admin
+			redirect_to "/instructors/#{instructor.id}"
 		end
 	end
 
@@ -41,7 +46,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	# List of helper methods available in "views"
-	helper_method :current_lender, :current_borrower, :get_states
+	helper_method :current_student, :current_instructor, :get_states
 
 
 	private

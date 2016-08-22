@@ -1,10 +1,13 @@
 class InstructorsController < ApplicationController
-  def edit
-  end
+	before_action :require_instructor_login
+	before_action :require_admin, only: [ :new ]
 
-  def new
-  end
+	def edit
+	end
 
-  def show
-  end
+	def new
+	end
+
+	def show
+	end
 end
