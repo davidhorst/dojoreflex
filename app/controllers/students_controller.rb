@@ -30,6 +30,10 @@ class StudentsController < ApplicationController
         json_message = {:status => 'success', :message => 'Thank you! We have created a new user!'}
         render json: json_message
     end
+
+    def dashboard
+    end
+    
     #   respond_to do |format|
     #
     #
