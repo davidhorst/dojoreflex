@@ -1,39 +1,56 @@
 require 'json'
 class StudentsController < ApplicationController
 
-    if :admin_check?
-        before_action :current_instructor, only: [:show]
-    else
+    if :not_admin_check?
         before_action :require_correct_student
     end
 
-    def admin_check?
-        if session[:instructor_id]
-            true
+    def not_admin_check?
+        if current_instructor.admin
             false
         end
+        true
+
+    end
+
+    def index
+        @alerts = Alert.all
+
     end
 
     def new
     end
 
     def show
+        if current_instructor
+            puts current_instructor.admin
+            if current_instructor.admin
+                @admin = true
+            else
+                @admin = false
+            end
+        end
         @user = Student.find(params[:id])
 
     end
 
+    def update_picture
+        user = Student.find(params[:id])
+        user = Student.update(user.id, user_params)
+        redirect_to  "/students/#{user.id}"
+    end
 
     def edit
         user = Student.find(params[:id])
-        Student.update(user.id, user_update_params)
-
-        json_message = {:status => 'success', :message => 'Thank you! We have created a new user!'}
-        render json: json_message
+        user = Student.update(user.id, user_params)
+        if user.valid?
+            render json: {:status => 'success'  }
+        end
     end
 
     def dashboard
     end
-    
+
     #   respond_to do |format|
     #
     #
@@ -52,10 +69,8 @@ class StudentsController < ApplicationController
 
 
     private
-    def user_update_params
-        params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age)
-    end
+
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :email, :avatar)
+        params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age, :avatar)
     end
 end

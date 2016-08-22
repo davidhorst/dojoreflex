@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
-  root 'sessions#index'             # reroutes to login page
-  get '/login' => 'sessions#new'    # the login page
-  post '/sessions' => 'sessions#create'
+  root 'sessions#index'                   # reroutes to login page on root
+  get '/login' => 'sessions#new'          # the login page
+  post '/sessions' => 'sessions#create'   # logging in (post)
+  delete '/logout' => 'sessions#logout'
 
-  get 'instructors/new'
+  get 'instructors/new'                   # "add instructor" page(admin only)
   get 'instructors/:id' => 'instructors#show'
   put 'instructors/:id' => 'instructors#edit'
+  post 'instructors/:id' => 'instructors#update_picture'
 
   get 'students/dashboard'
   get 'students/new'
+<<<<<<< HEAD
   put 'students/:id' => 'students#edit'
+=======
+
+  get 'students/:id/index' => 'students#index'
+
+  put 'students/:id' => 'students#edit'
+  post 'students/:id' => 'students#update_picture'
+>>>>>>> cc3e8414383048d4b782e1ecc47dace0d998916d
   get 'students/:id' => 'students#show'
 
 

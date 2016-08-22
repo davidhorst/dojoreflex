@@ -1,14 +1,3 @@
-<% content_for :head do %>
-  <!-- <script type="text/javascript">
-    $( function() {
-    $( "#sessions-login-tabs" ).tabs();
-  } );
-
-  </script> -->
-<% end %>
-
-
-
 <section id="sessions-login-main">
 	<div id="sessions-login-container">
 		<%= image_tag 'coding_dojo_highres_white', id: 'sessions-login-logo' %>
@@ -40,6 +29,9 @@
           </div>  
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <% if flash[:errors_s_messages] %>
+        <p><%= flash[:errors_s_messages] %></p>
+        <% end %>
       </div>
 
       <div id="sessions-login-tabs-2">
@@ -61,6 +53,9 @@
           </div>  
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <% if flash[:errors_i_messages] %>
+        <p><%= flash[:errors_i_messages] %></p>
+        <% end %>
       </div>
     </div>
 	</div>

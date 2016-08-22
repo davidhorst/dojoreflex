@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem "chartkick"
 
 gem 'rails-footnotes', '>= 4.0.0', '<5'
 gem 'hirb'

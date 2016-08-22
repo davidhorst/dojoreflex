@@ -1,7 +1,6 @@
-<form id='edit_form' action='/students/<%=@user.id%>' method='post' ENCTYPE="multipart/form-data">
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-    <input name="_method" value="PUT" type="hidden">
-    <% if session[:instructor_id] != nil%>
+<form id='edit_form'>
+
+      <% if @admin == true%>
     <label>Name:
         <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
         <br>
@@ -10,17 +9,18 @@
     <label>Email:
         <input type="text" value='<%=@user.email%>' name="user[email]" />
     </label>
-    <% else %>
+         <% else %>
     <label>Name:
         <label><%=@user.name%></label>
         <br>
     </label>
     <br>
+
     <label>Email:
         <label><%=@user.email%></label>
     </label>
-    <% end %>
     <br>
+      <% end %>
     <label>Age:
         <input type="text" value='<%=@user.age%>' name="user[age]" />
     </label>
@@ -36,73 +36,55 @@
     <label>About:
         <textarea name="user[about]"><%=@user.about%></textarea>
     </label>
-    <br>
-    <% if @user.avatar_file_name != nil %>
-    <%= image_tag @user.avatar.url %>
-    <% end %>
-    <br>
-
-    <!-- <label>File:
-    <input name="user[avatar]" type="file" id="myFile">
-</label> -->
-<br>
-<br>
-<input type='submit' value='update'>
-<br>
 </form>
-<div id='message'></div>
+<% if @user.avatar_file_name != nil %>
+<%= image_tag @user.avatar.url %>
+<% end %>
+
+<form id='pic_form' method='post' action='/students/<%=@user.id%>'  enctype="multipart/form-data">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<label>File:
+<input name="user[avatar]" type="file" id="myFile">
+</label>
+</form>
+<br>
+
 
 <script>
 
-$(document).ready(function(){
-
-    $('#edit_form').submit(function(){
-        $.post(
-            $(this).attr('action'),
-            $(this).serialize(),
-            function(data){
-                console.log('Data Received from the Ajax call', data);
-            },
-            "json"
-        );
-        return false;
-    });
-});
-//
-// $('#edit_form').on("submit",function(event) {
-//        event.preventDefault();
-//        alert('here')
-//       $.ajax({
-//         method: $(this).attr('method'),
-//         url: $(this).attr('action'),
-//         data: $(this).serialize()
-//         dataType: 'json',
-//         success: function(json) {
-//                alert('got here')
-//            },
-//        error: function(err) {
-//               alert('i am error')
-//             }
-//
-//       });
-//   });
-
+$('#myFile').change(function() {
+    $('#pic_form').submit()
 });
 
 
-$('#nameBox').change(function() {
+$('#edit_form input, #edit_form textarea').change(function() {
     var c = $(this);
-    $.when(
-        c.focusout()).then(function() {
-            alert('ajax text to server')
-        });
-
+    $.when(c.focusout()).then(function() {
+            update_input(c)
     });
-    
+
+});
 
 
+function update_input(element) {
+    $.ajax({
+          method: 'put',
+          url: '/students/<%=@user.id%>',
+          data: element,
+          dataType: 'json',
+          success: function(json) {
+              alart('ajax finished')
+             },
+         error: function(err) {
+             window.location.replace('/students/<%=@user.id%>');
 
+              }
+        });
+    }
 
-
-
-    </script>
+    $.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+</script>

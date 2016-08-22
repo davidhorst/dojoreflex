@@ -11,9 +11,11 @@ Rails.application.config.assets.precompile += %w( jquery-1.12.4.min.js )
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( jquery-1.12.4.min.js )
-Rails.application.config.assets.precompile += %w( jquery-ui.min.js )
-Rails.application.config.assets.precompile += %w( jquery-ui.min.css )
+Rails.application.config.assets.precompile += %w( jquery-ui.js )
+Rails.application.config.assets.precompile += %w( jquery-ui.css )
+Rails.application.config.assets.precompile += %w( jquery.csv.js )
 
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( bootstrap-theme.min.css )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+
