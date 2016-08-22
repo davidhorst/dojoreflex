@@ -15,8 +15,11 @@ class StudentsController < ApplicationController
 
 
 
-    def index
+    def show
         @alerts = Alert.all
+        @current_student = current_student
+        @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        @language = current_student.stacks.where(active:true).first.language.name
 
     end
 
