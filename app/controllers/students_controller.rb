@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
     def new
     end
 
-    def show
+    def edit
         if current_instructor
             puts current_instructor.admin
             if current_instructor.admin
@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
         redirect_to  "/students/#{user.id}"
     end
 
-    def edit
+    def update
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
         if user.valid?
