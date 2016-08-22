@@ -13,6 +13,11 @@ class StudentsController < ApplicationController
 
     end
 
+    def index
+        @alerts = Alert.all
+
+    end
+
     def new
     end
 

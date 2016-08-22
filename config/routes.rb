@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'students/new'
 
+  get 'students/:id/index' => 'students#index'
+
   put 'students/:id' => 'students#edit'
   post 'students/:id' => 'students#update_picture'
   get 'students/:id' => 'students#show'
