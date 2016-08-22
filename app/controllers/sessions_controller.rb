@@ -11,6 +11,12 @@ class SessionsController < ApplicationController
 		puts session[:instrcutor_id]
 	end
 
+	#DELETE: removes credentials
+	def logout
+		clear_session
+		redirect_to "/login"
+	end
+
 	# POST: logging in from login page
 	def create
 		if params[:type] == "student"
@@ -77,8 +83,8 @@ class SessionsController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(	
-			:email, 
+		params.require(:user).permit(
+			:email,
 			:password)
 	end
 

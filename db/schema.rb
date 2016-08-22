@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819004115) do
+ActiveRecord::Schema.define(version: 20160819231413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,10 +110,10 @@ ActiveRecord::Schema.define(version: 20160819004115) do
   create_table "stack_students", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "stack_id"
-    t.boolean  "blackbelt"
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "belt"
   end
 
   add_index "stack_students", ["stack_id"], name: "index_stack_students_on_stack_id", using: :btree
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20160819004115) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "blackbelt_count"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree

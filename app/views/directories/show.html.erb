@@ -1,0 +1,29 @@
+<div class="nav navbar-default">
+  <h4 class="col-sm-offset-1"><a href="/directory">All Students</a> > <a href="/directory/graduates">Graduates</a></h4>
+</div>
+
+<div class="container">
+  <div class="col-sm-4">
+    <h2><b><%= @student.name%></b></h2>
+    <h4>
+      <b>Achievements:</b> <% @belts.each do |belt| %>
+        <% if belt.blackbelt %>
+          <%= belt.stack.language.name %> blackbelt,
+        <% else %>
+            sorry, Jun.
+        <% end %>
+      <% end %>
+    </h4>
+    <h4><b>Join date:</b> <%= @student.created_at.to_date %></h4>
+    <h4><b>Languages:</b>
+      <% @stacks.each do |stack| %>
+      , <%=stack.language.name%>
+      <% end %>
+    </h4>
+    <h4><b>Most enjoyed:</b> Mean</h4>
+    <h4><b>Current status:</b> in practice </h4>
+    <h4><b>Linkedin:</b> <a href="#">link</a></h4>
+    <h4><b>Website: </b><a href="#">link</a></h4>
+    <p><a href="/directory">Return to the Directory</a></p>
+  </div>
+</div>

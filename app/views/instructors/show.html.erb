@@ -1,2 +1,87 @@
-<h1>Instructors#show</h1>
-<p>Find me in app/views/instructors/show.html.erb</p>
+<form id='edit_form'>
+
+     <% if @admin == true%>
+    <label>Name:
+        <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
+        <br>
+    </label>
+
+    <label>Email:
+        <input type="text" value='<%=@user.email%>' name="user[email]" />
+    </label>
+         <% else %>
+    <label>Name:
+        <label><%=@user.name%></label>
+        <br>
+    </label>
+    <br>
+
+    <label>Email:
+        <label><%=@user.email%></label>
+    </label>
+    <br>
+      <% end %>
+
+    <label>Website:
+        <input type="text" value='<%=@user.website%>' name="user[website]" />
+    </label>
+    <br>
+    <label>LinkedIn:
+        <input type="text" value='<%=@user.linkedin%>' name="user[linkedin]" />
+    </label>
+    <br>
+    <label>About:
+        <textarea name="user[about]"><%=@user.about%></textarea>
+    </label>
+</form>
+<% if @user.avatar_file_name != nil %>
+<%= image_tag @user.avatar.url %>
+<% end %>
+
+<form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<label>File:
+<input name="user[avatar]" type="file" id="myFile">
+</label>
+</form>
+<br>
+
+
+<script>
+
+$('#myFile').change(function() {
+    $('#pic_form').submit()
+});
+
+
+$('#edit_form input, #edit_form textarea').change(function() {
+    var c = $(this);
+    $.when(c.focusout()).then(function() {
+            update_input(c)
+    });
+
+});
+
+
+function update_input(element) {
+    $.ajax({
+          method: 'put',
+          url: '/instructors/<%=@user.id%>',
+          data: element,
+          dataType: 'json',
+          success: function(json) {
+              alart('ajax finished')
+             },
+         error: function(err) {
+             window.location.replace('/instructors/<%=@user.id%>');
+
+              }
+        });
+    }
+
+    $.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+</script>

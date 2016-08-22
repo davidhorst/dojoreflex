@@ -37,12 +37,12 @@ class ApplicationController < ActionController::Base
 	# authorization helper methods: recommened to be used with "before_action" in controllers
 	def require_correct_student
 		user = Student.find_by(id: params[:id])
-		redirect_to "/student/#{session[:student_id]}" if user.nil? or session[:student_id] != user.id
+		redirect_to "/students/#{session[:student_id]}" if user.nil? or session[:student_id] != user.id
 	end
 
 	def require_correct_instructor
 		user = Instructor.find_by(id: params[:id])
-		redirect_to "/instructor/#{session[:instructor_id]}" if user.nil? or session[:instructor_id] != user.id
+		redirect_to "/instructors/#{session[:instructor_id]}" if user.nil? or session[:instructor_id] != user.id
 	end
 
 	# List of helper methods available in "views"
@@ -54,6 +54,6 @@ class ApplicationController < ActionController::Base
 	# clears any and all user sessions
 	def clear_session
 		session[:student_id] = nil
-		session[:instrcutor_id] = nil
+		session[:instructor_id] = nil
 	end
 end
