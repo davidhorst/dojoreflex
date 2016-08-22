@@ -11,6 +11,19 @@ class SessionsController < ApplicationController
 		puts session[:instrcutor_id]
 	end
 
+	require 'securerandom'
+
+	def email
+		password = SecureRandom.hex(8)
+		user = Student.find(21)
+		if user.valid?
+			email = NewUser.NewStudent(user, password).deliver_later
+			redirect_to '/students/show'
+		else
+			redirect_to '/students/2/edit'
+		end
+	end
+
 	#DELETE: removes credentials
 	def logout
 		clear_session

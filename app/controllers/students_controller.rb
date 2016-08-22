@@ -6,9 +6,11 @@ class StudentsController < ApplicationController
     before_action :require_correct_student_or_admin, only: [ :update, :update_picture, :edit ]
     before_action :require_admin_only_login, only: [ :new ]
 
-
-    def index
+    def show
         @alerts = Alert.all
+        @current_student = current_student
+        @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        @language = current_student.stacks.where(active:true).first.language.name
 
     end
 
@@ -17,8 +19,8 @@ class StudentsController < ApplicationController
 
     def edit
         if current_instructor
-            puts current_instructor.admin
             if current_instructor.admin
+                puts current_instructor
                 @admin = true
             else
                 @admin = false
@@ -31,7 +33,7 @@ class StudentsController < ApplicationController
     def update_picture
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
-        redirect_to  "/students/#{user.id}"
+        redirect_to  "/students/#{user.id}/edit"
     end
 
     def update

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'                          # the login page
   post '/sessions' => 'sessions#create'                   # logging in (post)
   delete '/logout' => 'sessions#logout'                   # logging out (delete)
+  get 'sessions/sendemail' => 'sessions#email'   #test route
 
   get 'instructors/new'                                   # "add instructor" page (admin only)
   get 'instructors/:id' => 'instructors#show'             # dashboard page (instructor only)
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
   put 'students/:id' => 'students#update'                 # update user (admin/self only)
   post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
-
   get 'directory' => 'directories#index'                  # directory index
   get 'directory/graduates' => 'directories#graduates'    # show graduates on index.html.erb
   get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb

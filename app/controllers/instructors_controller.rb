@@ -5,7 +5,6 @@ class InstructorsController < ApplicationController
   before_action :require_correct_instructor_or_admin, only: [ :update, :update_picture, :edit ]
   before_action :require_admin_only_login, only: [ :new ]
 	
-
   def update
       user = current_instructor
       user = Instructor.update(user.id, user_params)
@@ -21,7 +20,7 @@ class InstructorsController < ApplicationController
   def update_picture
       user = Instructor.find(params[:id])
       user = Instructor.update(user.id, user_params)
-      redirect_to  "/instructors/#{user.id}"
+      redirect_to  "/instructors/#{user.id}/edit"
   end
 
   def edit
