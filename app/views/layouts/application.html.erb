@@ -29,6 +29,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href='/logout' data-method='delete'> Logout</a></li>
       </ul>
       <ul class="col-xs-3 navbar-right nav navbar-nav ">
         <li class="navbar-brand"><%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %></li>
@@ -43,7 +44,6 @@
 </nav>
 <% end %>
 <body>
-        <a href='/logout' data-method='delete'> logout</a>
 
   <%= yield %>
 </body>

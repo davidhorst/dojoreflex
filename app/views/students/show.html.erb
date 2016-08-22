@@ -1,80 +1,70 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3 col-md-offset-3">
+    <h1><%= @current_student.name %> <span class="small">Week <%= @weekcount %></span> <span class="small"><%= @language %></span></h1>
+    </div>
+    <div class="row text-center">
+      <div class="col-xs-4">
+          <div class="col-xs-12 graph-box">
+            <h3>Course Completion</h3>
             <%= pie_chart Student.group(:happy).count %>
-        </div>
-
-
-        <div id='chart_type_div' class="col-md-2 col-md-offset-8 btn-group-vertical">
-            <button class="btn btn-primary"> Chart 1</button>
-            <button class="btn btn-primary">Chart 2</button>
-            <button class="btn btn-primary">Chart 3</button>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-md-3 col-md-offset-5">
-            <button>Filter 1</button>
-            <button>Filter 2</button>
-            <button>Filter 3</button>
-        </div>
-
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-
-    <div class="row">
-        <div class="col-md-6">
-            <textarea readonly rows="12" cols="50" id='alert_box' >Alerts: This is test text. Alerts: This is test text. Alerts: This is test text.  </textarea>
-
-        </div>
-
-        <div class="col-md-6">
-                <table class='toggle_table'>
-                    <tr>
-                        <td>
-                            <p>Happy </p>
-                        </td>
-                        <td>
-                            <label id='happy_toggle' class="switch">
-                                <input type="checkbox">
-                                <div class="slider round"></div>
-                            </label>
-                        </td>
-                        <td>
-                            <p>Unhappy </p>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <p>Understand </p>
-                        </td>
-                        <td>
-                            <label id='help_toggle' class="switch">
-                                <input type="checkbox">
-                                <div class="slider round"></div>
-                            </label>
-                        </td>
-                        <td>
-                            <p>Need help </p>
-                        </td>
-                    </tr>
-
-                </table>
+          </div>
+      </div>
+        <div class="col-xs-4">
+            <div class="col-xs-12 graph-box">
+              <h3>Hours this week</h3>
+              <%= pie_chart Student.group(:happy).count %>
             </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="col-xs-12 graph-box">
+              <h3>Team Satisfaction</h3>
+              <%= pie_chart Student.group(:happy).count %>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br><br><br>
+    <div class="row">
+        <div class="col-xs-6">
+          <div class="col-xs-12 alert-box">
+            <% @alerts.each do |alert| %>
+              <p><%= alert.message %></p>
+            <% end %>
+          </div>
+        </div>
 
+        <div class="col-xs-6">
+            <div class="col-xs-12 col-xs-offset-2 toggle-box">
+              <table class='toggle_table text-center'>
+                  <tr>
+                      <td>Happy</td>
+                      <td>
+                        <label id='happy_toggle' class="switch">
+                            <input type="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                      </td>
+                      <td>Unhappy</td>
+                  </tr>
+                  <tr>
+                      <td>Understand</td>
+                      <td>
+                          <label id='help_toggle' class="switch">
+                              <input type="checkbox">
+                              <div class="slider round"></div>
+                          </label>
+                      </td>
+                      <td>Need help</td>
+                  </tr>
 
+              </table>
+            </div>
         </div>
     </div>
 </div>
-
 <style>
 
 #chart_type_div {
@@ -144,5 +134,15 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.alert-box{
+  border: 1px solid black;
+  padding:10px;
+}
+
+.graph-box{
+  border: 1px solid black;
+  padding: 25px;
 }
 </style>
