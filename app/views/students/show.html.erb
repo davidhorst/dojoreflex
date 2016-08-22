@@ -1,90 +1,148 @@
-<form id='edit_form'>
 
-      <% if @admin == true%>
-    <label>Name:
-        <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
-        <br>
-    </label>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <%= pie_chart Student.group(:happy).count %>
+        </div>
 
-    <label>Email:
-        <input type="text" value='<%=@user.email%>' name="user[email]" />
-    </label>
-         <% else %>
-    <label>Name:
-        <label><%=@user.name%></label>
-        <br>
-    </label>
+
+        <div id='chart_type_div' class="col-md-2 col-md-offset-8 btn-group-vertical">
+            <button class="btn btn-primary"> Chart 1</button>
+            <button class="btn btn-primary">Chart 2</button>
+            <button class="btn btn-primary">Chart 3</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-5">
+            <button>Filter 1</button>
+            <button>Filter 2</button>
+            <button>Filter 3</button>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
     <br>
 
-    <label>Email:
-        <label><%=@user.email%></label>
-    </label>
-    <br>
-      <% end %>
-    <label>Age:
-        <input type="text" value='<%=@user.age%>' name="user[age]" />
-    </label>
-    <br>
-    <label>Website:
-        <input type="text" value='<%=@user.website%>' name="user[website]" />
-    </label>
-    <br>
-    <label>LinkedIn:
-        <input type="text" value='<%=@user.linkedin%>' name="user[linkedin]" />
-    </label>
-    <br>
-    <label>About:
-        <textarea name="user[about]"><%=@user.about%></textarea>
-    </label>
-</form>
-<% if @user.avatar_file_name != nil %>
-<%= image_tag @user.avatar.url %>
-<% end %>
 
-<form id='pic_form' method='post' action='/students/<%=@user.id%>'  enctype="multipart/form-data">
-<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-<label>File:
-<input name="user[avatar]" type="file" id="myFile">
-</label>
-</form>
-<br>
+    <div class="row">
+        <div class="col-md-6">
+            <textarea readonly rows="12" cols="50" id='alert_box' >Alerts: This is test text. Alerts: This is test text. Alerts: This is test text.  </textarea>
 
+        </div>
 
-<script>
+        <div class="col-md-6">
+                <table class='toggle_table'>
+                    <tr>
+                        <td>
+                            <p>Happy </p>
+                        </td>
+                        <td>
+                            <label id='happy_toggle' class="switch">
+                                <input type="checkbox">
+                                <div class="slider round"></div>
+                            </label>
+                        </td>
+                        <td>
+                            <p>Unhappy </p>
+                        </td>
+                    </tr>
 
-$('#myFile').change(function() {
-    $('#pic_form').submit()
-});
+                    <tr>
+                        <td>
+                            <p>Understand </p>
+                        </td>
+                        <td>
+                            <label id='help_toggle' class="switch">
+                                <input type="checkbox">
+                                <div class="slider round"></div>
+                            </label>
+                        </td>
+                        <td>
+                            <p>Need help </p>
+                        </td>
+                    </tr>
 
-
-$('#edit_form input, #edit_form textarea').change(function() {
-    var c = $(this);
-    $.when(c.focusout()).then(function() {
-            update_input(c)
-    });
-
-});
+                </table>
+            </div>
 
 
-function update_input(element) {
-    $.ajax({
-          method: 'put',
-          url: '/students/<%=@user.id%>',
-          data: element,
-          dataType: 'json',
-          success: function(json) {
-              alart('ajax finished')
-             },
-         error: function(err) {
-             window.location.replace('/students/<%=@user.id%>');
+        </div>
+    </div>
+</div>
 
-              }
-        });
-    }
+<style>
 
-    $.ajaxSetup({
-  headers: {
-    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-</script>
+#chart_type_div {
+    vertical-align: top;
+}
+.toggle_table  td {
+    padding-right: 20px;
+}
+
+.toggle_table td p {
+     text-align:right;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: blue;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff0000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ff0000;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
