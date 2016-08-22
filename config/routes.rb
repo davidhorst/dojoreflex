@@ -1,33 +1,25 @@
 Rails.application.routes.draw do
-  root 'sessions#index'                   # reroutes to login page on root
-  get '/login' => 'sessions#new'          # the login page
-  post '/sessions' => 'sessions#create'   # logging in (post)
-  delete '/logout' => 'sessions#logout'
+  root 'sessions#index'                                   # reroutes to login page on root
+  get '/login' => 'sessions#new'                          # the login page
+  post '/sessions' => 'sessions#create'                   # logging in (post)
+  delete '/logout' => 'sessions#logout'                   # logging out (delete)
 
-  get 'instructors/new'                   # "add instructor" page(admin only)
-  get 'instructors/:id' => 'instructors#show'
-  put 'instructors/:id' => 'instructors#edit'
-  post 'instructors/:id' => 'instructors#update_picture'
+  get 'instructors/new'                                   # "add instructor" page (admin only)
+  get 'instructors/:id' => 'students#show'                # dashboard page (instructor only)
+  get 'instructors/:id/edit' => 'instructors#edit'        # edit user page (admin/self only)
+  put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
+  post 'instructors/:id' => 'instructors#update_picture'  # update profile picture (admin/self)
 
-  get 'students/dashboard'
-  get 'students/new'
-<<<<<<< HEAD
-  put 'students/:id' => 'students#edit'
-=======
+  get 'students/new'                                      # "add student" page(admin only)
+  get 'students/:id' => 'students#show'                   # dashboard page (student only)
+  get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
+  put 'students/:id' => 'students#update'                 # update user (admin/self only)
+  post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
 
-  get 'students/:id/index' => 'students#index'
-
-  put 'students/:id' => 'students#edit'
-  post 'students/:id' => 'students#update_picture'
->>>>>>> cc3e8414383048d4b782e1ecc47dace0d998916d
-  get 'students/:id' => 'students#show'
-
-
-
-  get 'directory' => 'directories#index'
-  get 'directory/graduates' => 'directories#graduates'
-  get 'directory/blackbelts' => 'directories#blackbelts'
-  get 'directory/:id' => 'directories#show'
+  get 'directory' => 'directories#index'                  # directory index
+  get 'directory/graduates' => 'directories#graduates'    # show graduates on index.html.erb
+  get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb
+  get 'directory/:id' => 'directories#show'               # show student details
 
 
 

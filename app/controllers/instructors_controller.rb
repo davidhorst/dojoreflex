@@ -13,11 +13,11 @@ class InstructorsController < ApplicationController
       true
   end
 
-  def edit
+  def update
       user = current_instructor
       user = Instructor.update(user.id, user_params)
       if user.valid?
-          render json: {:status => 'success'  }
+          render json: {:status => 'success'}
       end
   end
 
@@ -31,7 +31,7 @@ class InstructorsController < ApplicationController
       redirect_to  "/instructors/#{user.id}"
   end
 
-  def show
+  def edit
       @user = current_instructor
       if current_instructor   #if the user is an admin they can edit additional fields
           if current_instructor.admin
