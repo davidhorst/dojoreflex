@@ -11,15 +11,15 @@ class SessionsController < ApplicationController
 		puts session[:instrcutor_id]
 	end
 
+	require 'securerandom'
+
 	def email
-		password = 'asdfasdf'
+		password = SecureRandom.hex(8)
 		user = Student.find(21)
 		if user.valid?
-			email = NewUser.NewStudent(user, password).deliver_now
-
+			email = NewUser.NewStudent(user, password).deliver_later
 			redirect_to '/students/show'
 		else
-			puts('didnt send mail')
 			redirect_to '/students/2/edit'
 		end
 	end
