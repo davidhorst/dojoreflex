@@ -1,11 +1,20 @@
-Alert.create!([
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Deadline for 3rd stack signup approaching"},
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "The Dojo will be closed Aug 27-Sept 1"},
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Thursday Tech talk: Alan Summers, stories from my childhood"}
-])
 Location.create!([
   {name: "Seattle", city: "Seattle", state: "WA"}
 ])
+<<<<<<< HEAD
+Location.create!([
+  {name: "Seattle", city: "Seattle", state: "WA"}
+])
+=======
+
+Language.create!([
+  {name: "Python"},
+  {name: "Ruby"},
+  {name: "Mean"}
+])
+
+
+>>>>>>> b640a803e769f71a63d067c0966ccd2047f68dfa
 Cohort.create!([
   {location_id: 1, start: "2016-05-01", name: "Red Team", active: true},
   {location_id: 1, start: "2016-06-01", name: "Blue Team", active: true},
@@ -13,20 +22,39 @@ Cohort.create!([
   {location_id: 1, start: "2016-04-01", name: "Yellow Team", active: false},
   {location_id: 1, start: "2016-03-01", name: "Purple Team", active: false}
 ])
+
+
 Instructor.create!([
   {name: "Carl Snort", email: "csnort@email.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
 ])
+<<<<<<< HEAD
 Language.create!([
   {name: "Python"},
   {name: "Ruby"},
   {name: "Mean"}
 ])
+=======
+
+
+>>>>>>> b640a803e769f71a63d067c0966ccd2047f68dfa
 Stack.create!([
   {instructor_id: 1, language_id: 2, start_date: nil, active: true},
   {instructor_id: 1, language_id: 1, start_date: nil, active: false},
   {instructor_id: 1, language_id: 2, start_date: nil, active: false},
   {instructor_id: 1, language_id: 3, start_date: nil, active: false}
 ])
+<<<<<<< HEAD
+=======
+
+Alert.create!([
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Deadline for 3rd stack signup approaching"},
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "The Dojo will be closed Aug 27-Sept 1"},
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Thursday Tech talk: Alan Summers, stories from my childhood"}
+])
+
+
+
+>>>>>>> b640a803e769f71a63d067c0966ccd2047f68dfa
 Student.create!([
   {name: "David", email: "spencer@email.com", password_digest: "$2a$10$5cbhO6I5ALYCtiS6bfju1uos.mzqOdGMpJTW8kLeXnCe7oPjpMHea", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: true, help: false, cohort_id: 1, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: 0},
   {name: "Paul", email: "spencer@email.com", password_digest: "$2a$10$cija5.n1GTLa2rLrL/wsz.6BjLHMUHr58btsGPkjJxhK1IDR//tNO", website: nil, linkedin: nil, about: nil, age: nil, active: false, happy: true, help: false, cohort_id: 4, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: 3},
@@ -45,6 +73,11 @@ Student.create!([
   {name: "Peter Ford", email: "pford5@yahoo.com", password_digest: "$2a$10$bTF4X3e9SiF5KHnAI8udZ.SjyDpk9Hc4OycZhGh.gOByNK09eR2e6", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: false, help: false, cohort_id: 2, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: nil},
   {name: "Amanda Cole", email: "acole6@imageshack.us", password_digest: "$2a$10$1E.qqGaREpr/EhaXR2Gzieg7aN8KOdfKjKkd1r76Hvv8MlSbwwHGy", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: false, help: false, cohort_id: 2, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: nil}
 ])
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b640a803e769f71a63d067c0966ccd2047f68dfa
 StackStudent.create!([
   {student_id: 1, stack_id: 1, order: 1, belt: "none"},
   {student_id: 4, stack_id: 2, order: 1, belt: "black"},
@@ -56,4 +89,8 @@ StackStudent.create!([
   {student_id: 4, stack_id: 4, order: 3, belt: "black"},
   {student_id: 5, stack_id: 4, order: 3, belt: "black"},
   {student_id: 6, stack_id: 4, order: 3, belt: "red"}
+<<<<<<< HEAD
 ])
+=======
+])
+>>>>>>> b640a803e769f71a63d067c0966ccd2047f68dfa
