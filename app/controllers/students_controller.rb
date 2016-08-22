@@ -48,6 +48,25 @@ class StudentsController < ApplicationController
         end
     end
 
+    def dashboard
+    end
+
+    #   respond_to do |format|
+    #
+    #
+    #         msg = { :status => "ok", :message => "Success!" }
+    #        format.json  { render :json => msg  }
+    #        format.html { }
+    #    end
+
+    #   if user.valid?
+    #      redirect_to "/students/#{user.id.to_s}"
+    #   else
+    #       flash[:errors] = user.errors.full_messages
+    #       redirect_to "/students/#{user.id.to_s}"
+    #   end
+
+
 
     private
 
