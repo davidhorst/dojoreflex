@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
+  get 'cohorts/new'
+
   root 'sessions#index'                                   # reroutes to login page on root
   get '/login' => 'sessions#new'                          # the login page
   post '/sessions' => 'sessions#create'                   # logging in (post)
   delete '/logout' => 'sessions#logout'                   # logging out (delete)
 
   get 'instructors/new'                                   # "add instructor" page (admin only)
-  get 'instructors/:id' => 'students#show'                # dashboard page (instructor only)
+  get 'instructors/:id' => 'instructors#show'             # dashboard page (instructor only)
   get 'instructors/:id/edit' => 'instructors#edit'        # edit user page (admin/self only)
   put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
   post 'instructors/:id' => 'instructors#update_picture'  # update profile picture (admin/self)
+  get 'instructors/:id/admin' => 'instructors#admin'      # admin page (admin only)
+  
 
   get 'students/new'                                      # "add student" page(admin only)
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
