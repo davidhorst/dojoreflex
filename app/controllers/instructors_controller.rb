@@ -1,10 +1,10 @@
 class InstructorsController < ApplicationController
-	before_action :require_instructor_login
-	before_action :require_admin, only: [ :new ]
+	# before_action :require_instructor_login
+	# before_action :require_admin, only: [ :new ]
 
-  if :not_admin_check?
-      before_action :require_correct_instructor
-  end
+  # if :not_admin_check?
+  #     before_action :require_correct_instructor
+  # end
 
   def not_admin_check?
       if current_instructor.admin

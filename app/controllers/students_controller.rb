@@ -1,17 +1,19 @@
 require 'json'
 class StudentsController < ApplicationController
 
-    if :not_admin_check?
-        before_action :require_correct_student
-    end
+    # if :not_admin_check?
+    #     before_action :require_correct_student
+    # end
+    #
+    # def not_admin_check?
+    #     if current_instructor.admin
+    #         false
+    #     end
+    #     true
+    #
+    # end
 
-    def not_admin_check?
-        if current_instructor.admin
-            false
-        end
-        true
 
-    end
 
     def show
         @alerts = Alert.all
@@ -26,8 +28,8 @@ class StudentsController < ApplicationController
 
     def edit
         if current_instructor
-            puts current_instructor.admin
             if current_instructor.admin
+                puts current_instructor
                 @admin = true
             else
                 @admin = false
