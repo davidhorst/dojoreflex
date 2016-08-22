@@ -37,7 +37,7 @@ class StudentsController < ApplicationController
     def update_picture
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
-        redirect_to  "/students/#{user.id}"
+        redirect_to  "/students/#{user.id}/edit"
     end
 
     def update
