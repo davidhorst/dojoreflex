@@ -10,9 +10,10 @@ class StudentsController < ApplicationController
 
     def show
         @alerts = Alert.all
-        @current_student = current_student  
+        @current_student = current_student
         @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         @language = current_student.stacks.where(active:true).first.language.name
+        @students = Student.all
 
     end
 
@@ -63,20 +64,25 @@ class StudentsController < ApplicationController
     end
 
 
-    private
+    def feedback
+      input = params.require(:input).permit(:id, :value)
+
+      if input[:id] == 'performance'
+        Student.find(current_student.id).update(happy: input[:value])
+      end
+      if input[:id] == 'help'
+        Student.find(current_student.id).update(help: input[:value])
+      end
+
+      @students = Student.all
+
+
+      respond_to do |format|
+        format.js
+      end
 
     def user_params
         params.require(:user).permit(:name, :email, :cohort_id, :website, :linkedin, :about, :age, :avatar)
-    end
-
-    def email(password, id)
-        user = Student.find()
-        if user.valid?
-            email = NewUser.NewStudent(user, password).deliver_later
-            redirect_to '/students/show'
-        else
-            redirect_to '/students/2/edit'
-        end
     end
 
     def joinFirstTwoStacks student
@@ -85,5 +91,7 @@ class StudentsController < ApplicationController
         stack_python = Stack.find_by(start_date: start_date + 1.month, language_id: 2)
         StackStudent.create(student: student, stack: stack_webfund, order: 1)
         StackStudent.create(student: student, stack: stack_python, order: 2)
+
     end
-end
+    
+  end

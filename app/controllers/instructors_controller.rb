@@ -5,8 +5,9 @@ class InstructorsController < ApplicationController
   before_action :require_correct_instructor_or_admin, only: [ :update, :update_picture, :edit ]
   before_action :require_admin_only_login, only: [ :new, :create ]
 	
+
   def update
-      user = current_instructor
+      user = Instructor.find(params[:id])
       user = Instructor.update(user.id, user_params)
       if user.valid?
           render json: {:status => 'success'}
@@ -44,7 +45,7 @@ class InstructorsController < ApplicationController
   end
 
   def edit
-      @user = current_instructor
+      @user = Instructor.find(params[:id])
       if current_instructor   #if the user is an admin they can edit additional fields
           if current_instructor.admin
               @admin = true
