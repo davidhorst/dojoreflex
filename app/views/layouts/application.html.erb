@@ -42,9 +42,9 @@
         <li>
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <%if current_student %>
-                    <%=current_student.name%>
+                    <em>Hello</em>, <b><%=current_student.name%></b>
                   <% else %>
-                    <%= current_instructor.name %>
+                    <em>Hello</em>, <b><%= current_instructor.name %></b>
                   <% end %>
                <span class="caret"></span></a>
            <ul class="dropdown-menu">
@@ -74,5 +74,19 @@
 <body>
 
   <%= yield %>
+
+<div class="dashboard-background footer">
+  <div class="container">
+  <div class="col-xs-4 footer-col">
+    <p>Only you can prevent forest fires &copy;2016</p>
+  </div>
+  <div class="col-xs-4 footer-col">
+    <a href="#">Jerbs</a>
+  </div>
+  <div class="col-xs-4 footer-col">
+    <a href="#">Privacy</a>
+  </div>
+</div>
+</div>
 </body>
 </html>
