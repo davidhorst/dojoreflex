@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get 'students/new'                                      # "add student" page(admin only)
   post 'students' => 'students#create'                    # adding a student (admin only)
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
-  get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
+  get 'students/:id/edit' => 'students#edit'
+  put 'students/:id' => 'students#update'              # edit user page (admin/self only)
   post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
 
   put 'students/feedback/:id' => 'students#feedback'     # Update student status based on instant-feedback form
