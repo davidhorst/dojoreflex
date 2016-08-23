@@ -1,10 +1,9 @@
 <h1>Add a student</h1>
-<form>
+<form action="/student" method="POST">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<label>Email:</label>
 	<input type="text" name="student[email]">
 	<label>Name:</label>
 	<input type="text" name="student[name]">
-	
 	<input type="submit" value="Add student">
 </form>
