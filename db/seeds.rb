@@ -1,11 +1,13 @@
 Location.create!([
-  {name: "Seattle", city: "Seattle", state: "WA"}
-  ])
+  {name: "Seattle", city: "Seattle", state: "WA"},
+  {name: "Chicago", city: "Chicago", state: "IL"},
+  {name: "San Jose", city: "San Jose", state: "CA"}
+])
 Language.create!([
   {name: "Python"},
   {name: "Ruby"},
   {name: "Mean"}
-  ])
+])
 Instructor.create!([
   {name: "Carl Snort", email: "csnort@email.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
   ])
@@ -34,7 +36,6 @@ Student.create!([
   {name: "Peter Ford", email: "pford5@yahoo.com", password_digest: "$2a$10$bTF4X3e9SiF5KHnAI8udZ.SjyDpk9Hc4OycZhGh.gOByNK09eR2e6", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: false, help: false, cohort_id: 2, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: nil},
   {name: "Amanda Cole", email: "acole6@imageshack.us", password_digest: "$2a$10$1E.qqGaREpr/EhaXR2Gzieg7aN8KOdfKjKkd1r76Hvv8MlSbwwHGy", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: false, help: false, cohort_id: 2, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: nil}
   ])
-
 Stack.create!([
   {instructor_id: 1, language_id: 2, start_date: nil, active: true},
   {instructor_id: 1, language_id: 1, start_date: nil, active: false},
@@ -52,7 +53,7 @@ StackStudent.create!([
   {student_id: 4, stack_id: 4, order: 3, belt: "black"},
   {student_id: 5, stack_id: 4, order: 3, belt: "black"},
   {student_id: 6, stack_id: 4, order: 3, belt: "red"}
-])
+  ])
 
 Alert.create!([
   {cohort_id: nil, location_id: nil, stack_id: nil, message: "Deadline for 3rd stack signup approaching"},
