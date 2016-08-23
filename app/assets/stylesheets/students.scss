@@ -2,16 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// .navbar-brand {
-//   padding-top: 7px;
-//   vertical-align: top;
-// }
-//
-// .dashboard-background{
-//   background-color: #f1f4f8;
-// }
+.dashboard-heading{
+  padding:10px;
+  color: #3C4C5B;
+}
 
 .box{
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid lightgray;
 }
+  .box-title{
+    color: white;
+    background-color:#779CAB;
+    padding:10px;
+  }
+  .box-title h3{
+    margin: 0
+  }
