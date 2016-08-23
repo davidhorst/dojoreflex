@@ -1,9 +1,21 @@
 <h1>Add a student</h1>
-<form action="/student" method="POST">
+<form action="/students" method="POST">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<label>Email:</label>
-	<input type="text" name="student[email]">
+	<input type="text" name="user[email]"><br>
 	<label>Name:</label>
-	<input type="text" name="student[name]">
+	<input type="text" name="user[name]"><br>
+	<label>Select Cohort</label>
+	<select name="user[cohort_id]">
+		<% @cohorts.each do |cohort| %>
+			<option value="<%= cohort.id %>"><%= cohort.start %> - <%= cohort.location.city %>, <%= cohort.location.state %></option>
+		<% end %>
+	</select><br>
 	<input type="submit" value="Add student">
 </form>
+
+<% if flash[:errors] %>
+	<% flash[:errors].each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>

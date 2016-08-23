@@ -1,7 +1,22 @@
 <h1>Admin Page:</h1>
-<p>list of students</p>
-<p>list of instructors</p>
 
-<a href="/cohorts/new">Add a new Cohort</a><br>
 <a href="/students/new">Add a new student</a><br>
 <a href="/instructors/new">Add a new instructor</a>
+
+<br>
+<br>
+<br>
+<br>
+
+<div>
+	<% @students.each do |student| %>
+		<p><a href="/students/<%= student.id%>/edit"><%= student.email %></a> <%= student.name %></p>
+	<% end %>
+</div>
+<hr>
+
+<div>
+	<% @instructors.each do |instructor| %>
+		<p><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.email %></a> <%= instructor.name %></p>
+	<% end %>
+</div>

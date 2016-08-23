@@ -1,22 +1,33 @@
 Location.create!([
-  {name: "Seattle", city: "Seattle", state: "WA"},
-  {name: "Chicago", city: "Chicago", state: "IL"},
-  {name: "San Jose", city: "San Jose", state: "CA"}
+  {name: "Seattle", city: "Seattle", state: "WA"}
 ])
 Language.create!([
+  {name: "Web Fundamental"},
   {name: "Python"},
   {name: "Ruby"},
-  {name: "Mean"}
+  {name: "Mean"},
+  {name: "iOS"}
 ])
 Instructor.create!([
-  {name: "Carl Snort", email: "csnort@email.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
-  ])
+  {name: "Mike Hannon", email: "mike@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Speros M",    email: "sperose@codingdojo.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Sudo David",  email: "david@codingdojo.com",   location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Chris",       email: "chris@codingdojo.com",   location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Donovan",     email: "donovan@codingdojo.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "John Doe",    email: "john@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Tim Chen",    email: "tim@codingdojo.com",     location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Sara Wong",   email: "sara@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Mad Jack",    email: "jack@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
+])
 Cohort.create!([
-  {location_id: 1, start: "2016-05-01", name: "Red Team", active: true},
-  {location_id: 1, start: "2016-06-01", name: "Blue Team", active: true},
-  {location_id: 1, start: "2016-07-01", name: "Green Team", active: true},
-  {location_id: 1, start: "2016-04-01", name: "Yellow Team", active: false},
-  {location_id: 1, start: "2016-03-01", name: "Purple Team", active: false}
+  {location_id: 1, start: "2016-05-01", name: "Seattle 2016-05-01", active: true},
+  {location_id: 1, start: "2016-06-01", name: "Seattle 2016-06-01", active: true},
+  {location_id: 1, start: "2016-07-01", name: "Seattle 2016-07-01", active: true},
+  {location_id: 1, start: "2016-08-01", name: "Seattle 2016-08-01", active: true},
+  {location_id: 1, start: "2016-09-01", name: "Seattle 2016-09-01", active: true},
+  {location_id: 1, start: "2016-10-01", name: "Seattle 2016-10-01", active: true},
+  {location_id: 1, start: "2016-11-01", name: "Seattle 2016-11-01", active: true},
+  {location_id: 1, start: "2016-12-01", name: "Seattle 2016-12-01", active: true}
 ])
 Student.create!([
   {name: "David", email: "spencer@email.com", password_digest: "$2a$10$5cbhO6I5ALYCtiS6bfju1uos.mzqOdGMpJTW8kLeXnCe7oPjpMHea", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: true, help: false, cohort_id: 1, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: 0},
@@ -37,10 +48,46 @@ Student.create!([
   {name: "Amanda Cole", email: "acole6@imageshack.us", password_digest: "$2a$10$1E.qqGaREpr/EhaXR2Gzieg7aN8KOdfKjKkd1r76Hvv8MlSbwwHGy", website: nil, linkedin: nil, about: nil, age: nil, active: true, happy: false, help: false, cohort_id: 2, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, blackbelt_count: nil}
   ])
 Stack.create!([
-  {instructor_id: 1, language_id: 2, start_date: nil, active: true},
-  {instructor_id: 1, language_id: 1, start_date: nil, active: false},
-  {instructor_id: 1, language_id: 2, start_date: nil, active: false},
-  {instructor_id: 1, language_id: 3, start_date: nil, active: false}
+  {instructor_id: 1, language_id: 1, start_date: "2016-05-01", active: true},
+  {instructor_id: 2, language_id: 2, start_date: "2016-05-01", active: true},
+  {instructor_id: 3, language_id: 3, start_date: "2016-05-01", active: true},
+  {instructor_id: 4, language_id: 5, start_date: "2016-05-01", active: true},
+  {instructor_id: 5, language_id: 1, start_date: "2016-06-01", active: true},
+  {instructor_id: 6, language_id: 2, start_date: "2016-06-01", active: true},
+  {instructor_id: 7, language_id: 3, start_date: "2016-06-01", active: true},
+  {instructor_id: 8, language_id: 4, start_date: "2016-06-01", active: true},
+  {instructor_id: 9, language_id: 1, start_date: "2016-07-01", active: true},
+  {instructor_id: 1, language_id: 2, start_date: "2016-07-01", active: true},
+  {instructor_id: 2, language_id: 3, start_date: "2016-07-01", active: true},
+  {instructor_id: 3, language_id: 5, start_date: "2016-07-01", active: true},
+  {instructor_id: 4, language_id: 1, start_date: "2016-08-01", active: true},
+  {instructor_id: 5, language_id: 2, start_date: "2016-08-01", active: true},
+  {instructor_id: 6, language_id: 3, start_date: "2016-08-01", active: true},
+  {instructor_id: 7, language_id: 4, start_date: "2016-08-01", active: true},
+  {instructor_id: 8, language_id: 1, start_date: "2016-09-01", active: true},
+  {instructor_id: 9, language_id: 2, start_date: "2016-09-01", active: true},
+  {instructor_id: 1, language_id: 3, start_date: "2016-09-01", active: true},
+  {instructor_id: 2, language_id: 5, start_date: "2016-09-01", active: true},
+  {instructor_id: 3, language_id: 1, start_date: "2016-10-01", active: true},
+  {instructor_id: 4, language_id: 2, start_date: "2016-10-01", active: true},
+  {instructor_id: 5, language_id: 3, start_date: "2016-10-01", active: true},
+  {instructor_id: 6, language_id: 4, start_date: "2016-10-01", active: true},
+  {instructor_id: 7, language_id: 1, start_date: "2016-11-01", active: true},
+  {instructor_id: 8, language_id: 2, start_date: "2016-11-01", active: true},
+  {instructor_id: 9, language_id: 3, start_date: "2016-11-01", active: true},
+  {instructor_id: 1, language_id: 5, start_date: "2016-11-01", active: true},
+  {instructor_id: 2, language_id: 1, start_date: "2016-12-01", active: true},
+  {instructor_id: 3, language_id: 2, start_date: "2016-12-01", active: true},
+  {instructor_id: 4, language_id: 3, start_date: "2016-12-01", active: true},
+  {instructor_id: 5, language_id: 4, start_date: "2016-12-01", active: true},
+  {instructor_id: 6, language_id: 1, start_date: "2017-01-01", active: true},
+  {instructor_id: 7, language_id: 2, start_date: "2017-01-01", active: true},
+  {instructor_id: 8, language_id: 3, start_date: "2017-01-01", active: true},
+  {instructor_id: 9, language_id: 5, start_date: "2017-01-01", active: true},
+  {instructor_id: 1, language_id: 1, start_date: "2017-02-01", active: true},
+  {instructor_id: 2, language_id: 2, start_date: "2017-02-01", active: true},
+  {instructor_id: 3, language_id: 3, start_date: "2017-02-01", active: true},
+  {instructor_id: 4, language_id: 4, start_date: "2017-02-01", active: true},
 ])
 StackStudent.create!([
   {student_id: 1, stack_id: 1, order: 1, belt: "none"},

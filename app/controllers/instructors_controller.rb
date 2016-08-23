@@ -3,7 +3,7 @@ class InstructorsController < ApplicationController
   before_action :require_instructor_or_admin_login, only: [ :update, :update_picture, :edit ]
   before_action :require_correct_instructor, only: [ :show ]
   before_action :require_correct_instructor_or_admin, only: [ :update, :update_picture, :edit ]
-  before_action :require_admin_only_login, only: [ :new ]
+  before_action :require_admin_only_login, only: [ :new, :create ]
 	
   def update
       user = current_instructor
@@ -15,6 +15,26 @@ class InstructorsController < ApplicationController
 
   def new
 
+  end
+
+  def admin
+    @students = Student.all
+    @instructors = Instructor.all
+  end
+
+  def create
+      pw = SecureRandom.hex(8)
+      ins = Instructor.new( user_params )
+      ins.password = pw
+      puts ins.admin
+      if ins.valid?
+          ins.save
+          email = NewUser.NewInstructor(ins, pw).deliver_later
+          redirect_to "/instructors/#{session[:instructor_id]}/admin"
+      else
+          flash[:errors] = ins.errors.full_messages
+          redirect_to "/instructors/new"
+      end
   end
 
   def update_picture
@@ -36,7 +56,7 @@ class InstructorsController < ApplicationController
   end
 private
   def user_params
-      params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age, :avatar)
+      params.require(:user).permit(:name, :email, :admin, :website, :linkedin, :about, :age, :avatar)
   end
 
 end
