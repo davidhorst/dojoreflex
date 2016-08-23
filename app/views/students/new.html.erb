@@ -19,3 +19,112 @@
 		<p><%= message %></p>
 	<% end %>
 <% end %>
+
+
+<!-- <div id="drop_zone">Drop files here</div>
+<output id="list"></output>
+<output id="out">
+    file contents will appear here
+</output> -->
+
+
+
+<form action='/students' method='POST' enctype="multipart/form-data">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="_method" value="PUT">
+	<label>Drag and drop CSV here:</label>
+	<div id="drop_zone">Drop files here</div>
+	
+	<output id="list"></output>
+	<input type="hidden" id="the_data" name="csv_data">
+
+	<input id="csv_submit" type="submit" value="Process CSV">
+</form>
+
+
+
+
+<script type="text/javascript">
+	
+
+
+function handleFileSelect(evt) {
+	evt.stopPropagation();
+	evt.preventDefault();
+
+	var files = evt.dataTransfer.files; // FileList object.
+	var theFile = files[0];
+	
+
+	// files is a FileList of File objects. List some properties.
+	var output = [];
+	for (var i = 0, f; f = files[i]; i++) {
+		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+		f.size, ' bytes, last modified: ',
+		f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+		'</li>');
+	}
+	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+	
+	if (!theFile.name.match('\.csv')) {
+        $('#list').css('color','red');
+        $('#csv_submit').prop("disabled",true);
+    } else {
+    	$('#list').css('color','');
+    	$('#csv_submit').prop("disabled",false);
+    	readFile(theFile);
+   
+    	// console.log("BEFORE PROCESS: " + temp);
+    	// poop = processData(String(temp));
+    	// console.log(poop);
+    }
+}
+
+function handleDragOver(evt) {
+	evt.stopPropagation();
+	evt.preventDefault();
+	evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+
+function readFile (file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+    	// document.getElementById('out').innerHTML = reader.result;
+    	// var temp = processData(reader.result);
+    	$('#the_data').val(reader.result);
+    };
+    // start reading the file. When it is done, calls the onload event defined above.
+    reader.readAsBinaryString(file);
+    console.log(reader);
+};
+
+function processData(allText) {
+    var allTextLines = allText.split(/\r\n|\n/);
+    var headers = allTextLines[0].split(',');
+    var lines = [];
+    for (var i=1; i<allTextLines.length; i++) {
+        var data = allTextLines[i].split(',');
+        if (data.length == headers.length) {
+
+            var tarr = {}
+            for (var j=0; j<headers.length; j++) {
+                tarr[headers[j]] = data[j];
+            }
+            lines.push(tarr);
+        }
+    }
+    return lines;
+}
+
+
+// Setup the dnd listeners.
+var dropZone = document.getElementById('drop_zone');
+dropZone.addEventListener('dragover', handleDragOver, false);
+dropZone.addEventListener('drop', handleFileSelect, false);
+
+$(document).ready( function() {
+	$('#csv_submit').prop("disabled",true);
+});
+
+</script>

@@ -164,7 +164,9 @@ RegExp.escape= function(s) {
         matchSrc = matchSrc.replace(/S/g, escSeparator);
         matchSrc = matchSrc.replace(/D/g, escDelimiter);
         match = new RegExp(matchSrc, 'gm');
-
+        console.log("START")
+        console.log(match)
+        console.log("END")
         // put on your fancy pants...
         // process control chars individually, use look-ahead on non-control chars
         csv.replace(match, function (m0) {
