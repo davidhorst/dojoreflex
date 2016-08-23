@@ -7,7 +7,7 @@ class Student < ActiveRecord::Base
   has_many :blackbelts, -> { where belt: 'black' }, :class_name => 'StackStudent'
 
   #validations
-  has_secure_password :on => :create
+  has_secure_password
   has_attached_file :avatar
   # will validate if the file is an image
 # s_attachment_content_type :avatar, :content_type => /\Aimage/

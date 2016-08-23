@@ -14,14 +14,14 @@ Rails.application.routes.draw do
   put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
   post 'instructors/:id' => 'instructors#update_picture'  # update profile picture (admin/self)
   get 'instructors/:id/admin' => 'instructors#admin'      # admin page (admin only)
-  
+
 
   get 'students/new'                                      # "add student" page(admin only)
   post 'students' => 'students#create'                    # adding a student (admin only)
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
   get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
-  put 'students/:id' => 'students#update'                 # update user (admin/self only)
   post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
+  put 'students/:id' => 'students#update'                 # update user (admin/self only)
   get 'directory' => 'directories#index'                  # directory index
   get 'directory/graduates' => 'directories#graduates'    # show graduates on index.html.erb
   get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb
