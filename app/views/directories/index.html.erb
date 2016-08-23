@@ -1,27 +1,37 @@
-<div class="container">
+<div class="dashboard-background">
+
 <div class="navbar navbar-default">
+  <div class="container">
   <div class="navbar-left">
     <span class="navbar-text"><a href="/directory">All Students</a> > <a href="/directory/graduates">Graduates</a></span>
   </div>
   <div class="navbar-right">
-    <form class="form-inline">
+    <form class="form-inline navbar-form">
       <input class="form-control" type="text" placeholder="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
+</div>
 </div>
 
 <div class="container">
   <h1><!-- spacer --> </h1>
 <% @students.each do |student| %>
   <div class="col-sm-2 ">
+    <div class="col-sm-12 directory-box">
+    <a href="/directory/<%=student.id %>">
     <div class="user-photo">
       <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle' %>
     </div>
-    <h4> <a href="/directory/<%=student.id %>"><%= student.name %></a></h4>
-    <h4> <%= student.created_at.to_date %></h4>
-    <h4> <a href = ""<%= student.name %>">linkedin</a></h4>
-    <h4> <a href = ""<%= student.name %>">Website</a></h4>
+    <h4 class="name-box text-center"><b><%= student.name %></b></h4></a>
+    <h4 class="status text-center"><% if student.active == true %>
+            Currently Attending
+        <% else %>
+          Graduated: <span class="graduation-year"><%= student.created_at.to_date.strftime("%Y") %></span>
+        <% end %>
+    </h4>
   </div>
+</div>
 <% end %>
+</div>
 </div>
