@@ -1,3 +1,50 @@
 // Place all the styles related to the Directories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.detail-panel{
+  padding-top:5%;
+  padding-bottom: 5%;
+}
+.directory-box{
+  padding:20px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+  .directory-box img{
+    border: 5px solid #a2e8dd;
+
+  }
+  .directory-box h4{
+    color: #3c4c5b;
+  }
+  .directory-box .status{
+    color: #779cab;
+
+  }
+  .graduation-year{
+    display: block;
+  }
+
+.name-box{
+  margin-top:20px;
+  height:40px;
+}
+
+.left-col{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  border-right: 1px solid black;
+}
+.right-col{
+  padding: 5%;
+}
+  .social-links{
+    padding-top: 20%;
+  }
+.directory-img{
+  border: 15px solid white;
+  width: 50%;
+  margin: auto;
+}

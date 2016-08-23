@@ -9,7 +9,7 @@ class Student < ActiveRecord::Base
   has_many :blackbelts, -> { where belt: 'black' }, :class_name => 'StackStudent'
 
   #validations
-  has_secure_password :on => :create
+  has_secure_password
   has_attached_file :avatar
   validates :email, :name, :cohort, presence: :true
   validates :email, :uniqueness => true, :format => { :with => EMAIL_REGEX }

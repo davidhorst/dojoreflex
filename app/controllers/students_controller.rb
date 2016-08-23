@@ -46,7 +46,6 @@ class StudentsController < ApplicationController
     def edit
         if current_instructor
             if current_instructor.admin
-                puts current_instructor
                 @admin = true
             else
                 @admin = false
@@ -59,7 +58,7 @@ class StudentsController < ApplicationController
     def update_picture
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
-        redirect_to  "/students/#{user.id}/edit"
+        redirect_to  "/students/#{params[:id]}/edit"
     end
 
     def update

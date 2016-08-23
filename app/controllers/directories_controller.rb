@@ -1,6 +1,10 @@
 class DirectoriesController < ApplicationController
 
   def index
+    if session[:return_to]
+      session[:return_to] = nil
+    end
+
     @students = Student.all
   end
 
@@ -20,8 +24,14 @@ class DirectoriesController < ApplicationController
 
 
   def show
+    session[:return_to] ||= request.referer
+    languages = []
     @student = Student.find(params[:id])
     @stacks = Student.find(params[:id]).stacks
+    @stacks.each do |stack|
+      languages.append(stack.language.name)
+    end
+    @languages = languages.to_sentence
     @belts = StackStudent.where(student:params[:id])
   end
 
