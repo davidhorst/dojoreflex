@@ -8,9 +8,10 @@ class StudentsController < ApplicationController
 
     def show
         @alerts = Alert.all
-        @current_student = current_student  
+        @current_student = current_student
         @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         @language = current_student.stacks.where(active:true).first.language.name
+        @students = Student.all
 
     end
 
@@ -44,12 +45,22 @@ class StudentsController < ApplicationController
         end
     end
 
-    def dashboard
-    end
+    def feedback
+      input = params.require(:input).permit(:id, :value)
 
-    private
+      if input[:id] == 'performance'
+        Student.find(current_student.id).update(happy: input[:value])
+      end
+      if input[:id] == 'help'
+        Student.find(current_student.id).update(help: input[:value])
+      end
 
-    def user_params
-        params.require(:user).permit(:name, :email, :website, :linkedin, :about, :age, :avatar)
+      @students = Student.all
+
+      respond_to do |format|
+        format.js
+      end
+
     end
-end
+    
+  end

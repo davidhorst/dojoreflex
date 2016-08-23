@@ -10,19 +10,19 @@
       <div class="col-xs-4">
           <div class="col-xs-12 graph-box box">
             <h3>Course Completion</h3>
-            <%= pie_chart Student.group(:happy).count, colors: ["#779CAB", "#A2E8DD"] %>
+            <%= pie_chart @students.group(:happy).count, colors: ["#779CAB", "#A2E8DD"] %>
           </div>
       </div>
         <div class="col-xs-4">
             <div class="col-xs-12 graph-box box">
               <h3>Hours this week</h3>
-              <%= pie_chart Student.group(:happy).count, colors: ["#779CAB", "#A2E8DD"] %>
+              <%= pie_chart @students.group(:happy).count, colors: ["#779CAB", "#A2E8DD"] %>
             </div>
         </div>
         <div class="col-xs-4">
             <div class="col-xs-12 graph-box box">
-              <h3>Team Satisfaction</h3>
-              <%= pie_chart Student.group(:happy).count, colors: ["#779CAB", "#A2E8DD"] %>
+              <h3>Performance</h3>
+              <%= render partial: "performance_chart", locals: {:students => @students} %>
             </div>
         </div>
     </div>
@@ -41,13 +41,18 @@
           <h3>Instant Feedback:</h3>
             <div class="col-xs-12 alert-box box">
               <table class='toggle_table text-center'>
+                <form id="instant-feedback">
                   <tbody>
                   <tr>
                       <td colspan="4"><h4 class="text-left">I feel like I'm: </h4></td>
                       <td>On Pace</td>
                       <td>
-                        <label id='happy_toggle' class="switch">
-                            <input type="checkbox">
+                        <label for='performance' class="switch">
+                            <% if @current_student.happy == true %>
+                            <input id="performance" type="checkbox">
+                            <% else %>
+                            <input id="performance" type="checkbox" checked="checked">
+                            <% end %>
                             <div class="slider round"></div>
                         </label>
                       </td>
@@ -57,14 +62,19 @@
                     <td colspan="4"><h4 class="text-left">I need help: </h4></td>
                       <td>True</td>
                       <td>
-                          <label id='help_toggle' class="switch">
-                              <input type="checkbox">
+                          <label for="help" class="switch">
+                              <% if @current_student.help == true %>
+                              <input id="help" type="checkbox">
+                              <% else %>
+                              <input id="help" type="checkbox" checked="checked">
+                              <% end %>
                               <div class="slider round"></div>
                           </label>
                       </td>
                       <td>False</td>
                   </tr>
                 </tbody>
+              </form>
               </table>
             </div>
         </div>
@@ -150,3 +160,33 @@ input:checked + .slider:before {
   padding: 25px;
 }
 </style>
+
+<script>
+$('.slider').click(function() {
+    var c = $(this).prev();
+    update_input(c);
+
+});
+
+
+function update_input(element) {
+    console.log(element[0].checked);
+    $.ajax({
+          method: 'put',
+          url: '/students/feedback/<%=@current_student.id%>',
+          data: {input: {id: element[0].id, value: element[0].checked}},
+          success: function(data) {
+
+             },
+          error: function(err) {
+              }
+        });
+    }
+
+    $.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+</script>

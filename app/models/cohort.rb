@@ -3,7 +3,7 @@ class Cohort < ActiveRecord::Base
 	has_many :students
 
 	validates :location, :start, presence: :true
-	validate :future_start_date
+	# validate :future_start_date
 
 
 	private
