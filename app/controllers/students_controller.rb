@@ -80,6 +80,7 @@ class StudentsController < ApplicationController
       respond_to do |format|
         format.js
       end
+    end
 
     def user_params
         params.require(:user).permit(:name, :email, :cohort_id, :website, :linkedin, :about, :age, :avatar)
