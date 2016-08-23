@@ -1,29 +1,37 @@
+<div class="dashboard-background">
 <div class="nav navbar-default">
-  <h4 class="col-sm-offset-1"><a href="/directory">All Students</a> > <a href="/directory/graduates">Graduates</a></h4>
+  <div class="container">
+    <h4><a href="<%= session[:return_to] %>"><   Back to directory</a></h4>
+  </div>
 </div>
 
 <div class="container">
-  <div class="col-sm-4">
-    <h2><b><%= @student.name%></b></h2>
-    <h4>
-      <b>Achievements:</b> <% @belts.each do |belt| %>
-        <% if belt.blackbelt %>
-          <%= belt.stack.language.name %> blackbelt,
-        <% else %>
-            sorry, Jun.
-        <% end %>
-      <% end %>
-    </h4>
-    <h4><b>Join date:</b> <%= @student.created_at.to_date %></h4>
-    <h4><b>Languages:</b>
-      <% @stacks.each do |stack| %>
-      , <%=stack.language.name%>
-      <% end %>
-    </h4>
-    <h4><b>Most enjoyed:</b> Mean</h4>
-    <h4><b>Current status:</b> in practice </h4>
-    <h4><b>Linkedin:</b> <a href="#">link</a></h4>
-    <h4><b>Website: </b><a href="#">link</a></h4>
-    <p><a href="/directory">Return to the Directory</a></p>
+  <div class="detail-panel col-sm-12">
+  <div class="left-col col-xs-5">
+    <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle directory-img' %>
+    <div class="directory-name text-center">
+        <h2><b><%= @student.name%></b></h2>
+        <h3><%= @languages %></h3>
+
+    </div>
   </div>
+  <div class="right-col col-xs-7">
+    <h4>Start Date: </h4>
+    <h4>Graduation Date: </h4>
+    <h4>Achievements: </h4>
+    <h4>Hosted Projects: </h4>
+    <h4>Contact Preferences </h4>
+    <div class="social-links">
+        <div class="col-sm-5">
+          <a href="<%= @student.linkedin %>"><%= image_tag 'linkedin_circle_icon', size:"80" %></a>
+        </div>
+        <div class="col-sm-5">
+          <a href="<%= @student.website %>"><%= image_tag 'website_circle_icon', size:"80" %></a>
+        </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
 </div>

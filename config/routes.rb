@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
   get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
   post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
-  put 'students/:id' => 'students#update'                 # update user (admin/self only)
+
+  put 'students/feedback/:id' => 'students#feedback'     # Update student status based on instant-feedback form
   get 'directory' => 'directories#index'                  # directory index
   get 'directory/graduates' => 'directories#graduates'    # show graduates on index.html.erb
   get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb

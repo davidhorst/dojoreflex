@@ -1,2 +1,18 @@
-<h1>Add an Instructor</h1>
-<p>Find me in app/views/instructors/new.html.erb</p>
+<h1>Add an instructor</h1>
+<form action="/instructors" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label>Email:</label>
+	<input type="text" name="user[email]"><br>
+	<label>Name:</label>
+	<input type="text" name="user[name]"><br>
+	<label>Select Access Level:</label>
+	<input type="radio" name="user[admin]" value="false" checked> Normal
+	<input type="radio" name="user[admin]" value="true"> Admin<br>
+	<input type="submit" value="Add instructor">
+</form>
+
+<% if flash[:errors] %>
+	<% flash[:errors].each do |message| %>
+		<p><%= message %></p>
+	<% end %>
+<% end %>
