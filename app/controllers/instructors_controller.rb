@@ -4,7 +4,7 @@ class InstructorsController < ApplicationController
   before_action :require_correct_instructor, only: [ :show ]
   before_action :require_correct_instructor_or_admin, only: [ :update, :update_picture, :edit ]
   before_action :require_admin_only_login, only: [ :new, :create ]
-	
+
 
   def update
       user = Instructor.find(params[:id])
@@ -16,6 +16,10 @@ class InstructorsController < ApplicationController
 
   def new
 
+  end
+
+  def show
+@user = current_instructor
   end
 
   def admin
