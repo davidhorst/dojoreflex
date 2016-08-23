@@ -15,13 +15,13 @@ class ApplicationController < ActionController::Base
 	# authentication helper methods: recommened to be used with "before_action" in controllers
 	def require_student_login
 		if session[:student_id] == nil
-			redirect_to '/login' 
+			redirect_to '/login'
 		end
 	end
 
 	def require_instructor_login
 		if session[:instructor_id] == nil
-			redirect_to '/login' 
+			redirect_to '/login'
 		end
 	end
 
@@ -39,8 +39,8 @@ class ApplicationController < ActionController::Base
 		ins_id = session[:instructor_id]
 		if ins_id == nil
 			redirect_to '/login'
-		elsif current_instructor.admin != true
-			redirect_to "/instructors/#{session[:instructor_id]}"
+		# elsif current_instructor.admin != true
+		# 	redirect_to "/instructors/#{session[:instructor_id]}"
 		end
 	end
 
@@ -73,10 +73,10 @@ class ApplicationController < ActionController::Base
 
 	def require_correct_instructor_or_admin
 		user = Instructor.find_by(id: params[:id])
-		redirect_to "/instructors/#{session[:instructor_id]}" if current_instructor.admin != true || session[:instructor_id] != user.id
+		redirect_to "/instructors/#{session[:instructor_id]}" if current_instructor.admin != true && session[:instructor_id] != user.id
 	end
 
-	
+
 
 	# List of helper methods available in "views"
 	helper_method :current_student, :current_instructor
