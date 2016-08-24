@@ -13,7 +13,7 @@ class DirectoriesController < ApplicationController
   end
 
   def graduates
-    @students = Student.where(active:false)
+    @user = Student.where(active:false)
     render 'index.html.erb'
   end
 
@@ -26,7 +26,7 @@ class DirectoriesController < ApplicationController
   def show
     session[:return_to] ||= request.referer
     languages = []
-    @student = Student.find(params[:id])
+    @user = Student.find(params[:id])
     @stacks = Student.find(params[:id]).stacks
     @stacks.each do |stack|
       languages.append(stack.language.name)

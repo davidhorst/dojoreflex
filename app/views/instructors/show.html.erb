@@ -6,8 +6,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6">
-      <div class="box">
+    <div class="col-xs-7">
+      <div class="box"> <!-- Stack Admin Box -->
         <div class="box-title">
           <h3>My Stacks</h3>
         </div>
@@ -19,45 +19,41 @@
             <th>Student Count</th>
             <th>Status</th>
             <th>Add Alert</th>
+            <th>Setup</th>
           </thead>
           <tbody>
+
+            <% if @stacks.count > 0 %>
+              <% @stacks.each do |stack| %>
+              <tr>
+                <td><%= stack.language.name  %></td>
+                <td><%= stack.start_date %></td>
+                <td><%= stack.location.name %></td>
+                <td><%= stack.stack_students.count %></td>
+                <td>
+                  <% if stack.active == false and stack.start_date < DateTime.now %>
+                        Completed
+                  <% elsif stack.active == false and stack.start_date > DateTime.now %>
+                        Approaching
+                  <% end %>
+                  <% if stack.active == true %>
+                        In Session
+                  <% end %>
+                </td>
+                <td><button class="btn btn-primary btn-sm">Send Message</button></td>
+                <td><%= image_tag 'gear-icon', size:"32" %></td>
+              </tr>
+              <% end %>
+            <% else %>
             <tr>
-              <td>Mean</td>
-              <td>7/01/2016</td>
-              <td>Seattle</td>
-              <td>23</td>
-              <td>Completed</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Ruby</td>
-              <td>8/01/2016</td>
-              <td>Seattle</td>
-              <td>28</td>
-              <td>Active</td>
-              <td><button class="btn btn-primary">Send Message</button></td>
-            </tr>
-            <tr>
-              <td>Web Funds</td>
-              <td>8/01/2016</td>
-              <td>Web Based</td>
-              <td>12</td>
-              <td>Active</td>
-              <td><button class="btn btn-primary">Send Message</button></td>
-            </tr>
-            <tr>
-              <td>Mean</td>
-              <td>9/01/2016</td>
-              <td>Seattle</td>
-              <td>3</td>
-              <td>Inactive</td>
-              <td></td>
-            </tr>
+            <td colspan="7">You are not teaching any stacks</td>
+            </tr?
+            <% end %>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-5">
       <div class="box">
         <div class="box-title">
           <h3>Student Issues</h3>
@@ -67,37 +63,32 @@
             <th>Student Name</th>
             <th>Falling Behind</th>
             <th>Needs Help</th>
-            <th>Send a message</th>
             <th>Reset Concern</th>
           </thead>
           <tbody>
             <tr>
-              <td>Mean</td>
-              <td>7/01/2016</td>
-              <td>Seattle</td>
-              <td>23</td>
-              <td>Completed</td>
+              <td>Roger</td>
+              <td>true</td>
+              <td></td>
+              <td><button class="btn btn-primary btn-sm">Reset</button></td>
             </tr>
             <tr>
-              <td>Ruby</td>
-              <td>8/01/2016</td>
-              <td>Seattle</td>
-              <td>28</td>
-              <td>Active</td>
+              <td>Bob</td>
+              <td>True</td>
+              <td></td>
+              <td><button class="btn btn-primary btn-sm">Reset</button></td>
             </tr>
             <tr>
-              <td>Web Funds</td>
-              <td>8/01/2016</td>
-              <td>Web Based</td>
-              <td>12</td>
-              <td>Active</td>
+              <td>Sandy</td>
+              <td></td>
+              <td>True</td>
+              <td><button class="btn btn-primary btn-sm">Reset</button></td>
             </tr>
             <tr>
-              <td>Mean</td>
-              <td>9/01/2016</td>
-              <td>Seattle</td>
-              <td>3</td>
-              <td>Inactive</td>
+              <td>Marerite</td>
+              <td>True</td>
+              <td></td>
+              <td><button class="btn btn-primary btn-sm">Reset</button></td>
             </tr>
           </tbody>
         </table>
