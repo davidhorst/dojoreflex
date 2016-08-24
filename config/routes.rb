@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'directory/blackbelts' => 'directories#blackbelts'  # show blackbelts on index.html.erb
   get 'directory/:id' => 'directories#show'               # show student details
 
+  get 'cohorts' => 'cohorts#index'
   get 'cohorts/new'
   post 'cohorts' => 'cohorts#create'
   get 'cohorts/:id' => 'cohorts#show'

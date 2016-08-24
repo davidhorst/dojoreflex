@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="dashboard-heading row">
+    <h1>Cohorts View</h1>
+  </div> <!-- /heading -->
+  <div class="dashboard-heading row">
+    <a href="/cohorts/new" class="btn btn-primary">Create New Cohort</a>
+  </div><!-- /button box -->
+  <div class="row">
+    <div class="box-title">
+      <h3>Cohort List</h3>
+    </div>
+    <div class="box graph-box">
+      <table class="table table-striped">
+        <thead>
+          <th>Location</th>
+          <th>Start Date</th>
+          <th>Student Count</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody>
+          <% @cohorts.each do |cohort| %>
+            <tr>
+              <td><%= cohort.location.name %></td>
+              <td><%= cohort.start %></td>
+              <td><%= cohort.students.count %></td>
+              <td><a href="/cohorts/<%= cohort.id %>" class="btn btn-primary btn-sm">edit</a></td>
+              <td><%= image_tag 'remove-icon' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div><!-- /container -->

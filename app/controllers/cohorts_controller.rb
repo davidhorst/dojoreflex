@@ -1,5 +1,12 @@
 class CohortsController < ApplicationController
+
+	def index
+		@user = current_instructor
+		@cohorts = Cohort.all
+	end
+
 	def new
+		@user = current_instructor
 		@locations = Location.all
 		today = Date.today
 		@min_date = "%04d-%02d" % [ today.year+((today.mon+1)/12), (today.mon+1)%12 ]

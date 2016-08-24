@@ -1,19 +1,36 @@
-<h1>Add a new cohort</h1>
-<form action="/cohorts" method="POST">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<label>Location</label>
-	<select name="cohort[location_id]">
-		<% @locations.each do |location| %>
-			<option value="<%= location.id %>"><%= location.name %> (<%= location.city %>, <%= location.state %>)</option>
-		<% end %>
-	</select>
-	<label>Start:</label>
-	<input type="month" name="cohort[start]" min="<%= @min_date%>">
-	<input type="submit" value="Add Cohort">
-</form>
+<div class="container">
+  <div class="dashboard-heading">
+    <h1>Cohort Creation </h1>
+  </div>
 
-<% if flash[:errors] %>
-	<% flash[:errors].each do |message| %>
-		<p><%= message %></p>
-	<% end %>
-<% end %>
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="box-title">
+				<h3>Select Location and Date</h3>
+			</div>
+			<div class="graph-box box">
+				<form class="form form-horizontal" action="/cohorts" method="POST">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<div class="form-group">
+						<label class="form-label col-xs-3" for="location">Location</label>
+						<div class="col-xs-9">
+							<select class="form-control" id="location" name="cohort[location_id]">
+								<% @locations.each do |location| %>
+									<option value="<%= location.id %>"><%= location.name %> (<%= location.city %>, <%= location.state %>)</option>
+								<% end %>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="start" class="form-label col-xs-3" >Start:</label>
+						<div class="col-xs-9">
+							<input class="form-control" type="month" name="cohort[start]" min="<%= @min_date%>">
+					  </div>
+					</div>
+					<input class="btn btn-primary" type="submit" value="Add Cohort">
+				</form>
+			</div><!-- /location & date box -->
+		</div><!-- /location & date box wrapper div -->
+
+	</div><!-- /row -->
+</div><!-- /container -->
