@@ -161,7 +161,7 @@ function update_input(element) {
     console.log(element[0].checked);
     $.ajax({
           method: 'put',
-          url: '/students/feedback/<%=@current_student.id%>',
+          url: '/students/feedback/<%=@user.id%>',
           data: {input: {id: element[0].id, value: element[0].checked}},
           success: function(data) {
 

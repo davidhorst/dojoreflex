@@ -7,3 +7,16 @@
 .hidden{
     visibility: hidden;
 }
+
+#drop_zone {
+    border: black dashed 2px;
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 10em;
+    text-align: center;
+}
+
+#drop_zone p {
+    margin: auto;
+}

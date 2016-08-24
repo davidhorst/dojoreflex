@@ -1,15 +1,36 @@
-<h1>Add an instructor</h1>
-<form action="/instructors" method="POST">
+
+<div class="container">
+	<h3>Add an instructor</h3>
+</br>
+<form action="/instructors" method="POST" class='col-md-6'>
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<label>Email:</label>
-	<input type="text" name="user[email]"><br>
-	<label>Name:</label>
-	<input type="text" name="user[name]"><br>
-	<label>Select Access Level:</label>
-	<input type="radio" name="user[admin]" value="false" checked> Normal
-	<input type="radio" name="user[admin]" value="true"> Admin<br>
+
+	<div class="row form-group">
+	  <label for="text-input-email" class="col-xs-2 col-form-label">Email:</label>
+	  <div class="col-xs-8">
+		<input class="form-control" type="text" name="user[email]" id="text-input-email">
+	  </div>
+	</div>
+	<div class="row form-group">
+	  <label for="text-input-name" class="col-xs-2 col-form-label">Name:</label>
+	  <div class="col-xs-8">
+		<input class="form-control" type="text" name="user[name]" id="text-input-name">
+	  </div>
+	</div>
+	<div class="row form-group">
+	  <label for="text-input-name" class="col-xs-2 col-form-label">Select Access Level:</label>
+	  <div class="col-xs-8">
+			<label><input type="radio" name="user[admin]" value="false" checked> Normal</label>
+	  		<label><input type="radio" name="user[admin]" value="true"> Admin</label>
+
+	  </div>
+	</div>
 	<input type="submit" value="Add instructor">
 </form>
+
+<br>
+
+
 
 <% if flash[:errors] %>
 	<% flash[:errors].each do |message| %>
@@ -23,8 +44,8 @@
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<input type="hidden" name="_method" value="PUT">
 	<label>Drag and drop CSV here:</label>
-	<div id="drop_zone">Drop files here</div>
-	
+	<div id="drop_zone" class="text-center"><p>Drop files here</p></div>
+
 	<output id="list"></output>
 	<input type="hidden" id="the_data" name="csv_data">
 
@@ -32,10 +53,10 @@
 </form>
 
 
-
+</div>
 
 <script type="text/javascript">
-	
+
 
 
 function handleFileSelect(evt) {
@@ -44,7 +65,7 @@ function handleFileSelect(evt) {
 
 	var files = evt.dataTransfer.files; // FileList object.
 	var theFile = files[0];
-	
+
 
 	// files is a FileList of File objects. List some properties.
 	var output = [];
@@ -55,7 +76,7 @@ function handleFileSelect(evt) {
 		'</li>');
 	}
 	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-	
+
 	if (!theFile.name.match('\.csv')) {
         $('#list').css('color','red');
         $('#csv_submit').prop("disabled",true);
@@ -63,7 +84,7 @@ function handleFileSelect(evt) {
     	$('#list').css('color','');
     	$('#csv_submit').prop("disabled",false);
     	readFile(theFile);
-   
+
     	// console.log("BEFORE PROCESS: " + temp);
     	// poop = processData(String(temp));
     	// console.log(poop);
