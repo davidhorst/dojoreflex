@@ -1,11 +1,11 @@
-id,name,email,cohort,password,happy
-1,Mark Ortiz,mortiz0@youtube.com,2016-09-01,asdfasdf,TRUE
-2,Jack Phillips,jphillips1@weebly.com,2016-09-01,asdfasdf,FALSE
-3,Randy Grant,rgrant2@geocities.jp,2016-09-01,asdfasdf,TRUE
-4,Lori Burke,lburke3@wordpress.org,2016-09-01,asdfasdf,FALSE
-5,Phillip Spencer,pspencer4@dot.gov,2016-09-01,asdfasdf,TRUE
-6,Peter Ford,pford5@yahoo.com,2016-09-01,asdfasdf,FALSE
-7,Amanda Cole,acole6@imageshack.us,2016-09-01,asdfasdf,FALSE
-8,Jessica Parker,jparker7@livejournal.com,2016-09-01,asdfasdf,FALSE
-9,Christopher Hall,chall8@dmoz.org,2016-09-01,asdfasdf,TRUE
-10,Kelly Gonzales,kgonzales9@stanford.edu,2016-09-01,asdfasdf,TRUE
+id,name,email,admin,password,happy
+1,Mark Ortiz,mortiz0@youtube.com,TRUE,asdfasdf,TRUE
+2,Jack Phillips,jphillips1@weebly.com,FALSE,asdfasdf,FALSE
+3,Randy Grant,rgrant2@geocities.jp,TRUE,asdfasdf,TRUE
+4,Lori Burke,lburke3@wordpress.org,FALSE,asdfasdf,FALSE
+5,Phillip Spencer,pspencer4@dot.gov,TRUE,asdfasdf,TRUE
+6,Peter Ford,pford5@yahoo.com,FALSE,asdfasdf,FALSE
+7,Amanda Cole,acole6@imageshack.us,TRUE,asdfasdf,FALSE
+8,Jessica Parker,jparker7@livejournal.com,FALSE,asdfasdf,FALSE
+9,Christopher Hall,chall8@dmoz.org,TRUE,asdfasdf,TRUE
+10,Kelly Gonzales,kgonzales9@stanford.edu,FALSE,asdfasdf,TRUE

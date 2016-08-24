@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'instructors/new'                                   # "add instructor" page (admin only)
   post 'instructors' => 'instructors#create'              # adding a instructors (admin only)
+  put 'instructors' => 'instructors#csv_create'           # adding an instructor (admin only)
   get 'instructors/:id' => 'instructors#show'             # dashboard page (instructor only)
   get 'instructors/:id/edit' => 'instructors#edit'        # edit user page (admin/self only)
   put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
