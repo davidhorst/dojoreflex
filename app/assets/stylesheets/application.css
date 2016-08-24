@@ -18,6 +18,11 @@ body{
   padding-top: 50px;
 
 }
+
+.new-line{
+  display: block;
+}
+
 .footer{
   padding-top: 20px;
 }

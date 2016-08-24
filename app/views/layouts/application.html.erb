@@ -76,19 +76,20 @@
 <body>
 
   <%= yield %>
-
+<% if session[:student_id] or session[:instructor_id] %>
 <div class="dashboard-background footer">
   <div class="container">
-  <div class="col-xs-4 footer-col">
-    <p>Only you can prevent forest fires &copy;2016</p>
-  </div>
-  <div class="col-xs-4 footer-col">
-    <a href="#">Jerbs</a>
-  </div>
-  <div class="col-xs-4 footer-col">
-    <a href="#">Privacy</a>
+    <div class="col-xs-4 footer-col">
+      <p>Only you can prevent forest fires &copy;2016</p>
+    </div>
+    <div class="col-xs-4 footer-col">
+      <a href="#">Jerbs</a>
+    </div>
+    <div class="col-xs-4 footer-col">
+      <a href="#">Privacy</a>
+    </div>
   </div>
 </div>
-</div>
+<% end %>
 </body>
 </html>
