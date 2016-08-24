@@ -68,7 +68,7 @@
         <li class="navbar-brand">
             <% if @user.avatar_file_name != nil %>
             <div>
-            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive', size:"32" %>
+            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive img-circle', size:"32" %>
             </div>
             <% else %>
             <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
