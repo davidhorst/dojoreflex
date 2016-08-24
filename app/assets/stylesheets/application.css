@@ -23,6 +23,9 @@ body{
     padding-left: 70px;
 }
 
+.new-line{
+  display: block;
+}
 
 .footer{
   padding-top: 20px;

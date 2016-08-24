@@ -22,11 +22,14 @@
     <h4>Hosted Projects: </h4>
     <h4>Contact Preferences </h4>
     <div class="social-links">
-        <div class="col-sm-5">
+        <div class="col-sm-3">
           <a href="<%= @student.linkedin %>"><%= image_tag 'linkedin_circle_icon', size:"80" %></a>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-3">
           <a href="<%= @student.website %>"><%= image_tag 'website_circle_icon', size:"80" %></a>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-primary btn-lrg" name="button">Request <span class="new-line">Tech</span><span class="new-line">Talk</span></button>
         </div>
     </div>
   </div>

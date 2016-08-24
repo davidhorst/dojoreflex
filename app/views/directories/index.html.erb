@@ -27,7 +27,7 @@
     <h4 class="status text-center"><% if student.active == true %>
             Currently Attending
         <% else %>
-          Graduated: <span class="graduation-year"><%= student.created_at.to_date.strftime("%Y") %></span>
+          Graduated: <span class="new-line"><%= student.created_at.to_date.strftime("%Y") %></span>
         <% end %>
     </h4>
   </div>
