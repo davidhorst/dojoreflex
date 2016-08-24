@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819231413) do
+ActiveRecord::Schema.define(version: 20160824153235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,10 +126,12 @@ ActiveRecord::Schema.define(version: 20160819231413) do
     t.boolean  "active"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "location_id"
   end
 
   add_index "stacks", ["instructor_id"], name: "index_stacks_on_instructor_id", using: :btree
   add_index "stacks", ["language_id"], name: "index_stacks_on_language_id", using: :btree
+  add_index "stacks", ["location_id"], name: "index_stacks_on_location_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "name"
@@ -165,5 +167,6 @@ ActiveRecord::Schema.define(version: 20160819231413) do
   add_foreign_key "stack_students", "students"
   add_foreign_key "stacks", "instructors"
   add_foreign_key "stacks", "languages"
+  add_foreign_key "stacks", "locations"
   add_foreign_key "students", "cohorts"
 end

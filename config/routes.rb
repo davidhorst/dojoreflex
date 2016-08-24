@@ -33,6 +33,10 @@ Rails.application.routes.draw do
 
   get 'cohorts/new'
   post 'cohorts' => 'cohorts#create'
+  get 'cohorts/:id' => 'cohorts#show'
+
+  get 'stacks' => 'stacks#index'
+  get 'stacks/:id' => 'stacks#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -15,7 +15,6 @@ class StudentsController < ApplicationController
         @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         @language = current_student.stacks.where(active:true).first.language.name
         @students = Student.all
-
     end
 
     def new
@@ -54,7 +53,10 @@ class StudentsController < ApplicationController
                 @admin = false
             end
         end
-        @user = Student.find(params[:id])
+        @student = Student.find(params[:id])
+        if current_instructor != nil
+            @user = current_instructor
+        end
 
     end
 

@@ -3,10 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-  .user_edit_div {
-      margin-left: 15px;
-  }
-
   .hidden{
       visibility: hidden;
   }
@@ -105,4 +101,7 @@
         }
       }
     }
+
+  .edit-icon {
+      font-size: 20pt;
   }

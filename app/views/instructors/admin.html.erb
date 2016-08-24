@@ -1,63 +1,33 @@
-<div class="container">
-	
-	<div class="row">
-    	<div class="col-xs-12 dashboard-heading">
-        	<h1>Admin Page</h1>
-    	</div>
-    </div>
 
-	<div class="row">
-		<div class="col-xs-6">
-			<div class="box-title">
-				<h3>Students</h3>
-			</div>
-			<div class="col-xs-12 graph-box box" id="admin-students-list">
-				<table class="table table-striped">
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 dashboard-heading">
+      <h1>All Students </h1>
+    </div>
+		<div class="student-table">
+			<table class="table table-striped">
 					<thead>
-						<tr>
-							<th class="admin-table-col-1">Student Name</th>
-							<th class="admin-table-col-2">Student Email</th>
-						</tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Cohort</th>
+						<th>Created</th>
+						<th>Delete</th>
 					</thead>
-	
 					<tbody>
 						<% @students.each do |student| %>
 							<tr>
-								<td class="admin-table-col-1"><%= student.name %></td>
-								<td class="admin-table-col-2"><a href="/students/<%= student.id%>/edit"><%= student.email %></a></td>
+								<td><a href="/students/<%= student.id%>/edit"><%= student.name %></td>
+								<td><%= student.email %></td>
+								<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.name %></td>
+								<td><%= student.created_at %></td>
+								<td><%= image_tag 'remove-icon' %></td>
 							</tr>
 						<% end %>
 					</tbody>
-				</table>
-				<a href="/students/new" id="admin-students-new">Add new students</a><br>
-			</div>
-		</div>
+			</table>
 
-		<div class="col-xs-6">
-			<div class="box-title">
-				<h3>Instructors</h3>
-			</div>
-			<div class="col-xs-12 graph-box box" id="admin-instructors-list">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th class="admin-table-col-1">Instructor Name</th>
-							<th class="admin-table-col-2">Instructor Email</th>
-						</tr>
-					</thead>
-	
-					<tbody>
-						<% @instructors.each do |instructor| %>
-							<tr>
-								<td class="admin-table-col-1"><%= instructor.name %></td>
-								<td class="admin-table-col-2"><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.email %></a></td>
-							</tr>
-						<% end %>
-					</tbody>
-				</table>
-				<a href="/instructors/new" id="admin-instructors-new">Add new instructors</a><br>
-			</div>
 		</div>
 	</div>
 
-</div>

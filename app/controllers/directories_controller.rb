@@ -4,8 +4,14 @@ class DirectoriesController < ApplicationController
     if session[:return_to]
       session[:return_to] = nil
     end
-    @user = current_instructor
+
     @students = Student.all
+    if current_instructor != nil
+        @user = current_instructor
+    else
+        @user = current_student
+    end
+
   end
 
   def allstudents
@@ -13,7 +19,7 @@ class DirectoriesController < ApplicationController
   end
 
   def graduates
-    @students = Student.where(active:false)
+    @user = Student.where(active:false)
     render 'index.html.erb'
   end
 
@@ -26,13 +32,18 @@ class DirectoriesController < ApplicationController
   def show
     session[:return_to] ||= request.referer
     languages = []
-    @student = Student.find(params[:id])
+    @user = Student.find(params[:id])
     @stacks = Student.find(params[:id]).stacks
     @stacks.each do |stack|
       languages.append(stack.language.name)
     end
     @languages = languages.to_sentence
     @belts = StackStudent.where(student:params[:id])
+    if current_instructor != nil
+        @user = current_instructor
+    else
+        @user = current_student
+    end
   end
 
 

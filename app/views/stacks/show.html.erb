@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="dashboard-heading">
+    <h1><%= @stack.language.name %> <span class="small "> start: <%= @stack.start_date %></span></h1>
+    <h2><span class="small">Instructor: <%= @stack.instructor.name %></span></h2>
+  </div>
+  <div class="stack-student-buttons-box">
+    <button class="btn btn-primary">Add Student</button>
+  </div>
+  <div class="stack-student-table">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Send Alert</th>
+        <th>Add Belt</th>
+        <th>Remove</th>
+      </thead>
+      <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%= student.student.name %></td>
+            <td><%= student.student.email %></td>
+            <td><button class="btn btn-primary btn-sm">Alert</button></td>
+            <td>
+              <select>
+                <option>None</option>
+                <option>Black</option>
+                <option>Red</option>
+                <option>Yellow</option>
+              </select>
+            </td>
+            <td><%= image_tag 'remove-icon' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+
+</div>

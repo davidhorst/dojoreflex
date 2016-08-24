@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="dashboard-heading">
+    <h1><%= @cohort.name %> <span class="small "> created: <%= @cohort.created_at %></span></h1>
+  </div>
+  <div class="cohort-buttons-box">
+    <button class="btn btn-primary">Add Student</button>
+  </div>
+  <div class="cohort-student-table">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Send Alert</th>
+        <th>Remove</th>
+      </thead>
+      <tbody>
+        <% @cohort.students.each do |student| %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.email %></td>
+            <td><button class="btn btn-primary btn-sm">Alert</button></td>
+            <td><%= image_tag 'remove-icon' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+
+</div>
