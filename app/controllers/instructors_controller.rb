@@ -19,7 +19,8 @@ class InstructorsController < ApplicationController
   end
 
   def show
-@user = current_instructor
+    @user = current_instructor
+    
   end
 
   def admin

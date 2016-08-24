@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
 
     def show
         @alerts = Alert.all
-        @current_student = current_student
+        @user = current_student
         @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         @language = current_student.stacks.where(active:true).first.language.name
         @students = Student.all
@@ -135,7 +135,7 @@ class StudentsController < ApplicationController
     def addDefaultValues stu
         stu.active = true
         stu.happy = true
-        stu.help = false 
+        stu.help = false
     end
     # finalizes user creation: saves/creates, emails user, and auto-joins first two stacks
     def saveStudent stu, pw

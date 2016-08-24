@@ -2,23 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.dashboard-heading{
-  padding:10px;
-  color: #3C4C5B;
-}
-
-.box{
-  background-color: white;
-  border: 1px solid lightgray;
-}
-  .box-title{
-    color: white;
-    background-color:#779CAB;
-    padding:10px;
-  }
-  .box-title h3{
-    margin: 0
-  }
 
   .user_edit_div {
       margin-left: 15px;
@@ -26,4 +9,23 @@
 
   .hidden{
       visibility: hidden;
+  }
+
+  #chart_type_div {
+      vertical-align: top;
+  }
+  .toggle_table  td {
+      padding-right: 20px;
+  }
+
+  .toggle_table td p {
+       text-align:right;
+  }
+
+  .alert-box{
+    padding:10px;
+  }
+
+  .graph-box{
+    padding: 25px;
   }

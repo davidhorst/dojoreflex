@@ -39,6 +39,14 @@
 	margin-bottom: 5px;
 }
 
+#sessions-login-tabs {
+	margin: 25px 50px;
+}
+
+#sessions-login-tabs div form div.row {
+	margin: 0px 0px;
+}
+
 #sessions-login-tabs, #sessions-login-tabs-ul  {
 	border: none;
 	padding: 0px;
@@ -58,4 +66,11 @@
 #sessions-login-tabs-1, #sessions-login-tabs-2 {
 	border: none;
 	background-color: white;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #003eff;
+    background: white;
+    font-weight: normal;
+    color: #ffffff;
 }
