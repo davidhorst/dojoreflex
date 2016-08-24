@@ -14,37 +14,51 @@
  *= require_self
  */
 
-body{
-  padding-top: 80px;
+/** Start Generic Global Styles **/
+/* Main Background Color */
+ .dashboard-background{
+   background-color: #f1f4f8;
+ }
 
-}
+ .dashboard-heading{
+   padding:10px;
+   color: #3C4C5B;
+ }
 
+ .box{
+   background-color: white;
+   border: 1px solid lightgray;
+ }
+   .box-title{
+     color: white;
+     background-color:#779CAB;
+     padding:10px;
+   }
+   .box-title h3{
+     margin: 0
+   }
+
+ @font-face {
+   font-family:"Gotham-Rounded-Bold";
+   src: url("GothamRoundedBold.ttf")
+ }
+ @font-face {
+   font-family:"Gotham-Rounded-Book";
+   src: url("GothamRoundedBook.ttf")
+ }
+
+/**  End Generic Global Styles **/
+
+/* Styling Helper */
 .new-line{
   display: block;
 }
 
-.footer{
-  padding-top: 20px;
-}
 
-.footer-col{
-  border-top: 1px solid black;
-  padding-top: 20px;
-  padding-bottom: 20px;
+/**  Navbar Start **/
+body{
+  padding-top: 80px;
 }
- @font-face {
-    font-family:"Gotham-Rounded-Bold";
-   src: url("GothamRoundedBold.ttf")
-}
- @font-face {
-    font-family:"Gotham-Rounded-Book";
-   src: url("GothamRoundedBook.ttf")
-}
-
-.dashboard-background{
-  background-color: #f1f4f8;
-}
-
 .navbar-brand {
   padding-top: 7px;
   vertical-align: top;
@@ -59,3 +73,78 @@ body{
     color: white;
     background-color: #3C4C5B;
 }
+/**  Navbar End   **/
+
+/**  Toggle Switch Start **/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3c4b5b;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff0000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ff0000;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*  Toggle Switch End */
+
+/**  Footer Start  **/
+.footer{
+  padding-top: 20px;
+}
+
+.footer-col{
+  border-top: 1px solid black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/**   Footer End   **/
