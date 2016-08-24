@@ -18,6 +18,12 @@ body{
   padding-top: 80px;
 
 }
+
+#admin_dropdown {
+    padding-left: 70px;
+}
+
+
 .footer{
   padding-top: 20px;
 }

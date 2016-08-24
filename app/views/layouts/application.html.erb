@@ -66,13 +66,11 @@
            <ul class="dropdown-menu">
                 <% if session[:student_id] %><!--student links  -->
                      <li><a href='/students/<%=session[:student_id]%>/edit'>Edit</a></li>
-                     <li><a href="#">Example Link for Students</a></li>
 
                  <% elsif session[:instructor_id] %>
 
                      <% if current_instructor %><!--instructor links  -->
                         <li><a href='/instructors/<%=session[:instructor_id]%>/edit'>Edit</a></li>
-                        <li><a href="#">Example Link for instructors</a></li>
                     <% end %>
                  <% end %>
              <!-- Shared Links  -->
@@ -81,7 +79,7 @@
         </li>
       </ul>
 
-      <ul class="col-xs-3 navbar-right nav navbar-nav "> <!--admin dropdown  -->
+      <ul id='admin_dropdown' class="col-xs-2 navbar-right nav navbar-nav "> <!--admin dropdown  -->
         <li>
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <em>Admin</em>
