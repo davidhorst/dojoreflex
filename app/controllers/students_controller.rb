@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
 
     def new
         @cohorts = Cohort.includes(:location).where("start > ?", Date.today)
+        @user = current_instructor
     end
 
     def create
@@ -95,7 +96,7 @@ class StudentsController < ApplicationController
         params.require(:user).permit(:name, :email, :cohort_id, :website, :linkedin, :about, :age, :avatar)
     end
 
-    
+
 
     def objectifyData csv_data
         csv = CSV.parse(csv_data, :headers => true)
@@ -163,5 +164,5 @@ class StudentsController < ApplicationController
         StackStudent.create(student: student, stack: stack_webfund, order: 1)
         StackStudent.create(student: student, stack: stack_python, order: 2)
     end
-    
+
   end
