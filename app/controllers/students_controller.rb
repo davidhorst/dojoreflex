@@ -108,7 +108,9 @@ class StudentsController < ApplicationController
         result = []
         csv.each do |row|
             hashed = row.to_hash
-            hashed["cohort"] = Cohort.find_by(start: hashed["cohort"])
+            puts hashed["cohort"]
+            hashed["cohort_id"] = Cohort.find_by(start: hashed["cohort"]).id
+            puts hashed["cohort"]
             result << hashed
         end
         return result
@@ -117,12 +119,14 @@ class StudentsController < ApplicationController
     def mass_create_users hashed
         row_num = 2
         flash[:errors] = []
+        puts hashed
         hashed.each do |entry|
             params[:user] = entry
             stu = Student.new( user_params )
             pw = SecureRandom.hex(8)
             stu.password = pw
             addDefaultValues(stu)
+            puts entry
             if stu.valid?
                 saveStudent(stu, pw)
             else

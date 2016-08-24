@@ -11,24 +11,29 @@ class CohortsController < ApplicationController
 		end
 
 		new_cohort = Cohort.new( cohort_params )
-		
+
 		if new_cohort.valid?
 			new_cohort.active = true
 			new_cohort.save
-			redirect_to "/instructors/#{session[:instructor_id]}/admin"	
+			redirect_to "/instructors/#{session[:instructor_id]}/admin"
 		else
 			flash[:errors] = new_cohort.errors.full_messages
-			redirect_to "/cohorts/new"	
+			redirect_to "/cohorts/new"
 		end
-				
+
+	end
+
+	def show
+		@user = current_instructor
+		@cohort = Cohort.find(params[:id])
 	end
 
 
-	private 
+	private
 
 	def cohort_params
-		params.require(:cohort).permit(	
-			:location_id, 
+		params.require(:cohort).permit(
+			:location_id,
 			:start)
 	end
 end

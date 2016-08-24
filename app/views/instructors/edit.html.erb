@@ -69,9 +69,7 @@
         <form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
             <div class="form-group row">
                 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                <label>
                 <input name="user[avatar]" type="file" id="myFile">
-                </label>
             </div>
         </form>
     </div>

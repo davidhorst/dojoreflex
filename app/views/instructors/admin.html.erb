@@ -1,22 +1,33 @@
-<h1>Admin Page:</h1>
 
-<a href="/students/new">Add a new student</a><br>
-<a href="/instructors/new">Add a new instructor</a>
 
-<br>
-<br>
-<br>
-<br>
 
-<div>
-	<% @students.each do |student| %>
-		<p><a href="/students/<%= student.id%>/edit"><%= student.email %></a> <%= student.name %></p>
-	<% end %>
-</div>
-<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 dashboard-heading">
+      <h1>All Students </h1>
+    </div>
+		<div class="student-table">
+			<table class="table table-striped">
+					<thead>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Cohort</th>
+						<th>Created</th>
+						<th>Delete</th>
+					</thead>
+					<tbody>
+						<% @students.each do |student| %>
+							<tr>
+								<td><a href="/students/<%= student.id%>/edit"><%= student.name %></td>
+								<td><%= student.email %></td>
+								<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.name %></td>
+								<td><%= student.created_at %></td>
+								<td><%= image_tag 'remove-icon' %></td>
+							</tr>
+						<% end %>
+					</tbody>
+			</table>
 
-<div>
-	<% @instructors.each do |instructor| %>
-		<p><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.email %></a> <%= instructor.name %></p>
-	<% end %>
-</div>
+		</div>
+	</div>
+

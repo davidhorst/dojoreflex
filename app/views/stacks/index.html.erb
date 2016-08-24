@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="dashboard-heading">
+    <h1>All Stacks</h1>
+  </div>
+  <div class="stack-buttons-box">
+    <button class="btn btn-primary">Create Stack</button>
+  </div>
+  <div class="stack-student-table">
+    <table class="table table-striped">
+      <thead>
+        <th>Language</th>
+        <th>Instructor</th>
+        <th>Start Date</th>
+        <th>Status</th>
+        <th>Send Alert</th>
+        <th>Change Instructor</th>
+        <th>Remove</th>
+      </thead>
+      <tbody>
+        <% @stacks.each do |stack| %>
+          <tr>
+            <td><%= stack.language.name %></td>
+            <td><%= stack.instructor.name %></td>
+            <td><%= stack.start_date %></td>
+            <td>
+              <% if stack.active == false and stack.start_date < DateTime.now %>
+                    Completed
+              <% elsif stack.active == false and stack.start_date > DateTime.now %>
+                    Approaching
+              <% end %>
+              <% if stack.active == true %>
+                    In Session
+              <% end %>
+            </td>
+            <td><button class="btn btn-primary btn-sm">Alert</button></td>
+            <td><button class="btn btn-primary btn-sm">Change Instructor</button></td>
+            <td><%= image_tag 'remove-icon' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+
+</div>
