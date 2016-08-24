@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'instructors/new'                                   # "add instructor" page (admin only)
   post 'instructors' => 'instructors#create'              # adding a instructors (admin only)
+  put 'instructors' => 'instructors#csv_create'           # adding an instructor (admin only)
   get 'instructors/:id' => 'instructors#show'             # dashboard page (instructor only)
   get 'instructors/:id/edit' => 'instructors#edit'        # edit user page (admin/self only)
   put 'instructors/:id' => 'instructors#update'           # update user (admin/self only)
@@ -20,7 +21,8 @@ Rails.application.routes.draw do
   post 'students' => 'students#create'                    # adding a student (admin only)
   put 'students' => 'students#csv_create'                    # adding a student (admin only)
   get 'students/:id' => 'students#show'                   # dashboard page (student only)
-  get 'students/:id/edit' => 'students#edit'              # edit user page (admin/self only)
+  get 'students/:id/edit' => 'students#edit'
+  put 'students/:id' => 'students#update'              # edit user page (admin/self only)
   post 'students/:id' => 'students#update_picture'        # update profile picture (admin/self)
 
   put 'students/feedback/:id' => 'students#feedback'     # Update student status based on instant-feedback form

@@ -1,51 +1,79 @@
-<form id='edit_form'>
+<div class="container">
+    <div class='row'>
+    <form id='edit_form' class='col-md-6'>
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-2 col-form-label">Name:</label>
+          <div class="col-xs-8 input_div input-group">
+            <% if @admin == true %>
+            <input class="form-control" type="text" value='<%=@user.name%>' name="user[name]" id="example-text-input">
+            <span style="display: none" class="input-group-addon"><i>Saved</i></span>
+            <span class="hidden"><i>✔</i></span>
+            <% else %>
+              <input class="form-control" type="text" value='<%=@user.name%>' name="user[name]" id="example-text-input" disabled>
+            <% end %>
+          </div>
+        </div>
 
-     <% if @admin == true%>
-    <label>Name:
-        <input type="text" value='<%=@user.name%>' id='nameBox' name="user[name]" />
+        <div class="form-group row"  >
+          <label for="text-input-email" class="col-xs-2 col-form-label">Email:</label>
+          <div class="col-xs-8 input_div input-group">
+              <% if @admin == true %>
+            <input  class="form-control" type="text" value='<%=@user.email%>' name="user[email]" id="text-input-email">
+            <span style="display: none" class="input-group-addon"><i>Saved</i></span>
+            <span class="hidden"><i>✔</i></span>
+            <% else %>
+        <input disabled  class="form-control" type="text" value='<%=@user.email%>' name="user[email]" id="text-input-email">
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="text-input-website" class="col-xs-2 col-form-label">Website:</label>
+          <div class="col-xs-8 input_div input-group">
+            <input class="form-control" type="text" value='<%=@user.website%>' name="user[website]" id="text-input-website">
+            <span style="display: none" class="input-group-addon"><i>Saved</i></span>
+            <span class="hidden"><i>✔</i></span>
+
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="text-input-linkedin" class="col-xs-2 col-form-label">LinkedIn:</label>
+          <div class="col-xs-8 input_div input-group">
+            <input class="form-control" type="text" value='<%=@user.linkedin%>' name="user[linkedin]" id="text-input-linkedin">
+            <span style="display: none" class="input-group-addon"><i>Saved</i></span>
+            <span class="hidden"><i>✔</i></span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="text-input-email" class="col-xs-2 col-form-label">About:</label>
+          <div class="col-xs-8 input_div input-group">
+            <textarea class="form-control" type="text" value='<%=@user.about%>' name="user[about]" id="text-input-email"><%=@user.about%></textarea>
+            <span style="display: none" class="input-group-addon"><i>Saved</i></span>
+            <span class="hidden"><i>✔</i></span>
+          </div>
+        </div>
+        </form>
+        </div>
         <br>
-    </label>
+        <div class='row user_edit_div'>
+            <% if @user.avatar_file_name != nil %>
+            <div>
+            <%= image_tag @user.avatar.url %>
+            </div>
+            <% end %>
+    <form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
+        <div class="form-group row">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <label>File:
+            <input name="user[avatar]" type="file" id="myFile">
+            </label>
+        </div>
+    </form>
+</div>
 
-    <label>Email:
-        <input type="text" value='<%=@user.email%>' name="user[email]" />
-    </label>
-         <% else %>
-    <label>Name:
-        <label><%=@user.name%></label>
-        <br>
-    </label>
-    <br>
-
-    <label>Email:
-        <label><%=@user.email%></label>
-    </label>
-    <br>
-      <% end %>
-
-    <label>Website:
-        <input type="text" value='<%=@user.website%>' name="user[website]" />
-    </label>
-    <br>
-    <label>LinkedIn:
-        <input type="text" value='<%=@user.linkedin%>' name="user[linkedin]" />
-    </label>
-    <br>
-    <label>About:
-        <textarea name="user[about]"><%=@user.about%></textarea>
-    </label>
-</form>
-<% if @user.avatar_file_name != nil %>
-<%= image_tag @user.avatar.url %>
-<% end %>
-
-<form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
-<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-<label>File:
-<input name="user[avatar]" type="file" id="myFile">
-</label>
-</form>
-<br>
-
+</div>
 
 <script>
 
@@ -62,6 +90,15 @@ $('#edit_form input, #edit_form textarea').change(function() {
 
 });
 
+$('#edit_form input').keypress(function (e) {
+    var key = e.which;
+
+
+    if(key == 13)  // the enter key code
+    {
+        update_input($(this))
+    }
+});
 
 function update_input(element) {
     $.ajax({
@@ -70,10 +107,23 @@ function update_input(element) {
           data: element,
           dataType: 'json',
           success: function(json) {
-              alart('ajax finished')
-             },
-         error: function(err) {
-             window.location.replace('/instructors/<%=@user.id%>');
+              $("#myElem").show();
+              $(element).siblings("span.input-group-addon").show().delay(800).fadeIn(200, function(){
+                  $(element).siblings("span.input-group-addon").hide()
+              })
+              $(element)
+                      .closest('.form-group')
+                      .addClass('has-success').delay(800).fadeIn(200, function() {
+                          $(element).closest('.form-group').removeClass('has-success')
+                      });
+              },
+
+             error: function(err) {
+                 $(element)
+                     .closest('.form-group')
+                     .addClass('has-error');
+
+                 window.location.replace('/instructors/<%=@user.id%>/edit');
 
               }
         });

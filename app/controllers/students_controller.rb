@@ -7,7 +7,7 @@ class StudentsController < ApplicationController
     before_action :require_student_or_admin_login, only: [ :update, :update_picture, :edit ]
     before_action :require_correct_student, only: [ :show ]
     before_action :require_correct_student_or_admin, only: [ :update, :update_picture, :edit ]
-    before_action :require_admin_only_login, only: [ :new, :create ]
+    before_action :require_admin_only_login, only: [ :new, :create, :csv_create ]
 
     def show
         @alerts = Alert.all
@@ -20,16 +20,16 @@ class StudentsController < ApplicationController
 
     def new
         @cohorts = Cohort.includes(:location).where("start > ?", Date.today)
+        @user = current_instructor
     end
 
     def create
         pw = SecureRandom.hex(8)
         stu = Student.new( user_params )
         stu.password = pw
+        addDefaultValues(stu)
         if stu.valid?
-            stu.save
-            email = NewUser.NewStudent(stu, pw).deliver_later
-            joinFirstTwoStacks(stu)
+            saveStudent(stu, pw)
             redirect_to "/instructors/#{session[:instructor_id]}/admin"
         else
             flash[:errors] = stu.errors.full_messages
@@ -39,7 +39,10 @@ class StudentsController < ApplicationController
 
     def csv_create
         puts params[:csv_data]
-        temp = objectifyData(params[:csv_data])
+        hashed = objectifyData(params[:csv_data])
+        puts hashed
+        mass_create_users(hashed)
+
         redirect_to "/students/new"
     end
 
@@ -94,33 +97,55 @@ class StudentsController < ApplicationController
         params.require(:user).permit(:name, :email, :cohort_id, :website, :linkedin, :about, :age, :avatar)
     end
 
-    
+
 
     def objectifyData csv_data
         csv = CSV.parse(csv_data, :headers => true)
-        flash[:errors] = [];
-        row_num = 1;
+        # flash[:errors] = [];
+        # row_num = 1;
+        result = []
         csv.each do |row|
             hashed = row.to_hash
-            puts hashed
             hashed["cohort"] = Cohort.find_by(start: hashed["cohort"])
-            user = Student.new( hashed )
+            result << hashed
+        end
+        return result
+    end
 
-            if !user.valid?
-                msg = "Entry on row #{row_num} is in invalid format. Data was not added"
-                user.errors.full_messages.each { |mes| msg << mes }
-                flash[:errors] << msg
+    def mass_create_users hashed
+        row_num = 2
+        flash[:errors] = []
+        hashed.each do |entry|
+            params[:user] = entry
+            stu = Student.new( user_params )
+            pw = SecureRandom.hex(8)
+            stu.password = pw
+            addDefaultValues(stu)
+            if stu.valid?
+                saveStudent(stu, pw)
             else
-                user.save
-                pw = SecureRandom.hex(8)
-                user.password = pw
-                email = NewUser.NewStudent(user, pw).deliver_later
-                joinFirstTwoStacks(user)
+                msg = "Student on row #{row_num} was not added."
+                stu.errors.full_messages.each { |mes| msg << " " + mes }
+                flash[:errors] << msg
             end
-            row_num+=1
+            row_num += 1
         end
     end
 
+    def addDefaultValues stu
+        stu.active = true
+        stu.happy = true
+        stu.help = false 
+    end
+    # finalizes user creation: saves/creates, emails user, and auto-joins first two stacks
+    def saveStudent stu, pw
+        stu.save
+        email = NewUser.NewStudent(stu, pw).deliver_later
+        joinFirstTwoStacks(stu)
+
+    end
+
+    # creates two new instances for the first two stacks (only used during user creation)
     def joinFirstTwoStacks student
         start_date = student.cohort.start
         stack_webfund = Stack.find_by(start_date: start_date, language_id: 1)
@@ -128,5 +153,5 @@ class StudentsController < ApplicationController
         StackStudent.create(student: student, stack: stack_webfund, order: 1)
         StackStudent.create(student: student, stack: stack_python, order: 2)
     end
-    
+
   end
