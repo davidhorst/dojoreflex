@@ -46,15 +46,7 @@
       </ul>
 
       <ul class="col-xs-3 navbar-right nav navbar-nav ">
-        <li class="navbar-brand">
-            <% if @user.avatar_file_name != nil %>
-            <div>
-            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive', size:"32" %>
-            </div>
-            <% else %>
-            <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
-            <% end %>
-        </li>
+
         <li>
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <%if current_student %>
@@ -77,6 +69,15 @@
              <li><a href='/logout' data-method='delete'> Logout</a></li>
            </ul>
         </li>
+        <li class="navbar-brand">
+            <% if @user.avatar_file_name != nil %>
+            <div>
+            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive', size:"32" %>
+            </div>
+            <% else %>
+            <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
+            <% end %>
+        </li>
       </ul>
 
       <% if session[:instructor_id] %>
@@ -94,6 +95,7 @@
                 <% end %>
            </ul>
         </li>
+
       </ul>
 </nav>
 <% end %>
