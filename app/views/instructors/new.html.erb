@@ -1,57 +1,62 @@
+<div class="dashboard-background">
+	<div class="container">
+		<div class="col-xs-12 dashboard-heading ">
+          <h1>Add an instructor</h1>
+        </div>
 
-<div class="container">
-	<h3>Add an instructor</h3>
-</br>
-<form action="/instructors" method="POST" class='col-md-6'>
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	</br>
+	<div class='row'>
+	<form action="/instructors" method="POST" class='col-md-6'>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-	<div class="row form-group">
-	  <label for="text-input-email" class="col-xs-2 col-form-label">Email:</label>
-	  <div class="col-xs-8">
-		<input class="form-control" type="text" name="user[email]" id="text-input-email">
-	  </div>
-	</div>
-	<div class="row form-group">
-	  <label for="text-input-name" class="col-xs-2 col-form-label">Name:</label>
-	  <div class="col-xs-8">
-		<input class="form-control" type="text" name="user[name]" id="text-input-name">
-	  </div>
-	</div>
-	<div class="row form-group">
-	  <label for="text-input-name" class="col-xs-2 col-form-label">Select Access Level:</label>
-	  <div class="col-xs-8">
-			<label><input type="radio" name="user[admin]" value="false" checked> Normal</label>
-	  		<label><input type="radio" name="user[admin]" value="true"> Admin</label>
+		<div class="row form-group">
+		  <label for="text-input-email" class="col-xs-2 col-form-label">Email:</label>
+		  <div class="col-xs-8">
+			<input class="form-control" type="text" name="user[email]" id="text-input-email">
+		  </div>
+		</div>
+		<div class="row form-group">
+		  <label for="text-input-name" class="col-xs-2 col-form-label">Name:</label>
+		  <div class="col-xs-8">
+			<input class="form-control" type="text" name="user[name]" id="text-input-name">
+		  </div>
+		</div>
+		<div class="row form-group">
+		  <label for="text-input-name" class="col-xs-2 col-form-label">Select Access Level:</label>
+		  <div class="col-xs-8">
+				<label><input type="radio" name="user[admin]" value="false" checked> Normal</label>
+		  		<label><input type="radio" name="user[admin]" value="true"> Admin</label>
 
-	  </div>
-	</div>
-	<input type="submit" value="Add instructor">
-</form>
-
-<br>
-
+		  </div>
+		</div>
+		<input type="submit" value="Add instructor">
+	</form>
+</div>
+	<br>
 
 
-<% if flash[:errors] %>
-	<% flash[:errors].each do |message| %>
-		<p><%= message %></p>
+
+	<% if flash[:errors] %>
+		<% flash[:errors].each do |message| %>
+			<p><%= message %></p>
+		<% end %>
 	<% end %>
-<% end %>
 
 
+	<div class='row'>
+	<form action='/instructors' method='POST' enctype="multipart/form-data">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="hidden" name="_method" value="PUT">
+		<label>Drag and drop CSV here:</label>
+		<div id="drop_zone" class="text-center"><p>Drop files here</p></div>
 
-<form action='/instructors' method='POST' enctype="multipart/form-data">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<input type="hidden" name="_method" value="PUT">
-	<label>Drag and drop CSV here:</label>
-	<div id="drop_zone" class="text-center"><p>Drop files here</p></div>
+		<output id="list"></output>
+		<input type="hidden" id="the_data" name="csv_data">
 
-	<output id="list"></output>
-	<input type="hidden" id="the_data" name="csv_data">
-
-	<input id="csv_submit" type="submit" value="Process CSV">
-</form>
-
+		<input id="csv_submit" type="submit" value="Process CSV">
+	</form>
+</div>
+	<div>
 
 </div>
 

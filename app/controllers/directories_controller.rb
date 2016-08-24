@@ -4,8 +4,14 @@ class DirectoriesController < ApplicationController
     if session[:return_to]
       session[:return_to] = nil
     end
-    @user = current_instructor
+
     @students = Student.all
+    if current_instructor != nil
+        @user = current_instructor
+    else
+        @user = current_student
+    end
+
   end
 
   def allstudents
@@ -33,6 +39,11 @@ class DirectoriesController < ApplicationController
     end
     @languages = languages.to_sentence
     @belts = StackStudent.where(student:params[:id])
+    if current_instructor != nil
+        @user = current_instructor
+    else
+        @user = current_student
+    end
   end
 
 

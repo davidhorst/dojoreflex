@@ -60,7 +60,9 @@
         <div class='row user_edit_div'>
             <% if @user.avatar_file_name != nil %>
             <div>
-            <%= image_tag @user.avatar.url %>
+            <%= image_tag @user.avatar.url, class: 'img-responsive img-circle', size:"256" %>
+            <% else %>
+            <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"256" %>
             </div>
             <% end %>
     <form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">

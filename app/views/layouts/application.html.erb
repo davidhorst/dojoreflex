@@ -30,17 +30,14 @@
 
       </a>
       <ul class="nav navbar-nav">
-        <% if session[:student_id] %><!--student links  -->
+        <% if session[:student_id] %><!--student links, left side, showing  -->
             <li><a href="/students/<%= session[:student_id] %>">Home</a></li>
             <li><a href-"/students/careers">Career Services</a></li>
         <% elsif session[:instructor_id] %>
 
-            <% if current_instructor %><!--instructor links  -->
+            <% if current_instructor %><!--instructor links, left side, showing  -->
               <li><a href="/instructors/<%= session[:instructor_id] %>">Home</a></li>
            <% end %>
-           <% if current_instructor.admin %> <!--admin links  -->
-
-            <% end %>
         <% end %>
         <li><a href="/directory">Directory</a></li>
         <li id='admin_li'> <!-- Admin Dropdown -->
@@ -61,16 +58,7 @@
 
       </ul>
 
-      <ul class="col-xs-3 navbar-right nav navbar-nav ">
-        <li class="navbar-brand">
-            <% if @user.avatar_file_name != nil %>
-            <div>
-            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive', size:"32" %>
-            </div>
-            <% else %>
-            <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
-            <% end %>
-        </li>
+      <ul class="col-xs-3 navbar-right nav navbar-nav "><!--Navbar Right -->
         <li>
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <%if current_student %>
@@ -80,19 +68,45 @@
                   <% end %>
                <span class="caret"></span></a>
            <ul class="dropdown-menu">
-                <% if session[:student_id] %><!--student links  -->
+                <% if session[:student_id] %><!--student links, right side, dropdown  -->
                      <li><a href='/students/<%=session[:student_id]%>/edit'>Edit</a></li>
 
                  <% elsif session[:instructor_id] %>
 
-                     <% if current_instructor %><!--instructor links  -->
+                     <% if current_instructor %><!--instructor links, right side, dropdown  -->
                         <li><a href='/instructors/<%=session[:instructor_id]%>/edit'>Edit</a></li>
                     <% end %>
                  <% end %>
-             <!-- Shared Links  -->
+             <!-- Shared Links in the drop down -->
              <li><a href='/logout' data-method='delete'> Logout</a></li>
            </ul>
         </li>
+        <li class="navbar-brand">
+            <% if @user.avatar_file_name != nil %>
+            <div>
+            <%= image_tag @user.avatar.url, id: 'brand-logo',  class: 'img-responsive img-circle', size:"32" %>
+            </div>
+            <% else %>
+            <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
+            <% end %>
+        </li>
+      </ul>
+      <% if session[:instructor_id] %>
+         <% if current_instructor.admin %> <!--admin links, right side, dropdown  -->
+              <ul id='admin_dropdown' class="col-xs-2 nav navbar-nav">
+                <li id='admin_li'>
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                       <span class="caret"></span></a>
+                   <ul class="dropdown-menu"><!--admin links dowpdown-->
+                        <li><a href="/instructors/<%= @user.id %>/admin">Admin Page</a></li>
+                        <li><a href="/students/new">Add new students</a></li>
+                        <li><a href="/instructors/new">New new instructors</a></li>
+                    <% end %>
+                <% end %>
+           </ul>
+        </li>
+
       </ul>
 </nav>
 <% end %>
