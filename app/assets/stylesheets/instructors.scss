@@ -21,9 +21,27 @@
     margin: auto;
 }
 
-/*#admin-students-list table, #admin-students-list table{
-	height: 0.5em;
-}*/
+
+#profile_image_div {
+    height:350px;
+    width: 350px;
+    display: inline-block;
+}
+
+#edit-icon {
+    text-align: center;;
+}
+.profile-img {
+    margin: auto;
+}
+
+#myFile {
+	opacity: 0;
+	z-index: 2;
+
+}
+
+
 
 #admin-students-list, #admin-instructors-list {
 	height: 35em;
@@ -47,7 +65,7 @@
 				width: 100%;
 				table-layout: fixed;
 			}
-		}	
+		}
 	}
 
 	#admin-students-new, #admin-instructors-new {

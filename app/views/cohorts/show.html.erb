@@ -1,6 +1,6 @@
 <div class="container">
   <div class="dashboard-heading">
-    <h1><%= @cohort.name %> <span class="small "> created: <%= @cohort.created_at %></span></h1>
+    <h1><%= @cohort.location.name %> - <%= @cohort.start.strftime("%B") %> <span class="small "> created: <%= @cohort.created_at %></span></h1>
   </div>
   <div class="cohort-buttons-box">
     <button class="btn btn-primary">Add Student</button>

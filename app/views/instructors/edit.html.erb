@@ -58,25 +58,23 @@
             </div>
         </form>
     </div>
-    <div class='row image-edit-border'>
+    <div id='profile_image_div' class='row image-edit-border'>
         <% if @user.avatar_file_name != nil %>
-        <%= image_tag @user.avatar.url, class: 'img-responsive img-circle', size:"256" %>
+        <%= image_tag @user.avatar.url, class: 'profile-img img-responsive img-circle', size:"256" %>
         <% else %>
         <%= image_tag 'profile_pic', title:'click to edit', class: 'profile-img img-responsive img-circle', size:"256" %>
         <% end %>
-        <p class='edit-icon'>🖉</p>
-    </div>
+        <p id='edit-icon'>click to edit</p>
 
-    <div class="col-md-6">
         <form id='pic_form' method='post' action='/instructors/<%=@user.id%>'  enctype="multipart/form-data">
             <div class="form-group row">
                 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                <label>
                 <input name="user[avatar]" type="file" id="myFile">
-                </label>
             </div>
         </form>
     </div>
+
+
 
 </div>
 
@@ -84,6 +82,10 @@
 
 $('#myFile').change(function() {
     $('#pic_form').submit()
+});
+
+$('#profile_image_div img').click(function(){
+        $('#myFile').click()
 });
 
 

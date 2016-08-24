@@ -20,7 +20,7 @@
 							<tr>
 								<td><a href="/students/<%= student.id%>/edit"><%= student.name %></td>
 								<td><%= student.email %></td>
-								<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.name %></td>
+								<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.location.name %> - <%= student.cohort.start.strftime("%B") %></td>
 								<td><%= student.created_at %></td>
 								<td><%= image_tag 'remove-icon' %></td>
 							</tr>
@@ -30,4 +30,3 @@
 
 		</div>
 	</div>
-
