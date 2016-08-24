@@ -6,10 +6,12 @@
 		</div>
 		
     <div id="sessions-login-tabs">
+      
       <ul id="sessions-login-tabs-ul">
         <li><a href="#sessions-login-tabs-1">Students</a></li><!--  
         --><li><a href="#sessions-login-tabs-2">Instructors</a></li>
       </ul>
+
       <div id="sessions-login-tabs-1">
         <h5>Welcome back! Let's get coding</h5>
         <form action="/sessions" method="POST">
@@ -27,7 +29,9 @@
             <input type="password" class="form-control" placeholder="Password" name="password">
             <small id="emailHelp" class="form-text text-muted">Forgot Password?</small>
           </div>  
-          <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="row">
+              <button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-8">Login</button>
+            </div>
         </form>
         <% if flash[:errors_s_messages] %>
         <p><%= flash[:errors_s_messages] %></p>
@@ -51,7 +55,9 @@
             <input type="password" class="form-control" placeholder="Password" name="password">
             <small id="emailHelp" class="form-text text-muted">Forgot Password?</small>
           </div>  
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="row">
+          <button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-8">Login</button>
+          </div>
         </form>
         <% if flash[:errors_i_messages] %>
         <p><%= flash[:errors_i_messages] %></p>
