@@ -6,9 +6,11 @@ class SessionsController < ApplicationController
 
 	# GET: login page
 	def new
-		session[:student_id] = nil
-		session[:instructor_id] = nil
-		puts session[:instrcutor_id]
+		if !session[:student_id].nil?
+			redirect_to "/students/#{session[:student_id]}"
+		elsif !session[:instructor_id].nil?
+			redirect_to "/instructors/#{session[:instructor_id]}"
+		end
 	end
 
 	#DELETE: removes credentials

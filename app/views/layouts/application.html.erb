@@ -88,8 +88,8 @@
                  <% if session[:instructor_id] %>
                     <% if current_instructor.admin %> <!--admin links  -->
                         <li><a href="/instructors/<%= @user.id %>/admin">Admin Page</a></li>
-                        <li><a href="/students/new">New Stuent</a></li>
-                        <li><a href="/instructors/new">New Instructor</a></li>
+                        <li><a href="/students/new">Add new students</a></li>
+                        <li><a href="/instructors/new">New new instructors</a></li>
                     <% end %>
                 <% end %>
            </ul>
