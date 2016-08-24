@@ -16,6 +16,9 @@
 
 /** Start Generic Global Styles **/
 /* Main Background Color */
+  body{
+   background-color: #f1f4f8;
+ }
  .dashboard-background{
    background-color: #f1f4f8;
  }
@@ -52,6 +55,7 @@
 /**  End Generic Global Styles **/
 
 /**  Navbar Start **/
+/* Navbar padding fix */
 body{
   padding-top: 80px;
 }
