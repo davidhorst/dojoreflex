@@ -1,45 +1,84 @@
-<h1>Add a student</h1>
-<form action="/students" method="POST">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<label>Email:</label>
-	<input type="text" name="user[email]"><br>
-	<label>Name:</label>
-	<input type="text" name="user[name]"><br>
-	<label>Select Cohort</label>
-	<select name="user[cohort_id]">
-		<% @cohorts.each do |cohort| %>
-			<option value="<%= cohort.id %>"><%= cohort.start %> - <%= cohort.location.city %>, <%= cohort.location.state %></option>
-		<% end %>
-	</select><br>
-	<input type="submit" value="Add student">
-</form>
-
-<% if flash[:errors] %>
-	<% flash[:errors].each do |message| %>
-		<p><%= message %></p>
-	<% end %>
-<% end %>
-
-
-<!-- <div id="drop_zone">Drop files here</div>
-<output id="list"></output>
-<output id="out">
-    file contents will appear here
-</output> -->
-
-
-
-<form action='/students' method='POST' enctype="multipart/form-data">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<input type="hidden" name="_method" value="PUT">
-	<label>Drag and drop CSV here:</label>
-	<div id="drop_zone">Drop files here</div>
+<div class="container">
 	
-	<output id="list"></output>
-	<input type="hidden" id="the_data" name="csv_data">
+	<div class="row">
+    	<div class="col-xs-12 dashboard-heading">
+        	<h1>Add students</h1>
+    	</div>
+    </div>
 
-	<input id="csv_submit" type="submit" value="Process CSV">
-</form>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Add a student</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="student-add-one">
+				<form action="/students" method="POST">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<div class="form-group">
+						<label>Email</label>
+						<input class="form-control" type="text" name="user[email]" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label>Name</label>
+						<input class="form-control" type="text" name="user[name]" placeholder="Name">
+					</div>
+					<div class="form-group">
+						<label>Select Cohort</label>
+						<select class="form-control" name="user[cohort_id]">
+							<% @cohorts.each do |cohort| %>
+								<option value="<%= cohort.id %>"><%= cohort.start %> - <%= cohort.location.city %>, <%= cohort.location.state %></option>
+							<% end %>
+						</select><br>
+					</div>
+					<input class="btn btn-primary" type="submit" value="Add student">
+				</form>
+			</div>
+		</div>
+
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Add students in bulk (via .csv)</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="student-add-multi">	
+				<form action='/students' method='POST' enctype="multipart/form-data">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" id="the_data" name="csv_data">
+					<div class="form-group">
+						<label>Drag and drop CSV here:</label>
+						<div class="form-control" id="add-student-drop-zone">
+							<p>Drop files here</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<output id="list"></output>
+					</div>
+					<input class="btn btn-primary" id="csv_submit" type="submit" value="Process CSV">
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="add-student-overlay">
+	<div id="add-student-overlay-box">
+		<div id="add-student-overlay-box-cancel">
+			<%= image_tag 'xicon', id: 'add-student-overlay-box-cancel-icon' %>
+		</div>
+		<div id="add-student-overlay-box-content">
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |message| %>
+				<p><%= message %></p>
+			<% end %>
+		<% end %>
+		<p>TEST MESSAGE</p>
+		</div>
+	</div>
+	
+</div>
+
 
 
 
@@ -119,12 +158,21 @@ function processData(allText) {
 
 
 // Setup the dnd listeners.
-var dropZone = document.getElementById('drop_zone');
+var dropZone = document.getElementById('add-student-drop-zone');
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
 
 $(document).ready( function() {
 	$('#csv_submit').prop("disabled",true);
+	$('#add-student-drop-zone').on('dragover', function(){
+		$(this).css('background-color','red');
+	});
+	$('#add-student-drop-zone').on('dragleave', function(){
+		$(this).css('background-color','');
+	});
+	$('#add-student-drop-zone').on('drop', function(){
+		$(this).css('background-color','');
+	});
 });
 
 </script>

@@ -29,3 +29,80 @@
   .graph-box{
     padding: 25px;
   }
+
+  /* FOR ADD STUDENT PAGE */
+  #student-add-one, #student-add-multi {
+  
+    table {
+      width: 100%;
+      margin-bottom: 5em;
+      thead {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+      tbody {
+        display: block;
+        height: 22em;
+        width: 100%;
+        overflow-y: scroll;
+        tr {
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+      } 
+    }
+
+
+    #add-student-drop-zone {
+      padding: 5px;
+      border: black dashed 2px;
+      display: flex;
+      align-items: center;
+      height: 8em;
+      text-align: center;
+      p {
+        margin:auto;
+        color: grey;
+        font-style: italic;
+      }
+    }
+  }
+
+  #add-student-overlay {
+    display: flex;
+    z-index: 1031;
+    background: rgba(0,0,0,0.5);
+    color: black;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    #add-student-overlay-box {
+      border-radius: 20px;
+      padding: 20px;
+      display: block;
+      height: 50%;
+      width: 50%;
+      margin: auto;
+      background-color: white;
+      #add-student-overlay-box-cancel {
+        display: flex;
+        #add-student-overlay-box-cancel-icon {
+          height: 4em;
+          width: 4em;
+        }
+      }
+      #add-student-overlay-box-content {
+        display: flex;
+        p {
+          display: block;
+          margin:auto;
+          color: grey;
+          font-style: italic;
+        }
+      }
+    }
+  }

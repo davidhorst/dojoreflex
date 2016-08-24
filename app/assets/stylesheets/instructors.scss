@@ -20,3 +20,37 @@
 #drop_zone p {
     margin: auto;
 }
+
+/*#admin-students-list table, #admin-students-list table{
+	height: 0.5em;
+}*/
+
+#admin-students-list, #admin-instructors-list {
+	height: 35em;
+
+	overflow-y: auto;
+	table {
+		width: 100%;
+		margin-bottom: 5em;
+		thead {
+			display: table;
+			width: 100%;
+			table-layout: fixed;
+		}
+		tbody {
+			display: block;
+			height: 22em;
+			width: 100%;
+			overflow-y: scroll;
+			tr {
+				display: table;
+				width: 100%;
+				table-layout: fixed;
+			}
+		}	
+	}
+
+	#admin-students-new, #admin-instructors-new {
+		margin: 1em;
+	}
+}

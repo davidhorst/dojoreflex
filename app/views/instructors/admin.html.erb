@@ -1,22 +1,63 @@
-<h1>Admin Page:</h1>
+<div class="container">
+	
+	<div class="row">
+    	<div class="col-xs-12 dashboard-heading">
+        	<h1>Admin Page</h1>
+    	</div>
+    </div>
 
-<a href="/students/new">Add a new student</a><br>
-<a href="/instructors/new">Add a new instructor</a>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Students</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="admin-students-list">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="admin-table-col-1">Student Name</th>
+							<th class="admin-table-col-2">Student Email</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<% @students.each do |student| %>
+							<tr>
+								<td class="admin-table-col-1"><%= student.name %></td>
+								<td class="admin-table-col-2"><a href="/students/<%= student.id%>/edit"><%= student.email %></a></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<a href="/students/new" id="admin-students-new">Add new students</a><br>
+			</div>
+		</div>
 
-<br>
-<br>
-<br>
-<br>
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Instructors</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="admin-instructors-list">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="admin-table-col-1">Instructor Name</th>
+							<th class="admin-table-col-2">Instructor Email</th>
+						</tr>
+					</thead>
+	
+					<tbody>
+						<% @instructors.each do |instructor| %>
+							<tr>
+								<td class="admin-table-col-1"><%= instructor.name %></td>
+								<td class="admin-table-col-2"><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.email %></a></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<a href="/instructors/new" id="admin-instructors-new">Add new instructors</a><br>
+			</div>
+		</div>
+	</div>
 
-<div>
-	<% @students.each do |student| %>
-		<p><a href="/students/<%= student.id%>/edit"><%= student.email %></a> <%= student.name %></p>
-	<% end %>
-</div>
-<hr>
-
-<div>
-	<% @instructors.each do |instructor| %>
-		<p><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.email %></a> <%= instructor.name %></p>
-	<% end %>
 </div>
