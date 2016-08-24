@@ -15,7 +15,7 @@ class InstructorsController < ApplicationController
   end
 
   def new
-
+      @user = current_instructor
   end
 
   def show
@@ -25,6 +25,7 @@ class InstructorsController < ApplicationController
   def admin
     @students = Student.all
     @instructors = Instructor.all
+    @user = current_instructor
   end
 
   def create

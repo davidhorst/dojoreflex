@@ -4,7 +4,7 @@ class DirectoriesController < ApplicationController
     if session[:return_to]
       session[:return_to] = nil
     end
-
+    @user = current_instructor
     @students = Student.all
   end
 
