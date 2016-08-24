@@ -41,7 +41,7 @@
                   <% end %>
                 </td>
                 <td><button class="btn btn-primary btn-sm">Send Message</button></td>
-                <td><%= image_tag 'gear-icon', size:"32" %></td>
+                <td><a href="/stacks/<%= stack.id %>"><%= image_tag 'gear-icon', size:"32" %></a></td>
               </tr>
               <% end %>
             <% else %>

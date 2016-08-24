@@ -40,22 +40,23 @@
            <% end %>
         <% end %>
         <li><a href="/directory">Directory</a></li>
-        <li id='admin_li'> <!-- Admin Dropdown -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Instructor Tools
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% if session[:instructor_id] %>
-              <% if current_instructor.admin %> <!--admin links  -->
-              <li><a href="/instructors/<%= @user.id %>/admin">Admin Page</a></li>
-              <li><a href="/students/new">Add new students</a></li>
-              <li><a href="/instructors/new">New new instructors</a></li>
-              <% end %>
-              <% end %>
-            </ul>
-          </li>
-
-
+        <% if session[:instructor_id] %>
+          <% if current_instructor.admin %> <!--admin links  -->
+              <li id='admin_li'> <!-- Admin Dropdown -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  Admin Tools
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/instructors/<%= @user.id %>/admin">View All Students</a></li>
+                    <li><a href="/students/new">Create Cohort</a></li>
+                    <li><a href="#">Add Students to Cohort</a></li>
+                    <li><a href="#">Create Stacks</a></li>
+                    <li><a href="/stacks">Edit Stacks</a></li>
+                    <li><a href="/instructors/new">Create Instructor</a></li>
+                  </ul>
+                </li>
+            <% end %>
+          <% end %>
       </ul>
 
       <ul class="col-xs-3 navbar-right nav navbar-nav "><!--Navbar Right -->
@@ -90,23 +91,6 @@
             <%= image_tag 'profile_pic', class: 'profile-img img-responsive img-circle', size:"32" %>
             <% end %>
         </li>
-      </ul>
-      <% if session[:instructor_id] %>
-         <% if current_instructor.admin %> <!--admin links, right side, dropdown  -->
-              <ul id='admin_dropdown' class="col-xs-2 nav navbar-nav">
-                <li id='admin_li'>
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                       <span class="caret"></span></a>
-                   <ul class="dropdown-menu"><!--admin links dowpdown-->
-                        <li><a href="/instructors/<%= @user.id %>/admin">Admin Page</a></li>
-                        <li><a href="/students/new">Add new students</a></li>
-                        <li><a href="/instructors/new">New new instructors</a></li>
-                    <% end %>
-                <% end %>
-           </ul>
-        </li>
-
       </ul>
 </nav>
 <% end %>
