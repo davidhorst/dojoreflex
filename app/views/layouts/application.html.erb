@@ -79,14 +79,14 @@
         </li>
       </ul>
 
-      <ul id='admin_dropdown' class="col-xs-2 navbar-right nav navbar-nav "> <!--admin dropdown  -->
-        <li id='admin_li'>
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <em>Admin</em>
-               <span class="caret"></span></a>
-           <ul class="dropdown-menu">
-                 <% if session[:instructor_id] %>
-                    <% if current_instructor.admin %> <!--admin links  -->
+      <% if session[:instructor_id] %>
+         <% if current_instructor.admin %> <!--admin links  -->
+              <ul id='admin_dropdown' class="col-xs-2 navbar-right nav navbar-nav "> <!--admin dropdown  -->
+                <li id='admin_li'>
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <em>Admin</em>
+                       <span class="caret"></span></a>
+                   <ul class="dropdown-menu">
                         <li><a href="/instructors/<%= @user.id %>/admin">Admin Page</a></li>
                         <li><a href="/students/new">Add new students</a></li>
                         <li><a href="/instructors/new">New new instructors</a></li>
