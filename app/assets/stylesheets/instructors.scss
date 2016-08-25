@@ -73,3 +73,53 @@
 		margin: 1em;
 	}
 }
+
+ /* FOR ADD STUDENT PAGE */
+  #instructor-add-one, #instructor-add-multi {
+
+    table {
+      width: 100%;
+      margin-bottom: 5em;
+      thead {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+      tbody {
+        display: block;
+        height: 22em;
+        width: 100%;
+        overflow-y: scroll;
+        tr {
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+      }
+    }
+
+
+    #add-instructor-drop-zone {
+      padding: 5px;
+      border: black dashed 2px;
+      display: flex;
+      align-items: center;
+      height: 8em;
+      text-align: center;
+      p {
+        margin:auto;
+        color: grey;
+        font-style: italic;
+      }
+    }
+  }
+
+  .add-instructor-error-message {
+  color:red;
+  }
+
+
+  .edit-icon {
+      font-size: 20pt;
+  }
+ 

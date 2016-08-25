@@ -1,68 +1,80 @@
-<div class="dashboard-background">
-	<div class="container">
-		<div class="col-xs-12 dashboard-heading ">
-          <h1>Add an instructor</h1>
-        </div>
+<div class="container">
+	
+	<div class="row">
+    	<div class="col-xs-12 dashboard-heading">
+        	<h1>Add instructors</h1>
+    	</div>
+    </div>
 
-	</br>
-	<div class='row'>
-	<form action="/instructors" method="POST" class='col-md-6'>
-		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-		<div class="row form-group">
-		  <label for="text-input-email" class="col-xs-2 col-form-label">Email:</label>
-		  <div class="col-xs-8">
-			<input class="form-control" type="text" name="user[email]" id="text-input-email">
-		  </div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Add an instructor</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="student-add-one">
+				<form action="/instructors" method="POST">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<div class="form-group">
+						<label>Email</label>
+						<input class="form-control" type="text" name="user[email]" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label>Name</label>
+						<input class="form-control" type="text" name="user[name]" placeholder="Name">
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<label class="col-xs-4">Select Access Level:</label><br>
+							<label class="col-xs-4"><input type="radio" name="user[admin]" value="false" checked> Normal</label>
+					  		<label class="col-xs-4"><input type="radio" name="user[admin]" value="true"> Admin</label>
+						</div>
+					</div>
+					<input class="btn btn-primary" type="submit" value="Add instructor">
+				</form>
+				<% if flash[:errors_1] %>
+					<br>
+					<br>
+					<% flash[:errors_1].each do |err| %>
+						<p class="add-instructor-error-message"><%= err %></p>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
-		<div class="row form-group">
-		  <label for="text-input-name" class="col-xs-2 col-form-label">Name:</label>
-		  <div class="col-xs-8">
-			<input class="form-control" type="text" name="user[name]" id="text-input-name">
-		  </div>
+
+		<div class="col-xs-6">
+			<div class="box-title">
+				<h3>Add instructors in bulk (via .csv)</h3>
+			</div>
+			<div class="col-xs-12 graph-box box" id="instructor-add-multi">	
+				<form action='/instructors' method='POST' enctype="multipart/form-data">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" id="the_data" name="csv_data">
+					<div class="form-group">
+						<label>Drag and drop CSV here:</label>
+						<div class="form-control" id="add-instructor-drop-zone">
+							<p>Drop files here</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<output id="list"></output>
+					</div>
+					<input class="btn btn-primary" id="csv_submit" type="submit" value="Process CSV">
+				</form>
+				<% if flash[:errors_2] %>
+					<br>
+					<br>
+					<% flash[:errors_2].each do |err| %>
+						<p class="add-instructor-error-message"><%= err %></p>
+					<% end %>
+				<% end %>
+			</div>
+
 		</div>
-		<div class="row form-group">
-		  <label for="text-input-name" class="col-xs-2 col-form-label">Select Access Level:</label>
-		  <div class="col-xs-8">
-				<label><input type="radio" name="user[admin]" value="false" checked> Normal</label>
-		  		<label><input type="radio" name="user[admin]" value="true"> Admin</label>
-
-		  </div>
-		</div>
-		<input type="submit" value="Add instructor">
-	</form>
-</div>
-	<br>
-
-
-
-	<% if flash[:errors] %>
-		<% flash[:errors].each do |message| %>
-			<p><%= message %></p>
-		<% end %>
-	<% end %>
-
-
-	<div class='row'>
-	<form action='/instructors' method='POST' enctype="multipart/form-data">
-		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-		<input type="hidden" name="_method" value="PUT">
-		<label>Drag and drop CSV here:</label>
-		<div id="drop_zone" class="text-center"><p>Drop files here</p></div>
-
-		<output id="list"></output>
-		<input type="hidden" id="the_data" name="csv_data">
-
-		<input id="csv_submit" type="submit" value="Process CSV">
-	</form>
-</div>
-	<div>
-
+	</div>
 </div>
 
 <script type="text/javascript">
-
-
 
 function handleFileSelect(evt) {
 	evt.stopPropagation();
@@ -135,12 +147,21 @@ function processData(allText) {
 
 
 // Setup the dnd listeners.
-var dropZone = document.getElementById('drop_zone');
+var dropZone = document.getElementById('add-instructor-drop-zone');
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
 
 $(document).ready( function() {
 	$('#csv_submit').prop("disabled",true);
+	$('#add-instructor-drop-zone').on('dragover', function(){
+		$(this).css('background-color','silver');
+	});
+	$('#add-instructor-drop-zone').on('dragleave', function(){
+		$(this).css('background-color','');
+	});
+	$('#add-instructor-drop-zone').on('drop', function(){
+		$(this).css('background-color','');
+	});
 });
 
 </script>
