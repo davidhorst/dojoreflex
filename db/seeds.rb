@@ -102163,15 +102163,15 @@ StackAssignment.create!([
    "updated_at": "3/8/2016"
  }
 ])
-# OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-# students = Student.all
-# students.each_with_index do |student, index|
-#     if index % 2 == 0
-#         student.update_attribute(:avatar,open("https://randomuser.me/api/portraits/men/#{(index/2)%99}.jpg"))
-#     else
-#         student.update_attribute(:avatar,open("https://randomuser.me/api/portraits/women/#{((index+1)/2)%99}.jpg"))
-#     end
-#     if index > 200
-#         break
-#     end
-# end
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+students = Student.all
+students.each_with_index do |student, index|
+    if index % 2 == 0
+        student.update_attribute(:avatar,open("https://randomuser.me/api/portraits/men/#{(index/2)%99}.jpg"))
+    else
+        student.update_attribute(:avatar,open("https://randomuser.me/api/portraits/women/#{((index+1)/2)%99}.jpg"))
+    end
+    if index > 200
+        break
+    end
+end
