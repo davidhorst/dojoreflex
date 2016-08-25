@@ -57,7 +57,6 @@ class StudentsController < ApplicationController
         if current_instructor != nil
             @user = current_instructor
         end
-
     end
 
     def update_picture

@@ -161,3 +161,7 @@ input:checked + .slider:before {
   padding-bottom: 20px;
 }
 /**   Footer End   **/
+.navbar-nav .open .dropdown-toggle:hover, 
+.navbar-nav .open .dropdown-toggle:focus{
+  background-color: transparent;
+}

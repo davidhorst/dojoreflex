@@ -1,13 +1,16 @@
 Location.create!([
-  {name: "Seattle", city: "Seattle", state: "WA"}
+  {name: "Seattle", city: "Seattle", state: "WA"},
+  {name: "Chicago", city: "Chicago", state: "IL"},
+  {name: "San Jose", city: "San Jose", state: "CA"},
+  {name: "Web", city: "San Jose", state: "CA"}
 ])
+
 Language.create!([
-  {name: "Web Fundamental"},
   {name: "Python"},
   {name: "Ruby"},
-  {name: "Mean"},
-  {name: "iOS"}
+  {name: "Mean"}
 ])
+
 Instructor.create!([
   {name: "Mike Hannon", email: "mike@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
   {name: "Speros M",    email: "sperose@codingdojo.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
@@ -2766,3 +2769,23 @@ Alert.create!([
   {cohort_id: nil, location_id: nil, stack_id: nil, message: "The Dojo will be closed Aug 27-Sept 1"},
   {cohort_id: nil, location_id: nil, stack_id: nil, message: "Thursday Tech talk: Alan Summers, stories from my childhood"}
   ])
+
+
+Stack.create!([
+  {instructor_id: 1, language_id: 2, start_date: "2016-08-01", active: true, location_id: 1, total_assignments: nil},
+  {instructor_id: 1, language_id: 1, start_date: "2016-08-01", active: true, location_id: 4, total_assignments: nil},
+  {instructor_id: 1, language_id: 3, start_date: "2016-09-01", active: false, location_id: 1, total_assignments: nil},
+  {instructor_id: 1, language_id: 2, start_date: "2016-07-01", active: false, location_id: 1, total_assignments: nil}
+])
+StackStudent.create!([
+  {student_id: 1, stack_id: 1, order: 1, belt: "none", assignment_count: nil},
+  {student_id: 4, stack_id: 2, order: 1, belt: "black", assignment_count: nil},
+  {student_id: 5, stack_id: 2, order: 1, belt: "black", assignment_count: nil},
+  {student_id: 6, stack_id: 2, order: 1, belt: "black", assignment_count: nil},
+  {student_id: 4, stack_id: 3, order: 2, belt: "black", assignment_count: nil},
+  {student_id: 5, stack_id: 3, order: 2, belt: "black", assignment_count: nil},
+  {student_id: 6, stack_id: 3, order: 2, belt: "black", assignment_count: nil},
+  {student_id: 4, stack_id: 4, order: 3, belt: "black", assignment_count: nil},
+  {student_id: 5, stack_id: 4, order: 3, belt: "black", assignment_count: nil},
+  {student_id: 6, stack_id: 4, order: 3, belt: "red", assignment_count: nil}
+])

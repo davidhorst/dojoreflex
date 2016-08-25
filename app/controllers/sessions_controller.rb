@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
 
 	#DELETE: removes credentials
 	def logout
-		clear_session
+		session[:student_id] = nil
+		session[:instructor_id] = nil
 		redirect_to "/login"
 	end
 
@@ -68,7 +69,7 @@ class SessionsController < ApplicationController
 					redirect_to "/login"
 				elsif !ins.authenticate params[:password] # wrong password
 					flash[:errors_i_messages] = "Oops, provided email seems to be incorrrect. Please email admissionscontact@codingdojo.com for help."
-					redirect_to "/lsogin"
+					redirect_to "/login"
 				else # all checks out
 					session[:instructor_id] = ins.id
 					redirect_to "/instructors/#{ins.id}"
@@ -80,6 +81,7 @@ class SessionsController < ApplicationController
 			puts "Something went wrong! Wrong user type given!"
 			redirect_to "/login"
 		end # End of type check
+
 	end # End of "create" method
 
 
