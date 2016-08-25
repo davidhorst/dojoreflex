@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
             saveStudent(stu, pw)
             redirect_to "/instructors/#{session[:instructor_id]}/admin"
         else
-            flash[:errors] = stu.errors.full_messages
+            flash[:errors_1] = stu.errors.full_messages
             redirect_to "/students/new"
         end
     end
@@ -107,9 +107,12 @@ class StudentsController < ApplicationController
         result = []
         csv.each do |row|
             hashed = row.to_hash
-            puts hashed["cohort"]
-            hashed["cohort_id"] = Cohort.find_by(start: hashed["cohort"]).id
-            puts hashed["cohort"]
+            cohort =  Cohort.find_by(start: hashed["cohort"])
+            if cohort
+                hashed["cohort_id"] = cohort.id 
+            else
+                hashed["cohort_id"] = 0
+            end
             result << hashed
         end
         return result
@@ -117,7 +120,7 @@ class StudentsController < ApplicationController
 
     def mass_create_users hashed
         row_num = 2
-        flash[:errors] = []
+        flash[:errors_2] = []
         puts hashed
         hashed.each do |entry|
             params[:user] = entry
@@ -129,9 +132,9 @@ class StudentsController < ApplicationController
             if stu.valid?
                 saveStudent(stu, pw)
             else
-                msg = "Student on row #{row_num} was not added."
-                stu.errors.full_messages.each { |mes| msg << " " + mes }
-                flash[:errors] << msg
+                msg = "Row #{row_num} not added:"
+                stu.errors.full_messages.each { |mes| msg << " " + mes+ "." }
+                flash[:errors_2] << msg
             end
             row_num += 1
         end

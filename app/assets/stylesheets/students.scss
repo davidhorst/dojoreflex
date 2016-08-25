@@ -66,43 +66,10 @@
     }
   }
 
-  #add-student-overlay {
-    display: flex;
-    z-index: 1031;
-    background: rgba(0,0,0,0.5);
-    color: black;
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    #add-student-overlay-box {
-      border-radius: 20px;
-      padding: 20px;
-      display: block;
-      height: 50%;
-      width: 50%;
-      margin: auto;
-      background-color: white;
-      #add-student-overlay-box-cancel {
-        display: flex;
-        #add-student-overlay-box-cancel-icon {
-          height: 4em;
-          width: 4em;
-        }
-      }
-      #add-student-overlay-box-content {
-        display: flex;
-        p {
-          display: block;
-          margin:auto;
-          color: grey;
-          font-style: italic;
-        }
-      }
-    }
+  .add-student-error-message {
+  color:red;
+  }
 
-}
 
   .edit-icon {
       font-size: 20pt;

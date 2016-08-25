@@ -53,12 +53,13 @@
                   Admin Tools
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/instructors/<%= @user.id %>/admin">View All Students</a></li>
-                    <li><a href="/cohorts/new">Create Cohort</a></li>
-                    <li><a href="/cohorts">Add Students to Cohort</a></li>
-                    <li><a href="#">Create Stacks</a></li>
-                    <li><a href="/stacks">Edit Stacks</a></li>
-                    <li><a href="/instructors/new">Create Instructor</a></li>
+                    <li><a href="/instructors/<%= @user.id %>/admin">View Students/Instructors</a></li>
+                    <li><a href="#">Create stacks</a></li>
+                    <li><a href="/cohorts/new">Create new cohorts</a></li>
+                    <li><a href="/instructors/new">Create new instructors</a></li>
+                    <li><a href="/students/new">Create new students</a></li>
+                    <li><a href="/cohorts">Edit cohorts</a></li>
+                    <li><a href="/stacks">Edit stacks</a></li>  
                   </ul>
                 </li>
             <% end %>
@@ -101,22 +102,6 @@
 </nav>
 <% end %>
 <body>
-
   <%= yield %>
-<% if session[:student_id] or session[:instructor_id] %>
-<div class="dashboard-background footer">
-  <div class="container">
-    <div class="col-xs-4 footer-col">
-      <p>Only you can prevent forest fires &copy;2016</p>
-    </div>
-    <div class="col-xs-4 footer-col">
-      <a href="#">Jerbs</a>
-    </div>
-    <div class="col-xs-4 footer-col">
-      <a href="#">Privacy</a>
-    </div>
-  </div>
-</div>
-<% end %>
 </body>
 </html>
