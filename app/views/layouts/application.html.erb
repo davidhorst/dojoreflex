@@ -23,12 +23,18 @@
 </head>
 <% if session[:student_id] or session[:instructor_id] %>
  <nav class="navbar navbar-fixed-top" style="background-color: #3C4C5B;">
-      <a class="col-xs-offset-1 navbar-brand" href="/students/<%= session[:student_id] %>">
+      
 
-          <%= image_tag 'coding_dojo_white', id: 'brand-logo',  class: 'img-responsive', width: '112', height: '35' %>
+        <% if session[:student_id] %><!--student links, left side, showing  -->
+          <a class="col-xs-offset-1 navbar-brand" href="/students/<%= session[:student_id] %>">
+            <%= image_tag 'coding_dojo_white', id: 'brand-logo',  class: 'img-responsive', width: '112', height: '35' %>
+          </a>
+        <% elsif session[:instructor_id] %>
+          <a class="col-xs-offset-1 navbar-brand" href="/instructors/<%= session[:instructor_id] %>">
+            <%= image_tag 'coding_dojo_white', id: 'brand-logo',  class: 'img-responsive', width: '112', height: '35' %>
+          </a>
+        <% end %>
 
-
-      </a>
       <ul class="nav navbar-nav">
         <% if session[:student_id] %><!--student links, left side, showing  -->
             <li><a href="/students/<%= session[:student_id] %>">Home</a></li>

@@ -62,22 +62,6 @@
 	</div>
 </div>
 
-<div id="add-student-overlay">
-	<div id="add-student-overlay-box">
-		<div id="add-student-overlay-box-cancel">
-			<%= image_tag 'xicon', id: 'add-student-overlay-box-cancel-icon' %>
-		</div>
-		<div id="add-student-overlay-box-content">
-		<% if flash[:errors] %>
-			<% flash[:errors].each do |message| %>
-				<p><%= message %></p>
-			<% end %>
-		<% end %>
-		<p>TEST MESSAGE</p>
-		</div>
-	</div>
-	
-</div>
 
 
 
@@ -165,7 +149,7 @@ dropZone.addEventListener('drop', handleFileSelect, false);
 $(document).ready( function() {
 	$('#csv_submit').prop("disabled",true);
 	$('#add-student-drop-zone').on('dragover', function(){
-		$(this).css('background-color','red');
+		$(this).css('background-color','silver');
 	});
 	$('#add-student-drop-zone').on('dragleave', function(){
 		$(this).css('background-color','');
