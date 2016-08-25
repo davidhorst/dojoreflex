@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
         @user = current_student
         @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         # @language = current_student.stacks.where(active:true).first.language.name
+        @stacks = Student.find(student: session[:student_id])
         @students = Student.all
     end
 
@@ -111,7 +112,7 @@ class StudentsController < ApplicationController
             hashed = row.to_hash
             cohort =  Cohort.find_by(start: hashed["cohort"])
             if cohort
-                hashed["cohort_id"] = cohort.id 
+                hashed["cohort_id"] = cohort.id
             else
                 hashed["cohort_id"] = 0
             end
