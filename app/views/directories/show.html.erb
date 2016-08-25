@@ -10,23 +10,23 @@
   <div class="left-col col-xs-5">
     <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle directory-img' %>
     <div class="directory-name text-center">
-        <h2><b><%= @user.name%></b></h2>
+        <h2><b><%= @person.name%></b></h2>
         <h3><%= @languages %></h3>
 
     </div>
   </div>
   <div class="right-col col-xs-7">
-    <h4>Start Date: <%= @user.cohort.start %></h4>
-    <h4>Graduation Date: <%= @user.cohort.start + 4.month %></h4>
+    <h4>Start Date: <%= @person.cohort.start %></h4>
+    <h4>Graduation Date: <%= @person.cohort.start + 4.month %></h4>
     <h4>Achievements: <%= @belts %></h4>
     <h4>Hosted Projects: None </h4>
     <h4>Contact Preferences:  </h4>
     <div class="social-links">
         <div class="col-sm-3">
-          <a href="<%= @user.linkedin %>"><%= image_tag 'linkedin_circle_icon', size:"80" %></a>
+          <a href="<%= @person.linkedin %>"><%= image_tag 'linkedin_circle_icon', size:"80" %></a>
         </div>
         <div class="col-sm-3">
-          <a href="<%= @user.website %>"><%= image_tag 'website_circle_icon', size:"80" %></a>
+          <a href="<%= @person.website %>"><%= image_tag 'website_circle_icon', size:"80" %></a>
         </div>
         <div class="col-sm-3">
           <button class="btn btn-primary btn-lrg" name="button">Request <span class="new-line">Tech</span><span class="new-line">Talk</span></button>

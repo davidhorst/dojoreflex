@@ -39,7 +39,7 @@ class DirectoriesController < ApplicationController
     session[:return_to] ||= request.referer
     languages = []
     belts = []
-    @user = Student.find(params[:id])
+    @person = Student.find(params[:id])
     @stacks = Student.find(params[:id]).stacks
     @stacks.each do |stack|
       languages.append(stack.language.name)
