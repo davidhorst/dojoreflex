@@ -19,7 +19,12 @@ class DirectoriesController < ApplicationController
   end
 
   def graduates
-    @user = Student.where(active:false)
+      @students = Student.all
+      if current_instructor != nil
+          @user = current_instructor
+      else
+          @user = current_student
+      end
     render 'index.html.erb'
   end
 
