@@ -25,7 +25,7 @@ class InstructorsController < ApplicationController
   end
 
   def admin
-    @students = Student.all
+    @students = Student.includes(:cohort)
     @instructors = Instructor.all
     @user = current_instructor
   end

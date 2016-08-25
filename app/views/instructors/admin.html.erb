@@ -2,31 +2,63 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 dashboard-heading">
-      <h1>All Students </h1>
-    </div>
-		<div class="student-table">
+	<div class="row">
+		<div class="col-xs-12 dashboard-heading">
+		<h1>All Students </h1>
+		</div>
+		<div class="student-table" id="admin-students-list">
 			<table class="table table-striped">
-					<thead>
+				<thead>
+					<tr>
 						<th>Name</th>
 						<th>Email</th>
 						<th>Cohort</th>
 						<th>Created</th>
 						<th>Delete</th>
-					</thead>
-					<tbody>
-						<% @students.each do |student| %>
-							<tr>
-								<td><a href="/students/<%= student.id%>/edit"><%= student.name %></td>
-								<td><%= student.email %></td>
-								<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.location.name %> - <%= student.cohort.start.strftime("%B") %></td>
-								<td><%= student.created_at %></td>
-								<td><%= image_tag 'remove-icon' %></td>
-							</tr>
-						<% end %>
-					</tbody>
+					</tr>
+				</thead>
+				<tbody>
+					<% @students.each do |student| %>
+						<tr>
+							<td><a href="/students/<%= student.id%>/edit"><%= student.name %></a></td>
+							<td><%= student.email %></td>
+							<td><a href="/cohorts/<%= student.cohort.id%>"><%= student.cohort.location.name %> - <%= student.cohort.start.strftime("%Y") %> <%= student.cohort.start.strftime("%B") %></a></td>
+							<td><%= student.created_at %></td>
+							<td><%= image_tag 'remove-icon' %></td>
+						</tr>
+					<% end %>
+				</tbody>
 			</table>
-
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-xs-12 dashboard-heading">
+		<h1>All Instructors </h1>
+		</div>
+		<div class="instructor-table" id="admin-instructors-list">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Access Level</th>
+						<th>Created</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @instructors.each do |instructor| %>
+						<tr>
+							<td><a href="/instructors/<%= instructor.id%>/edit"><%= instructor.name %></a></td>
+							<td><%= instructor.email %></td>
+							<td><% if instructor.admin %>Admin<% else %>Normal<% end %></td>
+							<td><%= instructor.created_at %></td>
+							<td><%= image_tag 'remove-icon' %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

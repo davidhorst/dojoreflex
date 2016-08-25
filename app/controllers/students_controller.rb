@@ -56,6 +56,8 @@ class StudentsController < ApplicationController
         @student = Student.find(params[:id])
         if current_instructor != nil
             @user = current_instructor
+        else
+            @user = @student
         end
     end
 

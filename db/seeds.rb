@@ -5,6 +5,12 @@ Location.create!([
   {name: "Web", city: "San Jose", state: "CA"}
 ])
 
+Alert.create!([
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Deadline for 3rd stack signup approaching"},
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "The Dojo will be closed Aug 27-Sept 1"},
+  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Thursday Tech talk: Alan Summers, stories from my childhood"}
+])
+
 Language.create!([
   {name: "Python"},
   {name: "Ruby"},
@@ -2764,12 +2770,6 @@ Student.create!([
      help: TRUE,
      active: TRUE
   }])
-Alert.create!([
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Deadline for 3rd stack signup approaching"},
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "The Dojo will be closed Aug 27-Sept 1"},
-  {cohort_id: nil, location_id: nil, stack_id: nil, message: "Thursday Tech talk: Alan Summers, stories from my childhood"}
-  ])
-
 
 Stack.create!([
   {instructor_id: 1, language_id: 2, start_date: "2016-08-01", active: true, location_id: 1, total_assignments: nil},
@@ -2777,6 +2777,7 @@ Stack.create!([
   {instructor_id: 1, language_id: 3, start_date: "2016-09-01", active: false, location_id: 1, total_assignments: nil},
   {instructor_id: 1, language_id: 2, start_date: "2016-07-01", active: false, location_id: 1, total_assignments: nil}
 ])
+
 StackStudent.create!([
   {student_id: 1, stack_id: 1, order: 1, belt: "none", assignment_count: nil},
   {student_id: 4, stack_id: 2, order: 1, belt: "black", assignment_count: nil},
@@ -2788,4 +2789,5 @@ StackStudent.create!([
   {student_id: 4, stack_id: 4, order: 3, belt: "black", assignment_count: nil},
   {student_id: 5, stack_id: 4, order: 3, belt: "black", assignment_count: nil},
   {student_id: 6, stack_id: 4, order: 3, belt: "red", assignment_count: nil}
+
 ])
