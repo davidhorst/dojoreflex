@@ -8,7 +8,17 @@
 <div class="container">
   <div class="detail-panel col-sm-12">
   <div class="left-col col-xs-5">
-    <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle directory-img' %>
+
+      <% if @user.avatar_file_name != nil %>
+      <div>
+      <%= image_tag @user.avatar.url, class: 'profile-img img-responsive img-circle', size:"256" %>
+      <% else %>
+          <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle directory-img' %> size:"256" %>
+      </div>
+
+      <% end %>
+
+
     <div class="directory-name text-center">
         <h2><b><%= @user.name%></b></h2>
         <h3><%= @languages %></h3>
