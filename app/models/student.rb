@@ -7,6 +7,7 @@ class Student < ActiveRecord::Base
   has_many :stacks, through: :stack_students
   has_many :belts
   has_many :blackbelts, -> { where belt: 'black' }, :class_name => 'StackStudent'
+  has_many :assignments, through: :stack_students
 
   #validations
   has_secure_password
@@ -22,7 +23,7 @@ class Student < ActiveRecord::Base
 
 
   private
-  
+
   def downcase_email
     self.email.downcase! unless self.email.blank?
   end
