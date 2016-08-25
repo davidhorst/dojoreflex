@@ -22,9 +22,13 @@ class StudentsController < ApplicationController
     def show
         @alerts = Alert.all
         @user = current_student
-        @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        if Student.find(session[:student_id]).active == false
+          @weekcount = "Graduated"
+        else
+          @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        end
         # @language = current_student.stacks.where(active:true).first.language.name
-        @stacks = Student.find(student: session[:student_id])
+        @stacks = Student.find(session[:student_id]).stacks
         @students = Student.all
     end
 
