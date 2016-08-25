@@ -12,7 +12,8 @@ class Student < ActiveRecord::Base
   #validations
   has_secure_password
   has_attached_file :avatar
-  validates :email, :name, :cohort, presence: :true
+  validates :email, :name, presence: :true
+  validates :cohort, presence: { message: 'not valid' }
   validates :email, :uniqueness => true, :format => { :with => EMAIL_REGEX }
   before_validation :downcase_email
 

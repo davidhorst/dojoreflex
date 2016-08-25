@@ -32,6 +32,13 @@
 					</div>
 					<input class="btn btn-primary" type="submit" value="Add student">
 				</form>
+				<% if flash[:errors_1] %>
+					<br>
+					<br>
+					<% flash[:errors_1].each do |err| %>
+						<p class="add-student-error-message"><%= err %></p>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 
@@ -55,7 +62,13 @@
 					</div>
 					<input class="btn btn-primary" id="csv_submit" type="submit" value="Process CSV">
 				</form>
-
+				<% if flash[:errors_2] %>
+					<br>
+					<br>
+					<% flash[:errors_2].each do |err| %>
+						<p class="add-student-error-message"><%= err %></p>
+					<% end %>
+				<% end %>
 			</div>
 
 		</div>
