@@ -48,14 +48,14 @@ Cohort.create!([  {
   },
   {
     location_id: 1,
-    start: "11/1/2015",
+    start: "1/11/2015",
     active: FALSE,
     created_at: "1/11/2015",
     updated_at: "1/11/2015"
   },
   {
     location_id: 1,
-    start: "12/1/2015",
+    start: "1/12/2015",
     active: FALSE,
     created_at: "1/12/2015",
     updated_at: "1/12/2015"
@@ -83,7 +83,7 @@ Cohort.create!([  {
   },
   {
     location_id: 1,
-    start: "4/1/2016",
+    start: "1/4/2016",
     active: FALSE,
     created_at: "1/4/2016",
     updated_at: "1/4/2016"
@@ -97,7 +97,7 @@ Cohort.create!([  {
   },
   {
     location_id: 1,
-    start: "6/1/2016",
+    start: "1/6/2016",
     active: TRUE,
     created_at: "1/6/2016",
     updated_at: "1/6/2016"
