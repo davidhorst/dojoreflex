@@ -40,7 +40,7 @@ class InstructorsController < ApplicationController
           saveInstructor(ins, pw)
           redirect_to "/instructors/#{session[:instructor_id]}/admin"
       else
-          flash[:errors] = ins.errors.full_messages
+          flash[:errors_1] = ins.errors.full_messages
           redirect_to "/instructors/new"
       end
   end
@@ -50,7 +50,7 @@ class InstructorsController < ApplicationController
     hashed = objectifyData(params[:csv_data])
     mass_create_users(hashed)
 
-    redirect_to "/students/new"
+    redirect_to "/instructors/new"
   end
 
   def update_picture
@@ -89,7 +89,7 @@ private
 
   def mass_create_users hashed
       row_num = 2
-      flash[:errors] = []
+      flash[:errors_2] = []
       hashed.each do |entry|
           params[:user] = entry
           ins = Instructor.new( user_params )
@@ -99,9 +99,9 @@ private
           if ins.valid?
               saveInstructor(ins, pw)
           else
-              msg = "Instructor on row #{row_num} was not added."
+              msg = "Row #{row_num} not added:"
               ins.errors.full_messages.each { |mes| msg << " " + mes }
-              flash[:errors] << msg
+              flash[:errors_2] << msg
           end
           row_num += 1
       end
