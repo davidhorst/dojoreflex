@@ -70,7 +70,7 @@
         </form>
         </div>
         <br>
-    <div id='profile_image_div' class='row image-edit-border'>
+        <div id='profile_image_div' class='row image-edit-border'>
         <% if @student.avatar_file_name != nil %>
         <div>
         <%= image_tag @student.avatar.url, class: 'profile-img img-responsive img-circle', size:"256" %>
@@ -100,7 +100,6 @@ $('#myFile').change(function() {
 $('#profile_image_div img').click(function(){
         $('#myFile').click()
 });
-
 
 
 $('#edit_form input, #edit_form textarea').change(function() {
