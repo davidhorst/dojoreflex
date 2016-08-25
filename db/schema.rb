@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824185307) do
+ActiveRecord::Schema.define(version: 20160824213344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20160824185307) do
   add_index "alerts", ["cohort_id"], name: "index_alerts_on_cohort_id", using: :btree
   add_index "alerts", ["location_id"], name: "index_alerts_on_location_id", using: :btree
   add_index "alerts", ["stack_id"], name: "index_alerts_on_stack_id", using: :btree
+
+  create_table "borrowers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "purpose"
+    t.text     "description"
+    t.integer  "amount_needed"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "cohorts", force: :cascade do |t|
     t.integer  "location_id"
@@ -67,6 +79,27 @@ ActiveRecord::Schema.define(version: 20160824185307) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lenders", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "money"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "lender_id"
+    t.integer  "borrower_id"
+    t.integer  "amount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "loans", ["borrower_id"], name: "index_loans_on_borrower_id", using: :btree
+  add_index "loans", ["lender_id"], name: "index_loans_on_lender_id", using: :btree
+
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "city"
@@ -75,13 +108,27 @@ ActiveRecord::Schema.define(version: 20160824185307) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stack_assignments", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "stack_id"
+    t.string   "assignment"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "stack_student_id"
+  end
+
+  add_index "stack_assignments", ["stack_id"], name: "index_stack_assignments_on_stack_id", using: :btree
+  add_index "stack_assignments", ["stack_student_id"], name: "index_stack_assignments_on_stack_student_id", using: :btree
+  add_index "stack_assignments", ["student_id"], name: "index_stack_assignments_on_student_id", using: :btree
+
   create_table "stack_students", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "stack_id"
     t.integer  "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "belt"
+    t.integer  "assignment_count"
   end
 
   add_index "stack_students", ["stack_id"], name: "index_stack_students_on_stack_id", using: :btree
@@ -92,9 +139,10 @@ ActiveRecord::Schema.define(version: 20160824185307) do
     t.integer  "language_id"
     t.date     "start_date"
     t.boolean  "active"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "location_id"
+    t.integer  "total_assignments"
   end
 
   add_index "stacks", ["instructor_id"], name: "index_stacks_on_instructor_id", using: :btree
@@ -129,6 +177,11 @@ ActiveRecord::Schema.define(version: 20160824185307) do
   add_foreign_key "alerts", "stacks"
   add_foreign_key "cohorts", "locations"
   add_foreign_key "instructors", "locations"
+  add_foreign_key "loans", "borrowers"
+  add_foreign_key "loans", "lenders"
+  add_foreign_key "stack_assignments", "stack_students"
+  add_foreign_key "stack_assignments", "stacks"
+  add_foreign_key "stack_assignments", "students"
   add_foreign_key "stack_students", "stacks"
   add_foreign_key "stack_students", "students"
   add_foreign_key "stacks", "instructors"
