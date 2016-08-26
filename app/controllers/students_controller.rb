@@ -22,12 +22,7 @@ class StudentsController < ApplicationController
         @assignmentscompleted = StackStudent.find_by(student_id: session[:student_id]).assignments.group(:created_at).count
         # @language = current_student.stacks.where(active:true).first.language.name
         @stacks = Student.find(session[:student_id]).stacks
-        @students = @stacks.where(:active => true)
-        if ! @students.empty?
-            @students = @students.first.students.group(:happy).count
-        else
-            @students = [['true',1], ['false',0]]
-        end
+        @students = Student.all
     end
 
     def new
