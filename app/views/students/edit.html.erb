@@ -75,9 +75,8 @@
         <%= image_tag @student.avatar.url, class: 'profile-img img-responsive img-circle', size:"256" %>
         <% else %>
         <%= image_tag 'profile_pic', title:'click to edit', class: 'profile-img img-responsive img-circle', size:"256" %>
-        <p id='edit-icon'>click to edit</p>
-
         <% end %>
+        <p id='edit-icon'>click to edit</p>
         <form id='pic_form' method='post' action='/students/<%=@student.id%>'  enctype="multipart/form-data">
         <div class="form-group row">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
