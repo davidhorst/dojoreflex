@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
         if Student.find(session[:student_id]).active == false
           @weekcount = "Graduated"
         else
-          @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+          @weekcount = "Week " + (Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i).to_s
         end
         @assignmentscompleted = StackStudent.find_by(student_id: session[:student_id]).assignments.group(:created_at).count
         # @language = current_student.stacks.where(active:true).first.language.name
