@@ -102171,7 +102171,6 @@ students.each_with_index do |student, index|
     else
         student.update_attribute(:avatar,open("https://randomuser.me/api/portraits/women/#{((index+1)/2)%99}.jpg"))
     end
-    student.update_attribute(:avatar_file_name, "data.jpg")
     if index > 200
         break
     end
