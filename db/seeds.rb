@@ -20,7 +20,7 @@ Language.create!([
 ])
 
 Instructor.create!([
-  {name: "Mike Hannon", email: "mike@codingdojo.com",    location_id: 1, linkedin: nil, website: nil, password: 'asdfasdf', about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
+  {name: "Mike Hannon", email: "i@gmail.com",    location_id: 1, linkedin: nil, website: nil, password: 'asdfasdf', about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
   {name: "Speros M",    email: "sperose@codingdojo.com", location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
   {name: "Sudo David",  email: "david@codingdojo.com",   location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
   {name: "Chris",       email: "chris@codingdojo.com",   location_id: 1, linkedin: nil, website: nil, password_digest: "$2a$10$hrSZdD1q6lcBYWZ7J6c.Rerh90e.V9ycrPgoWyud.X5sms08wK8vi", about: "This is a short note about me", admin: true, active: true, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil},
@@ -134,7 +134,7 @@ Cohort.create!([  {
 Student.create!([
   {
     name: "Phillip Perkins",
-    email: "s@gmail.com",
+    email: "phiik@gmail.com",
     cohort_id: 1,
     created_at: "1/8/2015",
     updated_at: "1/8/2015",
@@ -2224,7 +2224,7 @@ Student.create!([
   },
   {
     name: "Phyllis Burton",
-    email: "pburton5a@cbslocal.com",
+    email: "s@gmail.com",
     cohort_id: 10,
     created_at: "1/5/2016",
     updated_at: "1/5/2016",

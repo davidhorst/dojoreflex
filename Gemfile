@@ -3,6 +3,7 @@ gem "chartkick"
 gem "mail"
 gem 'rails-footnotes', '>= 4.0.0', '<5'
 gem 'hirb'
+gem 'groupdate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 gem 'json', '~> 1.8.1'
