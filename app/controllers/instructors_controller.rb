@@ -20,7 +20,10 @@ class InstructorsController < ApplicationController
 
   def show
     @user = current_instructor
-    @chart =  Stack.where(instructor: current_instructor).where(active: true).first.assignments
+    @chart =  Stack.where(instructor: current_instructor).where(active: true)
+    if @chart
+        @chart = @chart.first.assignments
+    end
     @stacks = Stack.where(instructor: current_instructor).order(:start_date).where("start_date > ?", Date.today - 3.month)
 
   end
