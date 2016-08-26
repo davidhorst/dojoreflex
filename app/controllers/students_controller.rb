@@ -11,14 +11,6 @@ class StudentsController < ApplicationController
     before_action :require_correct_student_or_admin, only: [ :update, :update_picture, :edit ]
     before_action :require_admin_only_login, only: [ :new, :create, :csv_create ]
 
-    # def test_pic
-    #     s = current_student
-    #     s.update_attribute(:avatar,open(params[:user][:avatar]))
-    #     redirect_to "/students/#{params[:id]}/edit"
-    #     https://randomuser.me/api/portraits/men/83.jpg
-    #
-    # end
-
     def show
         @alerts = Alert.all
         @user = current_student
@@ -86,7 +78,7 @@ class StudentsController < ApplicationController
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
         if user.valid?
-            render json: {:status => 'success'  }
+            render json: {:status => 'success'}
         end
     end
 
