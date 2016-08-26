@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
         else
           @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
         end
+        @assignmentscompleted = StackStudent.find_by(student_id: session[:student_id]).assignments.group(:created_at).count
         # @language = current_student.stacks.where(active:true).first.language.name
         @stacks = Student.find(session[:student_id]).stacks
         @students = Student.all

@@ -6,8 +6,10 @@
     </div>
   </div>
       <div class='row'>
-          <%= line_chart @chart.group_by_day(:created_at).count %>
+          <h4>Student Submissions</h4>
+          <%= line_chart @chart.group_by_day(:created_at).count, ytitle: "Total Assignments" %>
       </div>
+      <br><br>
   <div class="row">
     <div class="col-xs-7">
       <div class="box"> <!-- Stack Admin Box -->

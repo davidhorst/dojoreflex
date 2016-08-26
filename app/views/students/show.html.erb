@@ -7,20 +7,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-4">
-        <div class="box-title">
-          <h3>Course Completion</h3>
-        </div>
-          <div class="col-xs-12 graph-box box">
-            <%= pie_chart [["Completed", 10], ["Remaining", 5]], library: {pieHole: 5.5}, colors: ["#779CAB", "#A2E8DD"] %>
-          </div>
-      </div>
-        <div class="col-xs-4">
+        <div class="col-xs-8">
           <div class="box-title">
-            <h3>Hours this week</h3>
+            <h3>Assignments Completed</h3>
           </div>
             <div class="col-xs-12 graph-box box">
-              <%= pie_chart @students.group(:happy).count, library: {pieHole: 0.4}, colors: ["#779CAB", "#A2E8DD"] %>
+              <%= line_chart @assignmentscompleted,colors: ["#779CAB", "#A2E8DD"] %>
             </div>
         </div>
         <div class="col-xs-4">
