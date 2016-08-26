@@ -20,7 +20,7 @@ class Student < ActiveRecord::Base
   # will validate if the file is an image
 # s_attachment_content_type :avatar, :content_type => /\Aimage/
   # will validate .png and .jpg images only
-  validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /JPG\Z/]
+  #validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /JPG\Z/]
 
 
   private

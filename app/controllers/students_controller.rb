@@ -81,7 +81,7 @@ class StudentsController < ApplicationController
         user = Student.find(params[:id])
         user = Student.update(user.id, user_params)
         if user.valid?
-            render json: {:status => 'success'  }
+            render json: {:status => 'success'}
         end
     end
 
