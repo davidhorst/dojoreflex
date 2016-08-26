@@ -13,9 +13,7 @@
       <%= image_tag @person.avatar.url, class: 'profile-img img-responsive img-circle', size:"256" %>
       <% else %>
           <%= image_tag 'profile-placeholder', class: 'img-responsive img-circle directory-img', size:"256" %>
-
       <% end %>
-
 
     <div class="directory-name text-center">
         <h2><b><%= @person.name%></b></h2>

@@ -2,7 +2,8 @@ require 'mail'
 
 class NewUser < ApplicationMailer
 
- options = { :address              => "smtp.gmail.com",
+ options = {
+   :address              => "smtp.gmail.com",
    :port                 => 587,
    :user_name            => 'atestkumon@gmail.com',
    :password             => 'aTestKumon01)!',
@@ -15,7 +16,6 @@ class NewUser < ApplicationMailer
 
    def NewStudent(user, password)
 
-
         Mail.deliver do
             to user.email
             from 'aTestKumon@gmail.com'
@@ -26,7 +26,6 @@ class NewUser < ApplicationMailer
                     Your temporary password is ' + password + '</p>'
             end
         end
-
     end
 
 
@@ -43,8 +42,5 @@ def NewInstructor(user, password)
 
      end
     end
-
   end
-
-
 end
