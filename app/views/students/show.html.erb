@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 dashboard-heading">
-        <h1><%= @user.name %> <span class="small">Week <%= @weekcount %></span> <span class="small"><%= @language %></span></h1>
+        <h1><%= @user.name %> <span class="small"><%= @weekcount %></span> <span class="small"><%= @language %></span></h1>
       </div>
     </div>
     <div class="row">
@@ -104,24 +104,15 @@
               <th>Status</th>
             </thead>
             <tbody>
+              <% @stacks.each do |stack| %>
               <tr>
-                <td>Web Fundamentals</td>
-                <td>7/15/2016</td>
-                <td>Speros</td>
+                <td><%= stack.language.name %></td>
+                <td><%= stack.start_date %></td>
+                <td><%= stack.instructor.name %> </td>
                 <td>blackbelt</td>
               </tr>
-              <tr>
-                <td>Python</td>
-                <td>8/01/2016</td>
-                <td>Jack</td>
-                <td>Blackbelt</td>
-              </tr>
-              <tr>
-                <td>Ruby</td>
-                <td>09/01/2016</td>
-                <td>David</td>
-                <td>Blackbelt</td>
-              </tr>
+              <% end %>
+              <% if @stacks.count < 4 %>
               <tr>
                 <td>
                   <select class="select">
@@ -141,6 +132,7 @@
                 </td>
                 <td colspan="2"> <button class="btn btn-primary">Join!</button></td>
               </tr>
+              <% end %>
             </tbody>
           </table>
         </div>

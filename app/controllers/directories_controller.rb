@@ -6,6 +6,7 @@ class DirectoriesController < ApplicationController
     end
 
     @students = Student.all
+
     if current_instructor != nil
         @user = current_instructor
     else
@@ -37,13 +38,20 @@ class DirectoriesController < ApplicationController
   def show
     session[:return_to] ||= request.referer
     languages = []
-    @user = Student.find(params[:id])
+    belts = []
+    @person = Student.find(params[:id])
     @stacks = Student.find(params[:id]).stacks
     @stacks.each do |stack|
       languages.append(stack.language.name)
     end
     @languages = languages.to_sentence
-    @belts = StackStudent.where(student:params[:id])
+    @belts = StackStudent.where(student_id: params[:id])
+    @belts.each do |belt|
+      if belt.belt != "" and belt.belt != nil
+        belts.append(belt.stack.language.name + " " + belt.belt + " belt")
+      end
+    end
+    @belts = belts.to_sentence
     if current_instructor != nil
         @user = current_instructor
     else

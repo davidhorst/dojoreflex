@@ -11,19 +11,16 @@ class StudentsController < ApplicationController
     before_action :require_correct_student_or_admin, only: [ :update, :update_picture, :edit ]
     before_action :require_admin_only_login, only: [ :new, :create, :csv_create ]
 
-    # def test_pic
-    #     s = current_student
-    #     s.update_attribute(:avatar,open(params[:user][:avatar]))
-    #     redirect_to "/students/#{params[:id]}/edit"
-    #     https://randomuser.me/api/portraits/men/83.jpg
-    #
-    # end
-
     def show
         @alerts = Alert.all
         @user = current_student
-        @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        if Student.find(session[:student_id]).active == false
+          @weekcount = "Graduated"
+        else
+          @weekcount = Date.today.strftime("%U").to_i - current_student.cohort.start.strftime("%U").to_i
+        end
         # @language = current_student.stacks.where(active:true).first.language.name
+        @stacks = Student.find(session[:student_id]).stacks
         @students = Student.all
     end
 
